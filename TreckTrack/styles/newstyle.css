@@ -1,0 +1,39 @@
+@font-face {
+    font-family: "Graphik";
+    src: url(../fonts/Graphik\ Family/Graphik-Regular-Trial.otf);
+}
+
+@font-face {
+    font-family: "Graphik";
+    src: url(../fonts/Graphik\ Family/Graphik-Bold-Trial.otf) format();
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Graphik";
+    src: url(../fonts/Graphik\ Family/Graphik-RegularItalic-Trial.otf);
+    font-style: italic, oblique;
+}
+
+@font-face {
+    font-family: "Graphik";
+    src: url(../fonts/Graphik\ Family/Graphik-BoldItalic-Trial.otf);
+    font-style: italic, oblique;
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "GraphikBlack";
+    src: url(../fonts/Graphik\ Family/Graphik-Black-Trial.otf);
+}
+
+@font-face {
+    font-family: "GraphikBlack";
+    src: url(../fonts/Graphik\ Family/Graphik-BoldItalic-Trial.otf);
+    font-style: italic, oblique;
+}
+
+body {
+    background-color: white;
+    font-family: "Graphik";
+}
