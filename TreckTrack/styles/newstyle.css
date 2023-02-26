@@ -86,8 +86,9 @@
 :root {
     --primary-gradient: linear-gradient(0deg, rgba(108,191,84,1) 0%, rgba(144,255,112,1) 100%);;
     --primary-gradient-color: rgba(144,255,112,1);
-    --neutral-color: black;
-    --invert-neutral-color: white;
+    --neutral-color: #212529;;
+    --invert-neutral-color: rgb(255, 255, 255);
+    --invert-neutral-color-shade-1: rgb(209, 209, 209);
     --primary-tint-1: #E3FFDB;
     --primary-shade-1: #6CBF54;
     --primary-shade-2: #488038;
@@ -95,10 +96,15 @@
     --font-medium: "GraphikMedium";
     --font-thick: "GraphikBlack";
     --accent-color-1: #fb3efb;
+    --accent-shade-1: #be23be;
 }
 
 *, *::before, *::after {
     box-sizing: border-box;
+}
+
+html {
+    font-family: var(--font-regular);
 }
 
 body {
@@ -106,8 +112,7 @@ body {
     font-family: "Graphik";
     margin: 0;
     overflow-x: hidden;
-    font-size: 12px;
-    min-height: 100dvh;
+    font-size: 1rem;
     color: var(--neutral-color);
 }
 
@@ -117,21 +122,42 @@ a {
     font-family: var(--font-medium);
 }
 
+a:hover {
+    border-bottom: 2px solid var(--invert-neutral-color);
+    transition: 0.1s;
+}
+
 ul {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-button {
+button, .button {
     outline: transparent;
     border: none;
     border-radius: 50px;
     padding: 0.4em;
-    font-size: 1.2em;
+    font-size: 1.2rem;
     cursor: pointer;
     font-family: var(--font-medium);
     background-color: var(--secondary-color);
+    display: inline-block;
+}
+
+button:hover, .button:hover {
+    transform: scale(110%) !important;
+    transition: 0.2s;
+}
+
+button.bg-accent-1:hover, .button.bg-accent-1:hover {
+    background-color: var(--accent-shade-1);
+    border-color: var(--accent-shade-1);
+}
+
+button.bg-transparent:hover, .button.bg-transparent:hover {
+    color: var(--accent-shade-1);
+    border-color: var(--accent-shade-1);   
 }
 
 header {
@@ -204,16 +230,23 @@ header div, header nav > * {
 
 .logo {
     grid-area: logo;
-    margin-top: 0.2em;
     justify-content: start;
+    margin-top: 0.2em;
+    align-items: center;
     filter: hue-rotate(90deg);
 }
 
 .logo label {
-    font-size: 1.5em;
+    font-size: 1.5rem;
+    
+    margin-bottom: 7px;
     margin-left: -0.15em;
-    line-height: 0.5rem; 
-    text-shadow: 0 0 8px var(--primary-shade-2);
+
+}
+
+.logo *:hover  {
+    text-decoration: none;
+    border-bottom: none;
 }
 
 .search-bar {
@@ -260,8 +293,7 @@ header .nav-list {
 }
 
 header .nav-list li {
-    text-shadow: 0 0 8px var(--primary-shade-2);
-    font-size: 1.2em;
+    font-size: 1.2rem;
 }
 
 .account {
@@ -275,14 +307,14 @@ header .nav-list li {
 .grid-home {
     display: grid;
 
-    gap: 1rem;
-    grid-template-columns: 20% auto 20%;
+    grid-template-columns: 20% auto;
     grid-template-areas: "collection feed social";
     height: 91vh;
 }
 
 .home:nth-child(1) {
     box-shadow: 8px 0px 8px rgba(94, 94, 94, 0.1);
+    position: relative;
 
 }
 
@@ -291,6 +323,7 @@ header .nav-list li {
 }
 
 .home:nth-child(3) {
+    display: none;
     box-shadow: -8px 0px 8px rgba(94, 94, 94, 0.1);
 }
 
@@ -327,7 +360,7 @@ header .nav-list li {
 .dropdown-content {
     display: none;
     min-width: 100%;
-    font-size: 12px;
+    font-size: 1rem;
 }
 
 .list-collection li:nth-child(n):hover > p {
@@ -371,23 +404,19 @@ footer {
 main.landing {
     display: flex;
     position: relative;
-
-    align-items: center;
+    height: calc(100vh - 56.53px);
     justify-content: center;
-
-    min-height: 100vh;
+    align-items: center;
 }
 
 main.landing::before { /*landing page main bg*/
     content: "";
     position: absolute;
 
-    height: 100vh;
-    
     inset: 0;
     z-index: -100;
 
-    filter: brightness();
+    filter: brightness(70%);
 
     background-image: url(../images/trialbg.jpg);
     background-size: cover;
@@ -396,14 +425,8 @@ main.landing::before { /*landing page main bg*/
 }
 
 .quote {
-    margin: 16.8vh 0;
     text-align: center;
-
-    font-size: 4em;
-
-
-    box-shadow: inset 0 0 500px 500px rgba(0, 0, 0, 0.7), 0 0 200px 200px rgba(0, 0, 0, 0.7);
-    border-radius: 50%;
+    font-size: 4rem;
 }
 
 .quote h1, .quote h3 {
@@ -415,18 +438,19 @@ main.landing::before { /*landing page main bg*/
 }
 
 .quote p {
-    margin-top: 3em;
+    margin: 3em 0;
     font-size: 1.3rem;
 }
 
 #button-landing-create-account {
-    margin-top: 3em;
     font-size: 1.5rem;
     padding-inline: 50px;
-
 }
 
 
+
+/* MAP PAGE SPECIFIC CSS STARTS HERE 
+--------------------------------------------------*/
 
 
 

@@ -2,24 +2,22 @@
 
 ## Overview
 
-Provide a general summary of the web project. Must include:
-
-* The "problem" your web project is trying to fix.
-* The target audience of your web project.
+ This platform aims to seamlessly combine the aspects of social media and a travel portal by providing services such as trip planning with the key feature of an interactive map. On this map, the user will be able to see activities and other users near their trip destination as well as their past and future trips. Besides the map, a feed and social panels will be present which will assist with discovery. 
 
 ## Team
 
-Provide a list of team members. If team members have different roles and/or tasks, then list the roles of each member too.
+Mainly:
+Batu Durmazel - CSS, HTML
+Michelle Watford - JS
+Yuto Kobayashi - PHP, MySQL
 
-Batu Durmazel
-Michelle Watford
-Yuto Kobayashi
+Design, structure etc. decided by each member.
 
 ## Goals, Objectives and Phases
 
 ### Objective
 
-What is YOUR (not users) objective? What is the website supposed to achieve?
+While most social media utilise hashtags to associate locations, the lack of visualization leaves more to be desired. This platform aims to fill that gap by providing a satisfying experience to both travel lovers and social media users.
 
 ### Goals
 
@@ -39,33 +37,33 @@ Same as YOUR COURSE (`ISC0008`) milestones.
 
 ### Site map
 
-Provide a hierarchical structure of your website as a `tree` (can be an image):
-
 ```text
-HOME
-  +--ABOUT US
-  |    +--HISTORY
-  |    +--TEAM
-  +--SERVICES
-  |    +--SERVICE 1
-  |    +--SERVICE 2
-  ...
+LANDING
+  +--ABOUT
+  +--PRIVACY
   +--CONTACT
+HOME
+  +--FEED
+  +--PROFILE
+    +--MY POSTS
+    +--MY TRIPS
+    +--CALENDAR
+    +--SETTINGS
+  +--MAP
+  +--SUPPORT
 ```
 
 ### Content Types
 
-Describe what kind of data types each page contains:
+Landing page is where the user will land if they do not have an account and will be encouraged to create one.
 
-* new?
-* blogs?
-* images?
-* people?
-* products?
-* comments?
-* etc
+Home page will include a feed with posts from friends and people on nearby trips, these posts will have comments, images etc. and will be linked to the map.
 
-Are these data types hierarchical? etc.
+On the profile page, the user will be able to edit their profile, create new posts, check their calendar and plan future trips or look at previous trips.
+
+On the map, the user will be able to see a visualization of the trips they choose to see.
+
+Each page will have an openable social panel where the user can interact with their friends.
 
 ### Page Templates
 
@@ -79,20 +77,11 @@ The page templates should come with CSS to give a good idea what the pages will 
 
 ## Functionality
 
-How does your website work? What are the specific parts that each of your page require?
-
-* What fields are required for sign-up?
-* What happens if user leaves a comment?
-* What are the user roles?
-* What are performance requirements?
+The user will be able to sign up with their email address, a username and password. The platform will aim to have responsive web design which will make it accessible on every device. Further functionality to be decided.
 
 ## Browser Support
 
-Specify which browsers are supported. As minimum, your website should support:
-
-* Chrome/Chromium
-* Firefox
-* mobile browsers (Chrome, Firefox, Safari, etc)
+Currently desktop Chrome, Chromium and Firefox are the confirmed supported browsers. However by the end of the project, mobile versions are to be supported as well.
 
 ## Hosting
 
