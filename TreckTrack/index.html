@@ -7,68 +7,34 @@
     <script src="https://kit.fontawesome.com/66d74c224c.js" crossorigin="anonymous"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Landing</title>
 </head>
 
 <body>   
     <header class="primary-gradient">
         <div class="head logo">
-            <a href="index.html"><img src="images/logoex.png" width="50" id="logo"></a>
-            <label for="logo"><a href="index.html" class="text-thick-invert-neutral">Trek&Track</a></label>
+            <a href="home.html"><img src="images/logoex.png" width="50" id="logo"></a>
+            <label for="logo"><a href="home.html" class="text-thick-invert-neutral">Trek&Track</a></label>
         </div>
-        <div class="head search-bar bg-invert-neutral">
-            <label for="head-search-bar" id="label-head-search-bar"></label>
-            <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
-            <input type="search" id="head-search-bar" placeholder=" Search Trek&Track..." name="search">
-        </div>
+
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="map.html">Map</a></li>
-                <li><a href="profile.html">Profile</a></li>
+                <li><a href="home.html">Features</a></li>
+                <li><a href="home.html">About</a></li>
+                <li><a href="home.html">Contact</a></li>
             </ul>
         </nav>
         <div class="head account">
-            <button type="button" id="button-head-log-in" class="text-medium-accent-1 bg-transparent border-accent" onclick="window.location.href='login.html';">Log In</button>
-            <button type="button" id="button-head-sign-up" class="text-medium-invert-neutral bg-accent-1 border-accent">Sign Up</button>
+            <a href="login.html" id="button-head-log-in" class="button text-medium-accent-1 bg-transparent border-accent">Log In</a>
         </div>
     </header>
-    <main class="grid-home">
-        <aside class="home collection bg-invert-neutral">
-            <ul class="home list-collection">
-                <li>
-                    <p>My Trips</p>
-                    <div class="dropdown-content">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia qui perferendis labore possimus, asperiores cupiditate explicabo vero deserunt delectus similique nam deleniti fugiat dolorem natus nisi quod eligendi culpa dignissimos.</p>
-                    </div>
-                </li>
-                <li>
-                    <p>Calendar</p>
-                    <div class="dropdown-content">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia qui perferendis labore possimus, asperiores cupiditate explicabo vero deserunt delectus similique nam deleniti fugiat dolorem natus nisi quod eligendi culpa dignissimos.</p>
-                    </div>
-                </li>
-                <li>
-                    <p>Friends' Trips</p>
-                    <div class="dropdown-content">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia qui perferendis labore possimus, asperiores cupiditate explicabo vero deserunt delectus similique nam deleniti fugiat dolorem natus nisi quod eligendi culpa dignissimos.</p>
-                    </div>
-                </li>
-            </ul>
-        </aside>
-        <article class="home feed bg-invert-neutral">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus debitis nam, consequuntur alias
-                tempore quos quia totam, beatae similique nisi, impedit animi nobis sint repellendus esse at dolorum cum
-                dicta?</p>
-        </article>
-        <aside class="home social bg-invert-neutral">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, fugit voluptatibus animi molestias nam non
-                minima at, laudantium consectetur ipsam qui beatae dolorum pariatur quasi perferendis ratione, voluptate
-                magnam ullam!</p>
-        </aside>
+    <main class="landing">
+        <div class="landing quote">
+            <h1 class="text-thick-invert-neutral">Memories</h1>
+            <h3 class="text-thick-invert-neutral">in your pocket</h3>
+            <p class="text-regular-invert-neutral">Share your journey to the world.<br>Explore unlimited possibilites.</p>
+            <a href="register.html" id="button-landing-create-account" class="button text-medium-invert-neutral bg-accent-1 border-accent">Create Account</a>
+        </div>  
     </main>
-    <footer class="quick-links bg-transparent">
-        <p></p>
-    </footer>
 </body>
 </html>
