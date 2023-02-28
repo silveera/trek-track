@@ -13,8 +13,8 @@
 <body>   
     <header class="primary-gradient">
         <div class="head logo">
-            <a href="home.html"><img src="images/logoex.png" width="50" id="logo"></a>
-            <label for="logo"><a href="home.html" class="text-thick-invert-neutral">Trek&Track</a></label>
+            <a href="home.html" class="not-link"><img src="images/logoex.png" width="50" id="logo" alt="Trek&Track-Logo"></a>
+            <label for="logo"><a href="home.html" class="text-thick-invert-neutral not-link">Trek&Track</a></label>
         </div>
         <div class="head search-bar bg-invert-neutral">
             <label for="head-search-bar" id="label-head-search-bar"></label>
@@ -29,13 +29,17 @@
             </ul>
         </nav>
         <div class="head account">
-            <button type="button" id="button-head-log-in" class="text-medium-accent-1 bg-transparent border-accent" onclick="window.location.href='login.html';">Log In</button>
-            <button type="button" id="button-head-sign-up" class="text-medium-invert-neutral bg-accent-1 border-accent">Sign Up</button>
+            <a href="login.html" id="button-head-log-in" class="button text-medium-invert-neutral bg-secondary border-secondary">Log In</a>
+            <a href="login.html" id="button-head-sign-up" class="button text-medium-secondary bg-primary-tint-1 border-primary-tint-1">Sign Up</a>
         </div>
     </header>
     <main class="grid-home">
         <aside class="home collection bg-invert-neutral">
-            <ul class="home list-collection">
+            <div class="profilepic">
+                <a href="profile.html" class="not-link"><img src="images/profilepic.png" id="collection-profile-pic" width="70%" alt="User-Profile">
+                <label for="collection-profile-pic" class="text-medium-neutral line-after-neutral">@username</label></a>
+            </div>
+            <ul class="list-collection">
                 <li>
                     <p>My Trips</p>
                     <div class="dropdown-content">
