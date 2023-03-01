@@ -113,7 +113,7 @@
     .color-3 {color: #95cdb4;}
     .color-4 {color: #95cdc2;}
     .color-5 {color: #95cacd;}
-    .color-6 {color: #95bccd;} */
+    .color-6 {color: #95bccd;}  */
 }
 
 *, *::before, *::after {
@@ -301,7 +301,6 @@ header {
     height: 2px;
     border-radius: 70px;
     background-color: var(--secondary-color);
-
 }
 
 header div, header nav > * {
@@ -432,6 +431,7 @@ header .nav-list li {
 .collection #collection-username {
     margin: 0 0;
 }
+
 .profilepic:hover #collection-profile-pic {
     transform: scale(105%);
     transition: 0.2s;
