@@ -46,7 +46,7 @@
 }
 
 @media screen and (max-width: 700px) {
-    .logo label {
+    .logo p {
         display: none;
     }
 
@@ -155,7 +155,7 @@ ul {
     list-style: none;
 }
 
-label:hover {
+.clickable:hover {
     cursor: pointer;
 }
 
@@ -307,23 +307,20 @@ header {
 header div, header nav > * {
     display: flex;
     justify-content: center;
-    align-items: baseline;
+    align-items: center;
 }
 
 .logo {
     grid-area: logo;
     justify-content: start;
     margin-top: 0.2em;
-    align-items: center;
     filter: hue-rotate(25deg) saturate(190%);
 }
 
-.logo label {
+.logo p {
     font-size: var(--font-size-large);
-    
-    margin-bottom: 7px;
-    margin-left: -0.15em;
 
+    margin: 0 0 7px -0.15em;
 }
 
 .logo:hover #logo {
@@ -419,6 +416,10 @@ header .nav-list li {
     overflow-y: auto;
 }
 
+.collection * + * {
+    padding-top: 0;
+}
+
 .collection, .collection *  {
     display: flex;
     flex-direction: column;
@@ -428,6 +429,9 @@ header .nav-list li {
     font-size: var(--font-size-medium);
 }
 
+.collection #collection-username {
+    margin: 0 0;
+}
 .profilepic:hover #collection-profile-pic {
     transform: scale(105%);
     transition: 0.2s;
