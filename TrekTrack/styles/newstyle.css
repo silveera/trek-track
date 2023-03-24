@@ -63,7 +63,7 @@
     }
 }
 
-@keyframes slidedown {
+/* @keyframes slidedown {
     0% {
         transform: scaleY(0)
     }
@@ -74,7 +74,7 @@
         transform: scaleY(1)
     }
 
-}
+} */
 
 /* @media (prefers-color-scheme: dark) {
     :root {
@@ -140,8 +140,8 @@ a {
 }
 
 a:hover {
-    border-bottom: 2px solid var(--invert-neutral-color);
-    transition: 0.2s;
+    border-bottom: 2px solid;
+    transition: 0.2s !important;
 }
 
 .not-link:hover {
@@ -186,6 +186,24 @@ button.bg-primary-tint-1:hover, .button.bg-primary-tint-1:hover {
     border-color: var(--primary-tint-2);  
 }
 
+input {
+    outline: transparent;
+    border: none;
+    border-bottom: 3px solid var(--accent-color-1);
+    padding: 0.2em;
+    
+    font-size: var(--font-size-large);
+    cursor: pointer;
+    font-family: var(--font-medium);
+    background-color: transparent;
+    display: inline-block;
+}
+
+input:hover, input:focus {
+    border-bottom: 3px solid var(--secondary-shade-1);
+    transition: 0.2s;
+}
+
 header {
     display: grid;
     grid-template-columns: auto max-content auto max-content;
@@ -197,6 +215,16 @@ header {
     z-index: 100;
     top: 0;
 }
+
+.hidden {
+    position: absolute !important;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0 !important;
+    border: 0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+  }
 
 .bg-image-element {
     position: relative;
@@ -337,12 +365,12 @@ header div, header nav > * {
 }
 
 #head-search-bar {
-    height: 2.6em;
+    min-height: 2rem;
     width: clamp(15rem, 2vw, 20rem);
+    font-size: var(--font-size-normal);
 
     outline: transparent;
     border: none;
-
     background-color: transparent;
 }
 
@@ -356,7 +384,7 @@ header div, header nav > * {
 
 #head-search-bar::placeholder {
     font-family: "GraphikMedium";
-    font-size: var(--font-size-small);
+    font-size: var(--font-size-normal);
     color: var(--primary-shade-1);
     opacity: 0.6;
 }
@@ -545,6 +573,65 @@ main.text h1{
     font-family: var(--font-thick);
     font-size: var(--font-size-huge);
 }
+
+/* LOGIN/SIGNUP PAGE TEMPLATE CSS STARTS HERE
+--------------------------------------------------*/
+
+main.form-account *, main.form-account {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+} 
+
+main .container {
+    padding: 2rem;
+    border-radius: 15px;
+}
+
+main .container * + * {
+    margin-bottom: 1px;
+    margin-top: 1rem;
+}
+ 
+
+main .container p, main .container a {
+    font-size: var(--font-size-normal);
+    font-family: var(--font-medium);
+}
+
+main input::placeholder {
+    font-size: var(--font-size-large);
+}
+
+#or {
+    display: inline-block;
+    position: relative;
+    padding: 0.5rem;
+    padding-inline: 0px;
+    color: var(--primary-shade-2);
+
+}
+
+#or::before, #or::after {
+    content: "";
+    position: absolute;
+    width: clamp(50px , 100px, 100px);
+    padding: 1px;
+    background-color: var(--primary-shade-2);
+    top: 50%;
+}
+
+#or::before {
+    left: -110px;
+}
+
+#or::after {
+    right: -110px;
+}
+
+
 
 
 
