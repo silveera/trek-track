@@ -2,13 +2,51 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="styles/style.css">
-    <script src="scripts/main.js"></script>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/newstyle.css">
+    <script src="https://kit.fontawesome.com/66d74c224c.js" crossorigin="anonymous"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
 </head>
 
 <body>
-    <div class="container">
+    <header class="primary-gradient">
+        <div class="head logo">
+            <a href="home.html" class="not-link"><img src="images/logoex.png" width="50" id="logo"
+                    alt="Trek&Track-Logo"></a>
+            <a href="home.html" class="text-thick-invert-neutral not-link logo-text">
+                <p>Trek&Track</p>
+            </a>
+        </div>
+        <nav class="text-medium-invert-neutral">
+            <ul class="head nav-list">
+                <li><a href="text.html">Privacy</a></li>
+                <li><a href="text.html">About</a></li>
+                <li><a href="text.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="form-account bg-image-element">
+        <div class="container bg-invert-neutral">
+            <form action="home.html" class="form-login">
+                <label for="uname" class="hidden">Username</label>
+                <input type="text" placeholder="Username" id="uname" required>
+    
+                <label for="psw" class="hidden">Password</label>
+                <input type="password" placeholder="Password" id="psw" required>
+    
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">Forgot your password?</a>
+    
+                <button type="submit" class="button border-secondary text-medium-invert-neutral bg-secondary">Log in</button>
+                <p id="or"> or </p>
+                <button type="submit" id="facebook" formnovalidate>Continue with Facebook</button>
+                <button type="submit" id="google" formnovalidate>Continue with Google</button>
+                <p id="register">Need an account?<a href="signup.html">SIGN UP</a></p>
+            </form>
+        </div>
+    </main>
+<!--     <div class="container">
         <form action="home.html">
             <label for="uname">Username</label> <br>
             <input type="text" placeholder="Username" id="uname" required> <br>
@@ -22,9 +60,9 @@
             <p id="or"> or </p>
             <button type="submit" id="facebook" formnovalidate>Continue with Facebook</button>
             <button type="submit" id="google" formnovalidate>Continue with Google</button>
-            <p id="register">Need an account? <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">SIGN UP</a></p>
+            <p id="register">Need an account? <a href="signup.html">SIGN UP</a></p>
         </form>
-    </div>
+    </div> -->
 </body>
 
 </html>
