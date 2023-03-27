@@ -24,6 +24,7 @@ function invalidUsername($username) {
     return $result;
 }
 
+/*
 function existingUsername($conn, $username) {
     $sql = "SELECT * FROM users WHERE usersUid = ?;";
     $stmt = mysqli_stmt_init($conn);
@@ -42,6 +43,21 @@ function existingUsername($conn, $username) {
         return $result;
     }
 }
+*/
+function existingUsernameCSV($username) {
+    $filename = 'userdata.csv';
+    if (file_exists($filename)) {
+        $file = fopen($filename, 'r');
+        while (($line = fgetcsv($file)) !== false) {
+            if ($line[0] === $username) {
+                fclose($file);
+                return true;
+            }
+        }
+        fclose($file);
+    }
+    return false;
+}
 
 function invalidEmail($email, FILTER_VALIDATE_EMAIL) {
     $result;
@@ -56,6 +72,7 @@ function invalidEmail($email, FILTER_VALIDATE_EMAIL) {
     return $result;
 }
 
+/*
 function existingEmail($conn, $email) {
     $sql = "SELECT * FROM users WHERE usersEmail = ?;";
     $stmt = mysqli_stmt_init($conn);
@@ -71,6 +88,21 @@ function existingEmail($conn, $email) {
         $result = false;
         return $result;
     }
+}
+*/
+function existingEmailCSV($email) {
+    $filename = 'userdata.csv';
+    if (file_exists($filename)) {
+        $file = fopen($filename, 'r');
+        while (($line = fgetcsv($file)) !== false) {
+            if ($line[0] === $email) {
+                fclose($file);
+                return true;
+            }
+        }
+        fclose($file);
+    }
+    return false;
 }
 
 function difPassword($password, $passwordrepeat) {
