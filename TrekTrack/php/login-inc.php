@@ -6,6 +6,7 @@ require_once 'utilities.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
 
     require_once 'error-inc.php';
+    require_once 'database-inc.php';
 
     $username = sanitize($_POST["uid"]);
     $password = $_POST["pw"];
@@ -30,39 +31,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
         $errMsg .= nl2br("*Please fill out the required fields.\n");
     }
 
-    $filename = '../userdata.csv';
-    if (file_exists($filename)) {
-        $file = fopen($filename, 'r');
-        while (($line = fgetcsv($file, null, ";")) !== false) {
-            if ($line[1] === $username) {
-                $userfound = true;
-                if (password_verify($password, $line[3])) {
-                    $passwordvalid = true;
-                    // password is correct, set session variables and redirect
-                    session_unset();
-                    $_SESSION["loggedin"] = true;
-                    $_SESSION["userid"] = $line[0];
-                    $_SESSION["username"] = $line[1];
-                    $_SESSION["email"] = $line[2];
-                    header("location: ../home.php");
-                    exit();
-                } 
-            }
-        }
-        fclose($file);
-        header("location: ../login.php?error=wronglogin");
+    function loginUser($conn, $username, $password) {
+        $uidExists = existingUsername($conn, $username);
 
-        if ($userfound != true && !in_array("username", $errType)) {
-            $errMsg .= nl2br("*This user does not exist.\n");
-            array_push($errType, "username");
+        if ($uidExists === false) {
+            // no username error message
+            exit();
         }
-        if ($passwordvalid != true && !in_array("password", $errType) && $userfound == true) {
-            $errMsg .= nl2br("*Password is incorrect.\n");
-            array_push($errType, "password");
+
+        $pwHashed = $uidExists["usersPwd"];
+        $checkPassword = password_verify($password, $pwHashed);
+        
+        if ($checkPassword === false) {
+            // password incorrect error message
+            exit();
         }
-    } else {
-        header("location: ../login.php?error=dberror");
-        exit();
+        else if ($checkPassword === true) {
+            session_start();
+            $_SESSION["userid"] = $uidExists["usersId"];
+            $_SESSION["useruid"] = $uidExists["usersUid"];
+            header("location: ../home.php");
+            exit();
+        }
     }
 
     if ($errMsg != "") {

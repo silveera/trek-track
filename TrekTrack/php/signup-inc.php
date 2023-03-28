@@ -6,6 +6,7 @@ require_once 'utilities.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
 
     require_once 'error-inc.php';
+    require_once 'database-inc.php';
 
     $username = sanitize($_POST["uid"]);
     $email = sanitize($_POST["email"]);
@@ -19,8 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
     $errMsg = "";
     $errType = [];
 
-    //require_once 'database-inc.php';
-
     if (empty($username)) {
         array_push($errType, "username", "missing");
     } else {
@@ -29,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
         if (invalidUsername($username) == true) {
             $errMsg .= nl2br("*Username needs to be between 6 and 15 characters.\n");
             array_push($errType, "username");
-        } elseif (existingUsernameCSV($username) == true) {
+        } elseif (existingUsername($conn, $username) == true) {
             $errMsg .= nl2br("*An account with this username already exists.\n");
             array_push($errType, "username");
         }
@@ -42,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
         if (invalidEmail($email) == true) {
             $errMsg .= nl2br("*Please enter a valid email.\n");
             array_push($errType, "email");
-        } elseif (existingEmailCSV($email) == true) {
+        } elseif (existingEmail($conn, $email) == true) {
             $errMsg .= nl2br("*An account with this email already exists. \n");
             array_push($errType, "email");
         }
@@ -72,7 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
         exit();
     }
 
-    /*
     function createUser($conn, $username, $email, $password) {
         $sql = "INSER INTO users (usersUid, usersEmail, usersPw) VALUES (?, ?, ?);";
         $stmt = mysqli_stmt_init($conn);
@@ -89,56 +87,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
         mysqli_stmt_close($stmt);
         header("location: ../signup.php?error=none");
     }
+
     createUser($conn, $username, $email, $password);
-    */
-    function uuid_create()
-    {
-        $uuid = sprintf(
-            '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
-            mt_rand(0, 0xffff),
-            mt_rand(0, 0xffff),
-            mt_rand(0, 0xffff),
-            mt_rand(0, 0x0fff) | 0x4000,
-            mt_rand(0, 0x3fff) | 0x8000,
-            mt_rand(0, 0xffff),
-            mt_rand(0, 0xffff),
-            mt_rand(0, 0xffff)
-        );
-        return $uuid;
-    }
-    function generateUUID()
-    {
-        $idg = uuid_create();
-
-        if (file_exists("../userdata.csv")) {
-            if (($file = fopen("../userdata.csv", "r")) !== false) {
-                while (($line = fgetcsv($file, null, ",")) !== false) {
-                    if (in_array($idg, $line)) {
-                        fclose($file);
-                        return generateUUID();
-                    }
-                }
-                fclose($file);
-            }
-        }
-        return $idg;
-    }
-
-    function createUserCSV($username, $email, $password)
-    {
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $uuid = generateUUID();
-        $row = [$uuid, $username, $email, $hashedPassword];
-
-        $file = fopen('../userdata.csv', 'a');
-        fputcsv($file, $row, ';');
-        fclose($file);
-
-        session_unset();
-        $_SESSION["usercreated"] = true;
-        header("location: ../login.php");
-    }
-    createUserCSV($username, $email, $password);
 } else {
     header("location: ../signup.php");
 }
