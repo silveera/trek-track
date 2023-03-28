@@ -7,6 +7,6 @@ $dbName = "TrekTrack";
 
 $conn = mysqli_connect($serverName, $dbUserame, $dbPassword, $dbName);
 
-if (!conn) {
+if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
