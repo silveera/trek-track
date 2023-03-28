@@ -22,7 +22,7 @@ if (isset($_POST["submit"])) {
         header("location: ../signup.html?error=uidexists");
         exit();
     }
-    if (invalidEmail($username) == true) {
+    if (invalidEmail($email) == true) {
         header("location: ../signup.html?error=invalidemail");
         exit();
     }
@@ -54,11 +54,19 @@ if (isset($_POST["submit"])) {
     }
     createUser($conn, $username, $email, $password);
     */
+    function uuid_create() {
+        $uuid = sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+            mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff),
+            mt_rand(0, 0x0fff) | 0x4000, mt_rand(0, 0x3fff) | 0x8000,
+            mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
+        );
+        return $uuid;
+    }    
     function generateUUID() {
         $idg = uuid_create();
       
-        if (file_exists("userdata.csv")) {
-            if (($handle = fopen("userdata.csv", "r")) !== FALSE) {
+        if (file_exists("../userdata.csv")) {
+            if (($handle = fopen("../userdata.csv", "r")) !== FALSE) {
                 while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
                     if (in_array($idg, $data)) {
                         fclose($handle);
@@ -73,15 +81,10 @@ if (isset($_POST["submit"])) {
     }      
     function createUserCSV($username, $email, $password) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $uuid = generateUUID()
-        $row = [
-            $uuid
-            $username;
-            $email;
-            $hashedPassword;
-        ];
+        $uuid = generateUUID();
+        $row = [$uuid, $username, $email, $hashedPassword];
 
-        $file = fopen('userdata.csv', 'a');
+        $file = fopen('../userdata.csv', 'a');
         fputcsv($file, $row, ';');
         fclose($file);
 

@@ -48,7 +48,7 @@
             </div>
             <ul class="list-collection">
                 <li>
-                    <p>My Trips</p>
+                    <p id="collection-trips" class="icon">My Trips</p>
                     <div class="dropdown-content">
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia qui perferendis labore
                             possimus, asperiores cupiditate explicabo vero deserunt delectus similique nam deleniti
@@ -74,9 +74,42 @@
             </ul>
         </aside>
         <div class="home feed bg-invert-neutral">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus debitis nam, consequuntur alias
-                tempore quos quia totam, beatae similique nisi, impedit animi nobis sint repellendus esse at dolorum cum
-                dicta?</p>
+            <div class="post-container">
+                <div class="post-header">
+                    <img src="images/profilepic.png" alt="User Avatar" id="post-avatar">
+                    <div class="post-user-info">
+                        <h3 id="post-username">Username</h3>
+                        <p id="post-timestamp">2 weeks ago</p>
+                        <p id="post-caption">Hello im new here</p>
+                    </div>
+                </div>
+                <div class="post-image-container">
+                    <img src="images/trialbg.jpg" alt="Example Image" id="post-image">
+                    <div class="image-footer">
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-regular fa-paper-plane"></i>
+                        <i class="fa-regular fa-comment"></i>
+                        <i class="fa-regular fa-map"></i>
+                        <i class="fa-regular fa-bookmark"></i>
+                    </div>
+                </div>
+                <div class="post-comments">
+                    <div class="comments-header">
+                        <a class="not-link clickable"><img src="images/profilepic.png" alt="User Avatar"
+                                id="comment-avatar"></a>
+                        <a class="clickable not-link">
+                            <p id="comment-account"><b></b>goat</p>
+                        </a>
+                    </div>
+                    <p id="comment">welcome!</p>
+                    <div class="comments-footer">
+                        <p id="comment-timestamp">1w</p>
+                        <p id="like-p">Like</p>
+                        <p id="reply-p">Reply</p>
+                        <p id="share-p">Share</p>
+                    </div>
+                </div>
+            </div>
         </div>
         <aside class="home social bg-invert-neutral">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, fugit voluptatibus animi molestias nam non
