@@ -546,7 +546,7 @@ main.landing {
 
 .quote {
     text-align: center;
-    font-size: var(--font-size-huge);
+    font-size: var(--font-size-giant);
 }
 
 .quote h1, .quote h3 {
@@ -563,7 +563,7 @@ main.landing {
 }
 
 #button-landing-create-account {
-    font-size: var(--font-size-large);
+    font-size: var(--font-size-larger);
     padding-inline: 3em;
 }
 

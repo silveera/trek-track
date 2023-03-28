@@ -1,4 +1,5 @@
 <?php
+require_once 'utilities.php';
 
 $serverName = "localhost";
 $dbUserame = "root";

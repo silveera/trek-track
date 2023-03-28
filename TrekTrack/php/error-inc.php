@@ -1,15 +1,9 @@
 <?php
+require_once 'utilities.php';
+require_once 'utilities.php';
 
-function sanitize($data)
-{
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
-function noInputSignup($username, $email, $password, $passwordrepeat) {
-    if (empty($username) || empty($email) || empty($password) || empty($passwordrepeat)) {
+function noInputSignup($input) {
+    if (empty($input)) {
         $result = true;
     }
     else {
@@ -37,7 +31,7 @@ function existingUsername($conn, $username) {
     $result;
     $resultData = mysqli_stmt_get_result($stmt);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../signup.html?error=stmtfailed");
+        header("location: ../signup.php?error=stmtfailed");
         exit();
     }
 
@@ -85,7 +79,7 @@ function existingEmail($conn, $email) {
     $result;
     $resultData = mysqli_stmt_get_result($stmt);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../signup.html?error=stmtfailed");
+        header("location: ../signup.php?error=stmtfailed");
         exit();
     }
     mysqli_stmt_bind_param($stmt, "s", $email);

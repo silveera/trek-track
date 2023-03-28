@@ -1,3 +1,8 @@
+<?php
+require_once 'php/utilities.php'; 
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,9 +18,9 @@
 <body>
     <header class="primary-gradient">
         <div class="head logo">
-            <a href="home.html" class="not-link"><img src="images/logoex.png" width="50" id="logo"
+            <a href="home.php" class="not-link"><img src="images/logoex.png" width="50" id="logo"
                     alt="Trek&Track-Logo"></a>
-            <a href="home.html" class="text-thick-invert-neutral not-link logo-text">
+            <a href="home.php" class="text-thick-invert-neutral not-link logo-text">
                 <p>Trek&Track</p>
             </a>
         </div>
@@ -26,22 +31,24 @@
         </div>
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
-                <li><a href="home.html">Home</a></li>
-                <li><a href="map.html">Map</a></li>
-                <li><a href="profile.html">Profile</a></li>
+                <li><a href="home.php">Home</a></li>
+                <li><a href="map.php">Map</a></li>
+                <li><a href="profile.php">Profile</a></li>
             </ul>
         </nav>
         <div class="head account">
-            <a href="login.html" id="button-head-log-in"
-                class="button text-medium-invert-neutral bg-secondary border-secondary">Log In</a>
-            <a href="login.html" id="button-head-sign-up"
-                class="button text-medium-secondary bg-primary-tint-1 border-primary-tint-1">Sign Up</a>
+            <a href="login.php" id="button-head-log-in"
+                style="display:<?= checkLoginStatus() ? "none" : "block"?>;" class="button text-medium-invert-neutral bg-secondary border-secondary">Log In</a>
+            <a href="signup.php" id="button-head-sign-up"
+                style="display:<?= checkLoginStatus() ? "none" : "block"?>;" class="button text-medium-secondary bg-primary-tint-1 border-primary-tint-1">Sign Up</a>
+            <a href="login.php" id="button-head-log-out"
+                style="display:<?= checkLoginStatus() ? "block" : "none"?>;" class="button text-medium-invert-neutral bg-secondary border-secondary">Log Out</a>
         </div>
     </header>
     <main class="grid-home">
-        <aside class="home collection bg-invert-neutral">
+        <aside clas s="home collection bg-invert-neutral">
             <div class="profilepic">
-                <a href="profile.html" class="not-link"><img src="images/profilepic.png" id="collection-profile-pic"
+                <a href="profile.php" class="not-link"><img src="images/profilepic.png" id="collection-profile-pic"
                         width="85" style="width: 85%;" alt="User-Profile">
                     <p id="collection-username" class="text-medium-neutral line-after-neutral clickable">@username</p>
                 </a>

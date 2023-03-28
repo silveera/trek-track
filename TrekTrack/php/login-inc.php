@@ -1,4 +1,5 @@
 <?php
+require_once 'utilities.php';
 if (isset($_POST["submit"])) {
     $username = $_POST["uid"];
     $password = $_POST["pw"];
@@ -6,7 +7,7 @@ if (isset($_POST["submit"])) {
     require_once 'error-inc.php';
 
     if (empty($username) || empty($password)) {
-        header("location: ../login.html?error=emptyinput");
+        header("location: ../login.php?error=emptyinput");
         exit();
     }
 
@@ -19,24 +20,25 @@ if (isset($_POST["submit"])) {
                 if (password_verify($password, $line[3])) {
                     // password is correct, set session variables and redirect
                     session_start();
-                    $_SESSION["userid"] = $data[0];
-                    $_SESSION["username"] = $data[1];
-                    $_SESSION["email"] = $data[2];
-                    header("location: ../home.html");
+                    $_SESSION["loggedin"] = true;
+                    $_SESSION["userid"] = $line[0];
+                    $_SESSION["username"] = $line[1];
+                    $_SESSION["email"] = $line[2];
+                    header("location: ../home.php");
                     exit();
                 } else {
-                    header("location: ../login.html?error=wrongpassword");
+                    header("location: ../login.php?error=wrongpassword");
                     exit();
                 }
             }
         }
         fclose($file);
-        header("location: ../login.html?error=wronglogin");
+        header("location: ../login.php?error=wronglogin");
         exit();
     } else {
-        header("location: ../login.html?error=dberror");
+        header("location: ../login.php?error=dberror");
         exit();
     }
 } else {
-    header("location: ../login.html");
+    header("location: ../login.php");
 }

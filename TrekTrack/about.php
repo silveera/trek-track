@@ -1,3 +1,8 @@
+<?php
+require_once 'php/utilities.php'; 
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,24 +18,26 @@
 <body>
     <header class="primary-gradient">
         <div class="head logo">
-            <a href="index.html" class="not-link"><img src="images/logoex.png" width="50" id="logo"
+            <a href="<?= checkLoginStatus() ? "home.php" : "index.php" ?>" class="not-link"><img src="images/logoex.png" width="50" id="logo"
                     alt="Trek&Track-Logo"></a>
-            <a href="index.html" class="text-thick-invert-neutral not-link logo-text">
+            <a href="<?= checkLoginStatus() ? "home.php" : "index.php" ?>" class="text-thick-invert-neutral not-link logo-text">
                 <p>Trek&Track</p>
             </a>
         </div>
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
-                <li><a href="privacy.html">Privacy</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="privacy.php">Privacy</a></li>
+                <li><a href="about.php">About</a></li>
+                <li><a href="contact.php">Contact</a></li>
             </ul>
         </nav>
         <div class="head account">
-            <a href="login.html" id="button-head-log-in"
-                class="button text-medium-invert-neutral bg-secondary border-secondary">Log In</a>
-            <a href="login.html" id="button-head-sign-up"
-                class="button text-medium-secondary bg-primary-tint-1 border-primary-tint-1">Sign Up</a>
+            <a href="login.php" id="button-head-log-in"
+                style="display:<?= checkLoginStatus() ? "none" : "block"?>;" class="button text-medium-invert-neutral bg-secondary border-secondary">Log In</a>
+            <a href="signup.php" id="button-head-sign-up"
+                style="display:<?= checkLoginStatus() ? "none" : "block"?>;" class="button text-medium-secondary bg-primary-tint-1 border-primary-tint-1">Sign Up</a>
+            <a href="login.php" id="button-head-log-out"
+                style="display:<?= checkLoginStatus() ? "block" : "none"?>;" class="button text-medium-invert-neutral bg-secondary border-secondary">Log Out</a>
         </div>
     </header>
     <main class="text bg-image-element">

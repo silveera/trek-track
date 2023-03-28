@@ -1,3 +1,10 @@
+<?php
+require_once 'php/utilities.php';
+    session_start();
+    session_unset();
+    session_destroy();
+?> 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,17 +20,17 @@
 <body>
     <header class="primary-gradient">
         <div class="head logo">
-            <a href="index.html" class="not-link"><img src="images/logoex.png" width="50" id="logo"
+            <a href="index.php" class="not-link"><img src="images/logoex.png" width="50" id="logo"
                     alt="Trek&Track-Logo"></a>
-            <a href="index.html" class="text-thick-invert-neutral not-link logo-text">
+            <a href="index.php" class="text-thick-invert-neutral not-link logo-text">
                 <p>Trek&Track</p>
             </a>
         </div>
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
-                <li><a href="privacy.html">Privacy</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="privacy.php">Privacy</a></li>
+                <li><a href="about.php">About</a></li>
+                <li><a href="contact.php">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -42,12 +49,12 @@
                 <p id="or"> or </p>
                 <button type="submit" id="facebook" class="border-secondary text-medium-invert-neutral bg-secondary" formnovalidate>Continue with Facebook</button>
                 <button type="submit" id="google" class="border-secondary text-medium-invert-neutral bg-secondary" formnovalidate>Continue with Google</button>
-                <p id="register">Need an account?<a href="signup.html">SIGN UP</a></p>
+                <p id="register">Need an account?<a href="signup.php">SIGN UP</a></p>
             </form>
         </div>
     </main>
 <!--     <div class="container">
-        <form action="home.html">
+        <form action="home.php">
             <label for="uname">Username</label> <br>
             <input type="text" placeholder="Username" id="uname" required> <br>
 
@@ -60,7 +67,7 @@
             <p id="or"> or </p>
             <button type="submit" id="facebook" formnovalidate>Continue with Facebook</button>
             <button type="submit" id="google" formnovalidate>Continue with Google</button>
-            <p id="register">Need an account? <a href="signup.html">SIGN UP</a></p>
+            <p id="register">Need an account? <a href="signup.php">SIGN UP</a></p>
         </form>
     </div> -->
 </body>
