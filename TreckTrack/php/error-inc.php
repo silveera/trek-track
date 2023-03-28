@@ -1,7 +1,6 @@
 <?php
 
 function noInputSignup($username, $email, $password, $passwordrepeat) {
-    $result;
     if (empty($username) || empty($email) || empty($password) || empty($passwordrepeat)) {
         $result = true;
     }
@@ -12,12 +11,11 @@ function noInputSignup($username, $email, $password, $passwordrepeat) {
 }
 
 function invalidUsername($username) {
-    $result;
     $min_length = 6;
     $max_length = 15;
-    if (!preg_match("/^[a-zA-Z0-9]*{$min_length, $max_length}$/", $username)) {
+    if (!preg_match("/^[a-zA-Z0-9]{{$min_length},{$max_length}}$/", $username)) {
         $result = true;
-    }
+    }    
     else {
         $result = false;
     }
@@ -49,7 +47,7 @@ function existingUsernameCSV($username) {
     if (file_exists($filename)) {
         $file = fopen($filename, 'r');
         while (($line = fgetcsv($file)) !== false) {
-            if ($line[0] === $username) {
+            if ($line[1] === $username) {
                 fclose($file);
                 return true;
             }
@@ -59,8 +57,7 @@ function existingUsernameCSV($username) {
     return false;
 }
 
-function invalidEmail($email, FILTER_VALIDATE_EMAIL) {
-    $result;
+function invalidEmail($email) {
     $domain = substr(strrchr($email, "@"), 1);
     $blacklist = []; //Blank for now. Admin panel implementation can edit. Maybe blacklist should be hashed too??
     if (!filter_var($email, FILTER_VALIDATE_EMAIL) || in_array($domain, $blacklist)) {
@@ -71,6 +68,7 @@ function invalidEmail($email, FILTER_VALIDATE_EMAIL) {
     }
     return $result;
 }
+
 
 /*
 function existingEmail($conn, $email) {
@@ -95,7 +93,7 @@ function existingEmailCSV($email) {
     if (file_exists($filename)) {
         $file = fopen($filename, 'r');
         while (($line = fgetcsv($file)) !== false) {
-            if ($line[0] === $email) {
+            if ($line[2] === $email) {
                 fclose($file);
                 return true;
             }
@@ -106,7 +104,6 @@ function existingEmailCSV($email) {
 }
 
 function difPassword($password, $passwordrepeat) {
-    $result;
     if ($password !== $passwordrepeat) {
         $result = true;
     }
