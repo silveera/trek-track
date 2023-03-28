@@ -1,9 +1,10 @@
 <?php
+session_start();
 require_once 'php/utilities.php';
-    session_start();
+if (checkLoginStatus()) {
     session_unset();
-    session_destroy();
-?> 
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,15 +39,18 @@ require_once 'php/utilities.php';
         <div class="container bg-invert-neutral">
             <form action="php/login-inc.php" method="post" class="form-login" novalidate>
                 <label for="uid" class="hidden">Username</label>
-                <input type="text" placeholder="Username" id="uid" name="uid" required>
+                <input type="text" placeholder="Username" id="uid" name="uid" value="<?= checkValueAndReturn("loginusername") ?>" class="<?= checkArraySetMissing('loginerrortypes','username' ) ?>" required>
     
                 <label for="pw" class="hidden">Password</label>
-                <input type="password" placeholder="Password" id="pw" name="pw" required>
+                <input type="password" placeholder="Password" id="pw" name="pw" value="<?= checkValueAndReturn("loginpassword") ?>" class="<?= checkArraySetMissing('loginerrortypes','password' ) ?>" required>
     
                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" class="tex">Forgot your password?</a>
     
                 <button type="submit" id="submit" name="submit" class="button border-secondary text-medium-invert-neutral bg-secondary">Log in</button>
+                <p id="errormessage"> <?= checkValueAndReturn("loginerrormsg") ?>  </p>
+
                 <p id="or"> or </p>
+
                 <button type="submit" id="facebook" class="border-secondary text-medium-invert-neutral bg-secondary" formnovalidate>Continue with Facebook</button>
                 <button type="submit" id="google" class="border-secondary text-medium-invert-neutral bg-secondary" formnovalidate>Continue with Google</button>
                 <p id="register">Need an account?<a href="signup.php">SIGN UP</a></p>

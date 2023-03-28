@@ -11,10 +11,35 @@ function sanitize($data)
 
 function checkLoginStatus()
 {
-    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+    if (session_status() === PHP_SESSION_ACTIVE && isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         return true;
     }
     return false;
 }
 
-$loginStatus = checkLoginStatus();
+function checkValue($value)
+{
+    if (session_status() === PHP_SESSION_ACTIVE && isset($_SESSION[$value]) && !empty($_SESSION[$value])) {
+        return true;
+    }
+    return false;
+}
+
+function checkValueAndReturn($value)
+{
+    if (session_status() === PHP_SESSION_ACTIVE && isset($_SESSION[$value]) && !empty($_SESSION[$value])) {
+        return $_SESSION[$value];
+    }
+    
+    return "";
+}
+
+function checkArraySetMissing($arraykey, $value)
+{
+    if (session_status() === PHP_SESSION_ACTIVE && isset($_SESSION[$arraykey]) && !empty($_SESSION[$arraykey])) {
+        if (in_array($value, $_SESSION[$arraykey])) {
+            return "input-missing";
+        }
+    }
+    return "";
+}

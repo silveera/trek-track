@@ -92,7 +92,7 @@
     --font-weight-icon: 900;
     --accent-color-1: #307467;
     --accent-tint-1: #86adff;
-    --red-1: #FFA39D;
+    --red-1: #fd6161;
     --bg-image-1: url(../images/trialbg.jpg);
     --font-size-tiny: clamp(0.4rem, 2vw, 0.6rem);
     --font-size-small: clamp(0.6rem, 2vw, 0.8rem);
@@ -186,18 +186,24 @@ input {
     outline: transparent;
     border: none;
     border-bottom: 3px solid var(--accent-color-1);
+    width: 20ch;
     padding: 0.2em;
     
-    font-size: var(--font-size-large);
+    font-size: var(--font-size-medium);
     cursor: pointer;
     font-family: var(--font-medium);
     background-color: transparent;
     display: inline-block;
 }
 
-input:hover, input:focus {
+
+/* input:hover, input:focus {
     border-bottom: 3px solid var(--secondary-shade-1);
     transition: 0.2s;
+} */
+
+.input-missing {
+    border-bottom: 3px solid var(--red-1);
 }
 
 header {
@@ -656,6 +662,13 @@ main input::placeholder {
     right: -110px;
 }
 
+#errormessage {
+    color: var(--red-1);
+    width: 30ch;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    font-size: var(--font-size-small);
+}
 
 .post-container {
     background-color: var(--invert-neutral-color);

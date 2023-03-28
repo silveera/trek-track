@@ -1,7 +1,9 @@
 <?php
+session_start();
+
 require_once 'utilities.php';
 
-if (isset($_POST["submit"])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
 
     require_once 'error-inc.php';
 
@@ -9,66 +11,67 @@ if (isset($_POST["submit"])) {
     $email = sanitize($_POST["email"]);
     $password = $_POST["pw"];
     $passwordrepeat = $_POST["pw-rpt"];
+    
+    $_SESSION["signusername"] = $username;
+    $_SESSION["signemail"] = $email;
+    $_SESSION["signpassword"] = $password;
 
     $errMsg = "";
     $errType = [];
 
     //require_once 'database-inc.php';
 
-    if (noInputSignup($username) == true) {
-        header("location: ../signup.php?error=noinput");
-        $errMsg .= nl2br("Please fill out the required fields.\n");
-        array_push($errType, "username");
+    if (empty($username)) {
+        array_push($errType, "username", "missing");
+    } else {
+        session_start();
+        
+        if (invalidUsername($username) == true) {
+            $errMsg .= nl2br("*Username needs to be between 6 and 15 characters.\n");
+            array_push($errType, "username");
+        } elseif (existingUsernameCSV($username) == true) {
+            $errMsg .= nl2br("*An account with this username already exists.\n");
+            array_push($errType, "username");
+        }
+    }
+
+    if (empty($email)) {
+        array_push($errType, "email", "missing");
+    } else {
+        
+        if (invalidEmail($email) == true) {
+            $errMsg .= nl2br("*Please enter a valid email.\n");
+            array_push($errType, "email");
+        } elseif (existingEmailCSV($email) == true) {
+            $errMsg .= nl2br("*An account with this email already exists. \n");
+            array_push($errType, "email");
+        }
+    }
+
+    if (empty($password)) {
+        array_push($errType, "password", "missing");
+    }
+
+    if (empty($passwordrepeat)) {
+        array_push($errType, "passwordrepeat", "missing");
+    } else {
+        if (difPassword($password, $passwordrepeat) == true) {
+            $errMsg .= nl2br("*Passwords do not match.\n");
+            array_push($errType, "passwordrepeat");
+        }
+    }
+
+    if (in_array("missing", $errType)) {
+        $errMsg .= nl2br("*Please fill out the required fields.\n");
+    }
+
+    if ($errMsg != "") {
+        header("location: ../signup.php?error=invalidsignup");
+        $_SESSION["signerrormsg"] = trim($errMsg);
+        $_SESSION["signerrortypes"] = $errType;
         exit();
     }
-    if (noInputSignup($email) == true) {
-        header("location: ../signup.php?error=noinput");
-        $errMsg .= nl2br("Please fill out the required fields.\n");
-        array_push($errType, "username");
-        exit();
-    }
-    if (noInputSignup($password) == true) {
-        header("location: ../signup.php?error=noinput");
-        $errMsg .= nl2br("Please fill out the required fields.\n");
-        array_push($errType, "username");
-        exit();
-    }
-    if (noInputSignup($passwordrepeat) == true) {
-        header("location: ../signup.php?error=noinput");
-        $errMsg .= nl2br("Please fill out the required fields.\n");
-        array_push($errType, "username");
-        exit();
-    }
-    if (invalidUsername($username) == true) {
-        header("location: ../signup.php?error=invaliduid");
-        $errMsg .= nl2br("Username needs to be between 6 and 15 characters.\n");
-        array_push($errType, "username");
-        exit();
-    }
-    if (existingUsernameCSV($username) == true) {
-        header("location: ../signup.php?error=uidexists");
-        $errMsg .= nl2br("An account with this username already exists.\n");
-        array_push($errType, "username");
-        exit();
-    }
-    if (invalidEmail($email) == true) {
-        header("location: ../signup.php?error=invalidemail");
-        $errMsg .= nl2br("Please enter a valid email.\n");
-        array_push($errType, "email");
-        exit();
-    }
-    if (existingEmailCSV($email) == true) {
-        header("location: ../signup.php?error=emailexists");
-        $errMsg .= nl2br("An account with this email already exists. \n");
-        array_push($errType, "email");
-        exit();
-    }
-    if (difPassword($password, $passwordrepeat) == true) {
-        header("location: ../signup.php?error=unidenticalpasswords");
-        $errMsg .= nl2br("Passwords do not match.\n");
-        array_push($errType, "password");
-        exit();
-    }
+
     /*
     function createUser($conn, $username, $email, $password) {
         $sql = "INSER INTO users (usersUid, usersEmail, usersPw) VALUES (?, ?, ?);";
@@ -78,43 +81,51 @@ if (isset($_POST["submit"])) {
 
         if (!mysqli_stmt_prepare($stmt, $sql)) {
             header("location: ../signup.php?error=stmtfailed");
-            exit();
+
         }
             
         mysqli_stmt_bind_param($stmt, "sss", $username, $email, $hashedPassword);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
         header("location: ../signup.php?error=none");
-        exit();
     }
     createUser($conn, $username, $email, $password);
     */
-    function uuid_create() {
-        $uuid = sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
-            mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff),
-            mt_rand(0, 0x0fff) | 0x4000, mt_rand(0, 0x3fff) | 0x8000,
-            mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
+    function uuid_create()
+    {
+        $uuid = sprintf(
+            '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+            mt_rand(0, 0xffff),
+            mt_rand(0, 0xffff),
+            mt_rand(0, 0xffff),
+            mt_rand(0, 0x0fff) | 0x4000,
+            mt_rand(0, 0x3fff) | 0x8000,
+            mt_rand(0, 0xffff),
+            mt_rand(0, 0xffff),
+            mt_rand(0, 0xffff)
         );
         return $uuid;
-    }    
-    function generateUUID() {
+    }
+    function generateUUID()
+    {
         $idg = uuid_create();
-      
+
         if (file_exists("../userdata.csv")) {
-            if (($handle = fopen("../userdata.csv", "r")) !== FALSE) {
-                while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-                    if (in_array($idg, $data)) {
-                        fclose($handle);
+            if (($file = fopen("../userdata.csv", "r")) !== false) {
+                while (($line = fgetcsv($file, null, ",")) !== false) {
+                    if (in_array($idg, $line)) {
+                        fclose($file);
                         return generateUUID();
                     }
                 }
-                fclose($handle);
+                fclose($file);
             }
         }
-      
         return $idg;
-    }      
-    function createUserCSV($username, $email, $password) {
+    }
+
+    function createUserCSV($username, $email, $password)
+    {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $uuid = generateUUID();
         $row = [$uuid, $username, $email, $hashedPassword];
@@ -123,11 +134,12 @@ if (isset($_POST["submit"])) {
         fputcsv($file, $row, ';');
         fclose($file);
 
+        session_unset();
+        $_SESSION["usercreated"] = true;
         header("location: ../login.php");
-        exit();
     }
     createUserCSV($username, $email, $password);
-}
-else {
+} else {
     header("location: ../signup.php");
 }
+    

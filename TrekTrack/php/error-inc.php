@@ -1,16 +1,5 @@
 <?php
 require_once 'utilities.php';
-require_once 'utilities.php';
-
-function noInputSignup($input) {
-    if (empty($input)) {
-        $result = true;
-    }
-    else {
-        $result = false;
-    }
-    return $result;
-}
 
 function invalidUsername($username) {
     $min_length = 6;
