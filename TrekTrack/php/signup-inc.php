@@ -2,36 +2,52 @@
 
 if (isset($_POST["submit"])) {
 
+    require_once 'error-inc.php';
+
     $username = sanitize($_POST["uid"]);
     $email = sanitize($_POST["email"]);
     $password = $_POST["pw"];
     $passwordrepeat = $_POST["pw-rpt"];
 
-    //require_once 'database-inc.php';
-    require_once 'error-inc.php';
+    $errMsg = "";
+    $errType = [];
 
+    //require_once 'database-inc.php';
+    
     if (noInputSignup($username, $email, $password, $passwordrepeat) == true) {
         header("location: ../signup.html?error=noinput");
+        $errMsg .= nl2br("Please fill out the required fields.\n");
+        array_push($errType, "username");
         exit();
     }
     if (invalidUsername($username) == true) {
         header("location: ../signup.html?error=invaliduid");
+        $errMsg .= nl2br("Username needs to be between 6 and 15 characters.\n");
+        array_push($errType, "username");
         exit();
     }
     if (existingUsernameCSV($username) == true) {
         header("location: ../signup.html?error=uidexists");
+        $errMsg .= nl2br("An account with this username already exists.\n");
+        array_push($errType, "username");
         exit();
     }
     if (invalidEmail($email) == true) {
         header("location: ../signup.html?error=invalidemail");
+        $errMsg .= nl2br("Please enter a valid email.\n");
+        array_push($errType, "email");
         exit();
     }
     if (existingEmailCSV($email) == true) {
         header("location: ../signup.html?error=emailexists");
+        $errMsg .= nl2br("An account with this email already exists. \n");
+        array_push($errType, "email");
         exit();
     }
     if (difPassword($password, $passwordrepeat) == true) {
         header("location: ../signup.html?error=unidenticalpasswords");
+        $errMsg .= nl2br("Passwords do not match.\n");
+        array_push($errType, "password");
         exit();
     }
     /*
