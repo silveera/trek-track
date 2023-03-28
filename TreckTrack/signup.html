@@ -2,27 +2,45 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/newstyle.css">
     <script src="scripts/main.js"></script>
     <meta charset="UTF-8">
 </head>
 
 <body>
-    <div class="container">
-        <form action="/php/signup-inc.php" method="POST">
-            <input type="text" placeholder="Username" id="uid" required> <br>
-            <input type="text" placeholder="Email" id="email" required> <br>
-            <input type="password" placeholder="Password" id="pw" required> <br>
-            <input type="password" placeholder="Repeat Password" id="pw-rpt" required> <br>
+    <header class="primary-gradient">
+        <div class="head logo">
+            <a href="home.html" class="not-link"><img src="images/logoex.png" width="50" id="logo"
+                    alt="Trek&Track-Logo"></a>
+            <a href="home.html" class="text-thick-invert-neutral not-link logo-text">
+                <p>Trek&Track</p>
+            </a>
+        </div>
+        <nav class="text-medium-invert-neutral">
+            <ul class="head nav-list">
+                <li><a href="text.html">Privacy</a></li>
+                <li><a href="text.html">About</a></li>
+                <li><a href="text.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="form-account bg-image-element">
+        <div class="container bg-invert-neutral">
+            <form action="/php/signup-inc.php" method="POST">
+                <input type="text" placeholder="Username" id="uid" required>
+                <input type="text" placeholder="Email" id="email" required> <br>
+                <input type="password" placeholder="Password" id="pw" required>
+                <input type="password" placeholder="Repeat Password" id="pw-rpt" required>
 
-            <button type="submit">Create Account</button>
-            
-            <p id="or"> or </p>
-            <button type="submit" id="facebook" formnovalidate>Continue with Facebook</button>
-            <button type="submit" id="google" formnovalidate>Continue with Google</button>
-            <p id="login">Have an account? <a href="login.html">LOG IN</a></p>
-        </form>
-    </div>
+                <button type="submit" class="border-secondary text-medium-invert-neutral bg-secondary">Create Account</button>
+                
+                <p id="or"> or </p>
+                <button type="submit" id="facebook" class="border-secondary text-medium-invert-neutral bg-secondary" formnovalidate>Continue with Facebook</button>
+                <button type="submit" id="google" class="border-secondary text-medium-invert-neutral bg-secondary" formnovalidate>Continue with Google</button>
+                <p id="login">Have an account? <a href="login.html">LOG IN</a></p>
+            </form>
+        </div>
+    </main>
 </body>
 
 </html>

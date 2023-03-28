@@ -65,8 +65,8 @@ if (isset($_POST["submit"])) {
     function generateUUID() {
         $idg = uuid_create();
       
-        if (file_exists("userdata.csv")) {
-            if (($handle = fopen("userdata.csv", "r")) !== FALSE) {
+        if (file_exists("../userdata.csv")) {
+            if (($handle = fopen("../userdata.csv", "r")) !== FALSE) {
                 while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
                     if (in_array($idg, $data)) {
                         fclose($handle);
@@ -84,7 +84,7 @@ if (isset($_POST["submit"])) {
         $uuid = generateUUID();
         $row = [$uuid, $username, $email, $hashedPassword];
 
-        $file = fopen('userdata.csv', 'a');
+        $file = fopen('../userdata.csv', 'a');
         fputcsv($file, $row, ';');
         fclose($file);
 

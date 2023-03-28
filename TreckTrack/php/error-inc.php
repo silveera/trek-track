@@ -43,7 +43,7 @@ function existingUsername($conn, $username) {
 }
 */
 function existingUsernameCSV($username) {
-    $filename = 'userdata.csv';
+    $filename = '../userdata.csv';
     if (file_exists($filename)) {
         $file = fopen($filename, 'r');
         while (($line = fgetcsv($file)) !== false) {
@@ -89,7 +89,7 @@ function existingEmail($conn, $email) {
 }
 */
 function existingEmailCSV($email) {
-    $filename = 'userdata.csv';
+    $filename = '../userdata.csv';
     if (file_exists($filename)) {
         $file = fopen($filename, 'r');
         while (($line = fgetcsv($file)) !== false) {
