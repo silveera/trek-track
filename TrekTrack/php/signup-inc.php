@@ -88,7 +88,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
     }
 
     createUser($conn, $username, $email, $password);
-
 } else {
     header("location: ../signup.php");
 }
