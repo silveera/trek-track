@@ -6,6 +6,7 @@ require_once 'utilities.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
 
     require_once 'error-inc.php';
+    require_once 'database-inc.php';
 
     $username = sanitize($_POST["uid"]);
     $password = $_POST["pw"];
@@ -30,40 +31,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
         $errMsg .= nl2br("*Please fill out the required fields.\n");
     }
 
-    $filename = '../userdata.csv';
-    if (file_exists($filename)) {
-        $file = fopen($filename, 'r');
-        while (($line = fgetcsv($file, null, ";")) !== false) {
-            if ($line[1] === $username) {
-                $userfound = true;
-                if (password_verify($password, $line[3])) {
-                    $passwordvalid = true;
-                    // password is correct, set session variables and redirect
-                    session_unset();
-                    $_SESSION["loggedin"] = true;
-                    $_SESSION["userid"] = $line[0];
-                    $_SESSION["username"] = $line[1];
-                    $_SESSION["email"] = $line[2];
-                    header("location: ../home.php");
-                    exit();
-                } 
-            }
-        }
-        fclose($file);
-        header("location: ../login.php?error=wronglogin");
+    function loginUser($conn, $username, $password) {
+        $uidExists = existingUsername($conn, $username);
+        global $errMsg, $errType;
 
-        if ($userfound != true && !in_array("username", $errType)) {
+        $userInfo = setUserInfo($conn, $username);
+
+        $pwHashed = $userInfo["user_password"];
+        $checkPassword = password_verify($password, $pwHashed);
+
+        if ($uidExists === false) {
+            $errMsg = "";
             $errMsg .= nl2br("*This user does not exist.\n");
             array_push($errType, "username");
-        }
-        if ($passwordvalid != true && !in_array("password", $errType) && $userfound == true) {
+            
+        } else if ($checkPassword === false && !empty($password)) {
             $errMsg .= nl2br("*Password is incorrect.\n");
             array_push($errType, "password");
         }
-    } else {
-        header("location: ../login.php?error=dberror");
-        exit();
+
+
+        if ($checkPassword === true) {
+            session_unset();
+            $_SESSION["userid"] = $userInfo["user_id"];
+            $_SESSION["userName"] = $userInfo["user_name"];
+            $_SESSION["userEmail"] = $userInfo["user_email"];
+            $_SESSION['loggedin'] = true;
+            
+            header("location: ../home.php");
+            exit();
+        }
     }
+
+    loginUser($conn, $username, $password);
 
     if ($errMsg != "") {
         header("location: ../login.php?error=invalidlogin");
@@ -71,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
         $_SESSION["loginerrortypes"] = $errType;
         exit();
     }
+
 } else {
     header("location: ../login.php");
 }

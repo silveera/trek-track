@@ -31,9 +31,9 @@ require_once 'php/utilities.php';
         </div>
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
-                <li><a href="home.php">Home</a></li>
-                <li><a href="map.php">Map</a></li>
-                <li><a href="profile.php">Profile</a></li>
+                <li><a href="home.php"><i class="fa-solid fa-house not-link"></i><p>Home</p></a></li>
+                <li><a href="map.php"><i class="fa-solid fa-map not-link"></i><p>Map</p></a></li>
+                <li><a href="profile.php"><i class="fa-solid fa-user not-link"></i><p>Profile</p></a></li>
             </ul>
         </nav>
         <div class="head account">
@@ -46,16 +46,17 @@ require_once 'php/utilities.php';
         </div>
     </header>
     <main class="grid-home">
-        <aside clas s="home collection bg-invert-neutral">
+        <aside class="home collection bg-invert-neutral">
             <div class="profilepic">
                 <a href="profile.php" class="not-link"><img src="images/profilepic.png" id="collection-profile-pic"
-                        width="85" style="width: 85%;" alt="User-Profile">
+                        class="medium-avatar" alt="User-Profile">
                     <p id="collection-username" class="text-medium-neutral line-after-neutral clickable">@username</p>
                 </a>
             </div>
+            <div class="list-collection-container" >
             <ul class="list-collection">
                 <li>
-                    <p id="collection-trips" class="icon">My Trips</p>
+                    <p id="collection-trips" class="icon"><i class="fa-regular fa-map"></i>My Trips</p>
                     <div class="dropdown-content">
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia qui perferendis labore
                             possimus, asperiores cupiditate explicabo vero deserunt delectus similique nam deleniti
@@ -63,7 +64,7 @@ require_once 'php/utilities.php';
                     </div>
                 </li>
                 <li>
-                    <p>Calendar</p>
+                    <p><i class="fa-regular fa-calendar"></i>Calendar</p>
                     <div class="dropdown-content">
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia qui perferendis labore
                             possimus, asperiores cupiditate explicabo vero deserunt delectus similique nam deleniti
@@ -79,11 +80,12 @@ require_once 'php/utilities.php';
                     </div>
                 </li>
             </ul>
+            </div>
         </aside>
         <div class="home feed bg-invert-neutral">
             <div class="post-container">
                 <div class="post-header">
-                    <img src="images/profilepic.png" alt="User Avatar" id="post-avatar">
+                    <img src="images/profilepic.png" alt="User Avatar" id="post-avatar" class="avatar">
                     <div class="post-user-info">
                         <h3 id="post-username">Username</h3>
                         <p id="post-timestamp">2 weeks ago</p>
@@ -103,7 +105,7 @@ require_once 'php/utilities.php';
                 <div class="post-comments">
                     <div class="comments-header">
                         <a class="not-link clickable"><img src="images/profilepic.png" alt="User Avatar"
-                                id="comment-avatar"></a>
+                                id="comment-avatar" class="small-avatar"></a>
                         <a class="clickable not-link">
                             <p id="comment-account"><b></b>goat</p>
                         </a>

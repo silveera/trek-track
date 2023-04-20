@@ -1,13 +1,14 @@
 <?php
 require_once 'utilities.php';
 
-$serverName = "localhost";
-$dbUserame = "root";
+$serverName = "127.0.0.1";
+$dbUsername = "root";
 $dbPassword = "";
-$dbName = "TrekTrack";
+$dbName = "trektrack";
 
-$conn = mysqli_connect($serverName, $dbUserame, $dbPassword, $dbName);
+$conn = mysqli_connect($serverName, $dbUsername, $dbPassword, $dbName);
 
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
+    header("location: ../signup.php?error=invalidsignup");
 }

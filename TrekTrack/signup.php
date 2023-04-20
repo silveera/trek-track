@@ -34,7 +34,7 @@ if (checkLoginStatus()) {
     </header>
     <main class="form-account bg-image-element">
         <div class="container bg-invert-neutral">
-            <form action="php/signup-inc.php" method="POST" novalidate>
+            <form action="php/signup-inc.php" method="POST" class="form-signup" novalidate>
                 <input type="text" placeholder="Username" id="uid" name="uid" value="<?= checkValueAndReturn("signusername") ?>" class="<?= checkArraySetMissing('signerrortypes','username' ) ?>" required>
                 <input type="email" placeholder="Email" id="email" name="email" value="<?= checkValueAndReturn("signemail") ?>" class="<?= checkArraySetMissing('signerrortypes','email' ) ?>" required> <br>
                 <input type="password" placeholder="Password" id="pw" name="pw" value="<?= checkValueAndReturn("signpassword") ?>" class="<?= checkArraySetMissing('signerrortypes','password' ) ?>" required>

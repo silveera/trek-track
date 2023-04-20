@@ -43,3 +43,23 @@ function checkArraySetMissing($arraykey, $value)
     }
     return "";
 }
+
+function setUserInfo($conn, $username) {
+    $query = "SELECT * FROM users WHERE user_name = ?;";
+
+    $stmt = mysqli_prepare($conn, $query);
+
+    if (!$stmt) {
+        header("location: ../signup.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    $userInfoArray = mysqli_fetch_assoc($resultData);
+
+    return $userInfoArray;
+}   

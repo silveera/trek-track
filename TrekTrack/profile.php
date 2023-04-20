@@ -1,6 +1,6 @@
 <?php
-require_once 'php/utilities.php'; 
-    session_start();
+require_once 'php/utilities.php';
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -13,13 +13,15 @@ require_once 'php/utilities.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
+    <script src="scripts/jquery-3.6.4.min.js"></script>
+    <script src="scripts/profile.js" defer></script>
+    <script src="scripts/modal.js" defer></script>
 </head>
 
 <body>
     <header class="primary-gradient">
         <div class="head logo">
-            <a href="home.php" class="not-link"><img src="images/logoex.png" width="50" id="logo"
-                    alt="Trek&Track-Logo"></a>
+            <a href="home.php" class="not-link"><img src="images/logoex.png" width="50" id="logo" alt="Trek&Track-Logo"></a>
             <a href="home.php" class="text-thick-invert-neutral not-link logo-text">
                 <p>Trek&Track</p>
             </a>
@@ -31,16 +33,143 @@ require_once 'php/utilities.php';
         </div>
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
-                <li><a href="home.php">Home</a></li>
-                <li><a href="map.php">Map</a></li>
-                <li><a href="profile.php">Profile</a></li>
+                <li><a href="home.php"><i class="fa-solid fa-house not-link"></i>
+                        <p>Home</p>
+                    </a></li>
+                <li><a href="map.php"><i class="fa-solid fa-map not-link"></i>
+                        <p>Map</p>
+                    </a></li>
+                <li><a href="profile.php"><i class="fa-solid fa-user not-link"></i>
+                        <p>Profile</p>
+                    </a></li>
             </ul>
         </nav>
         <div class="head account">
-        <a href="login.php" id="button-head-log-out"
-                style="display:<?= checkLoginStatus() ? "block" : "none"?>;" class="button text-medium-invert-neutral bg-secondary border-secondary">Log Out</a>
+            <a href="login.php" id="button-head-log-out" style="display:<?= checkLoginStatus() ? "block" : "none" ?>;" class="button text-medium-invert-neutral bg-secondary border-secondary">Log Out</a>
         </div>
     </header>
+    <main class="grid-home">
+        <aside class="home collection bg-invert-neutral">
+            <div class="profilepic">
+                <a href="profile.php" class="not-link"><img src="images/profilepic.png" id="collection-profile-pic" class="medium-avatar" alt="User-Profile">
+                    <p id="collection-username" class="text-medium-neutral clickable">@username</p>
+                </a>
+            </div>
+            <div class="list-collection-container">
+                <ul class="list-collection">
+                    <li>
+                        <p id="collection-trips" class="icon"><i class="fa-regular fa-map"></i>My Trips</p>
+                        <div class="dropdown-content">
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia qui perferendis labore
+                                possimus, asperiores cupiditate explicabo vero deserunt delectus similique nam deleniti
+                                fugiat dolorem natus nisi quod eligendi culpa dignissimos.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <p><i class="fa-regular fa-calendar"></i>Calendar</p>
+                        <div class="dropdown-content">
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia qui perferendis labore
+                                possimus, asperiores cupiditate explicabo vero deserunt delectus similique nam deleniti
+                                fugiat dolorem natus nisi quod eligendi culpa dignissimos.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <p>Friends' Trips</p>
+                        <div class="dropdown-content">
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia qui perferendis labore
+                                possimus, asperiores cupiditate explicabo vero deserunt delectus similique nam deleniti
+                                fugiat dolorem natus nisi quod eligendi culpa dignissimos.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <div class="profile bg-invert-neutral">
+            <div class="container-p-header">
+                <img src="images/profilepic.png" id="img-p-profile" alt="User-Profile" class="large-avatar">
+                <div class="container-p-bio">
+                    <div class="container-p-bio-header">
+                        <p id="p-username" class="text-medium-neutral">@username</p>
+                        <button id="button-p-edit">Edit Profile</button>
+                        <button id="button-p-settings"><i class="fa-solid fa-gear"></i></button>
+                    </div>
+                    <div class="container-p-bio-text">
+                        <p id="text-p-bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, fugit voluptatibus animi molestias nam non
+                            minima at, laudantium consectetur ipsam qui beatae dolorum pariatur quasi perferendis ratione, voluptate
+                            magnam ullam!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container-p-content-buttons">
+                <div>
+                    <div class="container-p-content-button">
+                        <button id="button-p-posts" class="not-button button-p-content">My Posts</button>
+                    </div>
+                    <button id="button-p-new-post" class="button-p-new not-button button-new-post"><i class="fa-solid fa-plus"></i></button>
+                    <div id="modal-new-post" class="modal">
+                        <div class="post-container">
+                            <div class="modal-header">
+                                <h1>Create a post!</h1>
+                            </div>
+                            <form id="form-new-post" method="post">
+                                <div class="post-header">
+                                    <img src="images/profilepic.png" alt="User Avatar" id="post-avatar" class="avatar">
+                                    <div class="post-user-info">
+                                        <h3 id="post-username">Username</h3>
+                                        <p id="post-timestamp">2 weeks ago</p>
+                                        <textarea id="new-post-caption" name="new-post-caption" maxlength="280" rows="1" placeholder="Enter caption: Maximum length 280"></textarea>
+                                    </div>
+                                </div>
+                                <div class="post-image-container" id="post-image-container">
+                                    <input type="file" accept="image/*" id="new-post-image" class="hidden" name="new-post-image">
+                                    <label for="new-post-image" id="label-post-image"><i class="fa-solid fa-folder-plus"></i><p>Upload an image.<br>This is optional; you can also just post your text!</p>
+                                    </label>
+                                </div>
+                                <div class="buttons-modal-new-post">
+                                    <button id="cancel-new-post" class="modal-close" name="cancel">Cancel</button>
+                                    <button type="submit" id="new-post-submit" name="submit">Submit Post</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                    <div>
+                        <div class="container-p-content-button">
+                            <button id="button-p-trips" class="not-button button-p-content">My Trips</button>
+                        </div>
+                        <button id="button-p-new-trip" class="button-p-new not-button"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+                <div class="container-p-content">
+                    <div class="container-p-posts">
+                        <div class="container-p-no">
+                            <p>
+                                It appears you have no posts yet. Click the button below to share a memory!
+                            </p>
+                            <button id="button-first-post">
+                                Create New Post
+                            </button>
+                        </div>
+                    </div>
+                    <div class="container-p-trips hidden">
+                        <div class="container-p-no">
+                            <p>
+                                It appears you have no trips yet. Click the button below to start planning your next adventure!
+                            </p>
+                            <button>
+                                Plan New Trip
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <aside class="home social bg-invert-neutral" style="display: none;">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, fugit voluptatibus animi molestias nam non
+                    minima at, laudantium consectetur ipsam qui beatae dolorum pariatur quasi perferendis ratione, voluptate
+                    magnam ullam!</p>
+            </aside>
+    </main>
+    
 </body>
 
 </html>

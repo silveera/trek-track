@@ -31,9 +31,9 @@ require_once 'php/utilities.php';
         </div>
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
-                <li><a href="home.php">Home</a></li>
-                <li><a href="map.php">Map</a></li>
-                <li><a href="profile.php">Profile</a></li>
+                <li><a href="home.php"><i class="fa-solid fa-house not-link"></i><p>Home</p></a></li>
+                <li><a href="map.php"><i class="fa-solid fa-map not-link"></i><p>Map</p></a></li>
+                <li><a href="profile.php"><i class="fa-solid fa-user not-link"></i><p>Profile</p></a></li>
             </ul>
         </nav>
         <div class="head account">
@@ -49,7 +49,7 @@ require_once 'php/utilities.php';
         <aside class="home collection bg-invert-neutral">
             <div class="profilepic">
                 <a href="profile.php" class="not-link"><img src="images/profilepic.png" id="collection-profile-pic"
-                        width="85" style="width: 85%;" alt="User-Profile">
+                        class="medium-avatar" alt="User-Profile">
                     <p id="collection-username" class="text-medium-neutral line-after-neutral clickable">@username</p>
                 </a>
             </div>
