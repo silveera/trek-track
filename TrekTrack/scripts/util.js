@@ -51,23 +51,14 @@ export function preventReloadSubmit(formID, scriptURL) {
     });
 };
 
-/* async function logJSONData() {
-    const response = await fetch("php/user-info.php");
+async function logJSONData() {
+    const response = await fetch("php/user-info-json.php");
     const jsonData = await response.json();
-    console.log(jsonData); For debugging purposes
+    console.log(jsonData); /* For debugging purposes */
     return jsonData;
 };
 
 export let userData = await logJSONData();
- */
-    
-/* export let userData;
-
-logJSONData().then (promiseUserData => {
-
-    console.log(promiseUserData["user_name"]);
-    userData = promiseUserData;
-}); */
 
 const map = {
     '&': '&amp;',

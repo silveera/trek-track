@@ -41,8 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !(empty($_POST["new-post-caption"]) 
                     
             imagepng(imagecreatefromstring(file_get_contents($_FILES["new-post-image"]["tmp_name"])), $uploadFile, 5);
         } else {
-            $newRef = "";
             echo "Invalid file type. Please upload a JPEG, or PNG image.";
+            die();
         };
     }
 
@@ -52,6 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !(empty($_POST["new-post-caption"]) 
     if (!$stmt) {
         header("location: ../profile.php?error=stmtfailed");
     }
+
+    print_r($userInfoArray);
                 
     mysqli_stmt_bind_param($stmt, "iss", $userID, $caption, $newRef);
     mysqli_stmt_execute($stmt);

@@ -1,4 +1,4 @@
-import {escapeHtml} from "./util.js";
+import {escapeHtml, userData} from "./util.js";
 
 const contFeed = document.querySelector(".container-feed");
 
@@ -34,8 +34,21 @@ if ('content' in document.createElement('template')) {
         } else {
             clone.querySelector(".post-image").remove();
         }
+
+        clone.querySelector(".like-count").innerText = feedItem["like_amount"];
         
-        clone.querySelector(".like-count").innerText = feedItem["likes"];
+        if (feedItem["like_amount"] == 0) {
+            clone.querySelector(".like-count").style.display = "none";
+        } else {
+            let liked_by = feedItem["liked_by"].split(",");
+            console.log(liked_by);
+            if (liked_by.includes(String(userData["user_id"]))) {
+                clone.querySelector(".like-button").classList.remove("fa-regular");
+                clone.querySelector(".like-button").classList.add("fa-solid");
+                clone.querySelector(".like-button").style.color = "#86adff";
+            }
+        };
+            
 
         clone.querySelector(".like-count").id = feedItem["post_id"] + "likecount";
         clone.querySelector(".like-button").id = feedItem["post_id"] + "likebtn";
@@ -61,7 +74,9 @@ if ('content' in document.createElement('template')) {
     });
 
     $(".container-feed").on("click", ".like-button", function() {
-        const postId = $(this).attr("id").replace("likebtn", "");
+        let postId = $(this).attr("id").replace("likebtn", "");
+        let likeCount = $("#"+postId+"likecount");
+        let likeBtn = $("#"+postId+"likebtn");
         console.log(postId);
     
         $.ajax({
@@ -70,8 +85,23 @@ if ('content' in document.createElement('template')) {
             data: {
                 post_id: postId
             },
-            success: function(likeCount) {
-                $("#"+postId+"likecount").text(parseInt($("#"+postId+"likecount").html()) + 1);
+            success: function(likeAmount) {
+                if ($(likeBtn).hasClass("fa-regular")) {
+                    $(likeBtn).removeClass("fa-regular");
+                    $(likeBtn).addClass("fa-solid");
+                    likeBtn.css("color", "#86adff");
+                    $(likeCount).text(parseInt($(likeCount).html()) + 1);
+                    likeCount.show();
+                } else if ($(likeBtn).hasClass("fa-solid")) {
+                    $(likeBtn).removeClass("fa-solid");
+                    $(likeBtn).addClass("fa-regular");
+                    likeBtn.css("color", "#212529");
+                    if ((parseInt($(likeCount).html()) - 1) == 0){
+                        likeCount.hide();
+                    } else {
+                        $(likeCount).text(parseInt($(likeCount).html()) - 1);
+                    };
+                }   
             },
             error: function() {
                 alert("Error updating the like count");
