@@ -1,13 +1,9 @@
 <?php
-session_start();
-
-require_once 'utilities.php';
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
 
     require_once 'error-inc.php';
-    require_once 'database-inc.php';
-
+    require_once 'utilities.php';
+    
     $username = sanitize($_POST["uid"]);
     $email = sanitize($_POST["email"]);
     $password = $_POST["pw"];
@@ -23,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
     if (empty($username)) {
         array_push($errType, "username", "missing");
     } else {
-        session_start();
+        
         
         if (invalidUsername($username) == true) {
             $errMsg .= nl2br("*Username needs to be between 4 and 15 characters.\n");
@@ -84,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
         mysqli_stmt_bind_param($stmt, "sss", $username, $email, $hashedPassword);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
-        header("location: ../signup.php?error=none");
+        header("location: ../login.php");
     }
 
     createUser($conn, $username, $email, $password);

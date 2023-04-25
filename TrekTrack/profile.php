@@ -1,6 +1,6 @@
 <?php
 require_once 'php/utilities.php';
-session_start();
+require_once 'php/user-info-module.php';
 ?>
 
 <!DOCTYPE html>
@@ -14,8 +14,9 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <script src="scripts/jquery-3.6.4.min.js"></script>
-    <script src="scripts/profile.js" defer></script>
-    <script src="scripts/modal.js" defer></script>
+    <script src="scripts/profile.js" type="module" defer></script>
+    <script src="scripts/modal.js" type="module" defer></script>
+    <script src="scripts/feed.js" type="module" defer></script>
 </head>
 
 <body>
@@ -51,8 +52,8 @@ session_start();
     <main class="grid-home">
         <aside class="home collection bg-invert-neutral">
             <div class="profilepic">
-                <a href="profile.php" class="not-link"><img src="images/profilepic.png" id="collection-profile-pic" class="medium-avatar" alt="User-Profile">
-                    <p id="collection-username" class="text-medium-neutral clickable">@username</p>
+                <a href="profile.php" class="not-link"><img id="avatar" src="<?= $avatarSrc ?>" class="medium-avatar avatar" alt="User-Profile">
+                    <p id="collection-username" class="text-medium-neutral clickable">@<?= $userName ?></p>
                 </a>
             </div>
             <div class="list-collection-container">
@@ -85,21 +86,25 @@ session_start();
             </div>
         </aside>
         <div class="profile bg-invert-neutral">
-            <div class="container-p-header">
-                <img src="images/profilepic.png" id="img-p-profile" alt="User-Profile" class="large-avatar">
+            <form class="container-p-header" id="form-edit-profile" method="post" enctype="multipart/form-data" action="php/edit-profile.php">
+                <div id="container-p-avatar" class="container-p-avatar" style="position: relative;">
+                    <label for="input-p-avatar" id="label-input-p-avatar" style="position: absolute; display: none;"><i class="fa-solid fa-camera-rotate"></i></label>
+                    <input type="file" id="input-p-avatar" style="display: none;" accept="image/jpeg, image/png" name="p-avatar">
+                    <img id="p-avatar" src="<?= $avatarSrc ?>" class="large-avatar avatar" >
+                </div>
                 <div class="container-p-bio">
-                    <div class="container-p-bio-header">
-                        <p id="p-username" class="text-medium-neutral">@username</p>
-                        <button id="button-p-edit">Edit Profile</button>
-                        <button id="button-p-settings"><i class="fa-solid fa-gear"></i></button>
-                    </div>
-                    <div class="container-p-bio-text">
-                        <p id="text-p-bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, fugit voluptatibus animi molestias nam non
-                            minima at, laudantium consectetur ipsam qui beatae dolorum pariatur quasi perferendis ratione, voluptate
-                            magnam ullam!</p>
+                    <div>
+                        <div class="container-p-bio-header">
+                            <p id="p-username" class="text-medium-neutral"><?= $userName ?></p>
+                            <button type="button" id="button-p-edit">Edit Profile</button>
+                            <button type="button" id="button-p-settings"><i class="fa-solid fa-gear"></i></button>
+                        </div>
+                        <div class="container-p-bio-text" id="container-p-bio-text">
+                            <textarea readonly id="text-p-bio" style="cursor: default; background-color: inherit;" rows="4" maxlength="280" name="p-bio"><?= $userBio ?></textarea>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
             <div class="container-p-content-buttons">
                 <div>
                     <div class="container-p-content-button">
@@ -111,23 +116,23 @@ session_start();
                             <div class="modal-header">
                                 <h1>Create a post!</h1>
                             </div>
-                            <form id="form-new-post" method="post">
+                            <form id="form-new-post" method="post" enctype="multipart/form-data" action="php/submit-post.php">
                                 <div class="post-header">
-                                    <img src="images/profilepic.png" alt="User Avatar" id="post-avatar" class="avatar">
+                                    <img src="<?= $avatarSrc ?>" alt="User Avatar" id="post-avatar" class="normal-avatar avatar">
                                     <div class="post-user-info">
-                                        <h3 id="post-username">Username</h3>
-                                        <p id="post-timestamp">2 weeks ago</p>
+                                        <h3 id="post-username"><?= $userName ?></h3>
+                                        <p id="post-timestamp" class="post-timestamp" data-date=""><?= $currentDate ?></p>
                                         <textarea id="new-post-caption" name="new-post-caption" maxlength="280" rows="1" placeholder="Enter caption: Maximum length 280"></textarea>
                                     </div>
                                 </div>
                                 <div class="post-image-container" id="post-image-container">
-                                    <input type="file" accept="image/*" id="new-post-image" class="hidden" name="new-post-image">
+                                    <input type="file" accept="image/jpeg, image/png" id="new-post-image" style="display: none;" name="new-post-image">
                                     <label for="new-post-image" id="label-post-image"><i class="fa-solid fa-folder-plus"></i><p>Upload an image.<br>This is optional; you can also just post your text!</p>
                                     </label>
                                 </div>
                                 <div class="buttons-modal-new-post">
-                                    <button id="cancel-new-post" class="modal-close" name="cancel">Cancel</button>
-                                    <button type="submit" id="new-post-submit" name="submit">Submit Post</button>
+                                    <button type="reset" id="cancel-new-post" class="modal-close" name="cancel">Cancel</button>
+                                    <button type="button" id="button-new-post-submit" name="submit">Submit Post</button>
                                 </div>
                             </form>
                         </div>

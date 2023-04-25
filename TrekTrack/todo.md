@@ -3,5 +3,5 @@
 + Restyle login, signup
 + Figure out how to implement a feed
 + Add missing pages
-+ Add text to pages (chatgpt)
++ Add text to pages
 + Have a plan about left side menu, implement if possible

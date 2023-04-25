@@ -1,12 +1,13 @@
+import { autoResize, removeWhiteSpace, preventEnterKey } from './util.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     const txtNewPostCaption = document.getElementById("new-post-caption");
 
     const fileNewPostImage = document.getElementById("new-post-image");
 
-    const btnNewPostSubmit = document.getElementById("new-post-submit");
+    const btnNewPostSubmit = document.getElementById("button-new-post-submit");
 
-    const btnNewPostCancel = document.getElementsByClassName("modal-cancel")[0];
+    const btnNewPostCancel = document.getElementsByClassName("modal-close")[0];
 
     const modalNewPost = document.getElementById("modal-new-post");
 
@@ -20,37 +21,47 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const contPostImg = document.getElementById("post-image-container");
 
-    function gcd(a, b) {
-        return (b == 0) ? a : gcd (b, a%b);
-    }
 
     btnNewPostModal.onclick = function () {
         modalNewPost.style.display = "flex";
+        autoResize.call(txtNewPostCaption);
     };
 
     btnFirstPostModal.onclick = function () {
         modalNewPost.style.display = "flex";
+        autoResize.call(txtNewPostCaption);
     };
 
-    function autoResize() {
-        this.style.height = 'auto';
-        if (this.scrollHeight > 0) {
-        this.style.height = (this.scrollHeight) + "px";
-        };
-    }
+    btnNewPostCancel.onclick = function () {
+        $('#img-preview').remove();
+        labelPostImg.style.display = "block";
+        contPostImg.style.paddingInline = "1em";
+        contPostImg.style.paddingBlock = "2em";
+        modalNewPost.style.display = "none";
+    };
 
     txtNewPostCaption.addEventListener('input', autoResize);
+    txtNewPostCaption.addEventListener('focus', autoResize);
+    txtNewPostCaption.addEventListener('blur', autoResize);
+    
+    txtNewPostCaption.addEventListener('blur', removeWhiteSpace);
+    txtNewPostCaption.addEventListener('focus', removeWhiteSpace);
+    txtNewPostCaption.addEventListener('keydown', preventEnterKey);
+
+    window.addEventListener('resize', function () {
+        autoResize.call(txtNewPostCaption);
+    });
+    
     autoResize.call(txtNewPostCaption);
+    
 
     function displayImage(imageFile) {
-        var reader = new FileReader();
+        let reader = new FileReader();
 
         reader.onload = function (event) {
 
-            var imgElement = document.createElement("img");
+            let imgElement = document.createElement("img");
             imgElement.src = event.target.result;
-            var imgWidth = imgElement.naturalWidth;
-            var imgHeight = imgElement.naturalHeight;
 
             imgElement.setAttribute("id", "img-preview");
 
@@ -59,15 +70,16 @@ document.addEventListener('DOMContentLoaded', function () {
             imgElement.style.maxWidth = "100%"; 
             imgElement.style.maxHeight = "60em";
             
-            imgElement.style.borderRadius = "10px"
+            imgElement.style.borderRadius = "5px"
             
             contPostImg.style.width = "auto";
             contPostImg.style.height = "auto";
             contPostImg.style.padding = "0";
             contPostImg.style.marginInline = "auto";
 
-            contPostImg.removeChild(contPostImg.childNodes[contPostImg.childNodes.length - 1]);
-            labelPostImg.remove();
+            $('#img-preview').remove();
+            
+            labelPostImg.style.display = "none";
 
             contPostImg.appendChild(imgElement);
 
@@ -77,14 +89,22 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         reader.readAsDataURL(imageFile);
+        autoResize.call(txtNewPostCaption);
     }
 
     fileNewPostImage.addEventListener('change', function () {
+
+        autoResize.call(txtNewPostCaption);
+        btnNewPostSubmit.setAttribute("type", "submit");
 
         if (this.files && this.files.length > 0) {
             displayImage(this.files[0]);
         }
     });
 
+    txtNewPostCaption.addEventListener('input', function () {
+        btnNewPostSubmit.setAttribute("type", "submit");
+    });
+    
 });
 

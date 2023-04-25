@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once 'php/utilities.php';
 if (checkLoginStatus()) {
     session_unset();
@@ -38,10 +38,8 @@ if (checkLoginStatus()) {
     <main class="form-account bg-image-element">
         <div class="container bg-invert-neutral">
             <form action="php/login-inc.php" method="post" class="form-login" novalidate>
-                <label for="uid" class="hidden">Username</label>
                 <input type="text" placeholder="Username" id="uid" name="uid" value="<?= checkValueAndReturn("loginusername") ?>" class="<?= checkArraySetMissing('loginerrortypes','username' ) ?>" required>
-    
-                <label for="pw" class="hidden">Password</label>
+
                 <input type="password" placeholder="Password" id="pw" name="pw" value="<?= checkValueAndReturn("loginpassword") ?>" class="<?= checkArraySetMissing('loginerrortypes','password' ) ?>" required>
     
                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" class="tex">Forgot your password?</a>

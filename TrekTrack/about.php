@@ -1,6 +1,6 @@
 <?php
 require_once 'php/utilities.php'; 
-    session_start();
+    
 ?>
 
 <!DOCTYPE html>

@@ -1,6 +1,6 @@
 <?php
 require_once 'php/utilities.php'; 
-    session_start();
+require_once 'php/user-info-module.php'; 
 ?>
 
 <!DOCTYPE html>
@@ -48,9 +48,9 @@ require_once 'php/utilities.php';
     <main class="grid-home">
         <aside class="home collection bg-invert-neutral">
             <div class="profilepic">
-                <a href="profile.php" class="not-link"><img src="images/profilepic.png" id="collection-profile-pic"
+                <a href="profile.php" class="not-link"><img src="<?= $avatarSrc ?>" id="collection-profile-pic"
                         class="medium-avatar" alt="User-Profile">
-                    <p id="collection-username" class="text-medium-neutral line-after-neutral clickable">@username</p>
+                    <p id="collection-username" class="text-medium-neutral line-after-neutral clickable">@<?= $userName ?></p>
                 </a>
             </div>
             <ul class="home list-collection">

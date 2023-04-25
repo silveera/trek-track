@@ -1,12 +1,9 @@
 <?php
-session_start();
-
-require_once 'utilities.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
 
+    require_once 'utilities.php';
     require_once 'error-inc.php';
-    require_once 'database-inc.php';
 
     $username = sanitize($_POST["uid"]);
     $password = $_POST["pw"];

@@ -1,4 +1,7 @@
 <?php
+session_start();
+
+require_once 'database-inc.php';
 require_once 'utilities.php';
 
 function sanitize($data)
@@ -63,3 +66,52 @@ function setUserInfo($conn, $username) {
 
     return $userInfoArray;
 }   
+
+function fetchUserInfoJSON($conn, $userid) {
+    $query = "SELECT * FROM users WHERE user_id = ?;";
+
+    $stmt = mysqli_prepare($conn, $query);
+
+    if (!$stmt) {
+        /* header("location: ../signup.php?error=stmtfailed"); */
+        echo "stmtfailed";
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "i", $userid);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    $userInfoArray = mysqli_fetch_assoc($resultData);
+
+    /* print_r(json_encode($userInfoArray)); */
+
+    return json_encode($userInfoArray);
+}   
+
+function fetchUserInfoID($conn, $userid) {
+    $query = "SELECT * FROM users WHERE user_id = ?;";
+
+    $stmt = mysqli_prepare($conn, $query);
+
+    if (!$stmt) {
+        /* header("location: ../signup.php?error=stmtfailed"); */
+        echo "stmtfailed";
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "i", $userid);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    $userInfoArray = mysqli_fetch_assoc($resultData);
+
+    /* print_r(json_encode($userInfoArray)); */
+
+    return $userInfoArray;
+}   
+
+$currentDate = gmdate("y-m-d h:i:s");
+

@@ -208,6 +208,10 @@ button.bg-primary-tint-1:hover, .button.bg-primary-tint-1:hover {
     border-color: var(--primary-tint-2);  
 }
 
+.hidden {
+    display: none !important;
+}
+
 .not-button:hover {
     transform: none !important;
     background-color: initial !important;
@@ -262,6 +266,25 @@ p > i::before {
 p > i:hover::before {
     background-position: right bottom;
 }
+
+textarea {
+    font-family: var(--font-regular);
+    font-size: var(--font-size-normal);
+    overflow: hidden;
+    resize: none;
+
+    outline: transparent;
+    border: none;
+    width: 100%;
+    padding: 5px;
+    border-radius: 10px;   
+}
+
+textarea::placeholder {
+    font-family: var(--font-regular);
+    font-size: var(--font-size-normal);
+    color: var(--secondary-tint-2);
+}
  
 /* input:hover, input:focus {
     border-bottom: 3px solid var(--secondary-shade-1);
@@ -295,13 +318,7 @@ header {
   }
 
 .hidden {
-    position: absolute !important;
-    clip: rect(1px, 1px, 1px, 1px);
-    padding: 0 !important;
-    border: 0 !important;
-    height: 1px !important;
-    width: 1px !important;
-    overflow: hidden;
+    display: none;
 }
 
 .modal {
@@ -342,32 +359,37 @@ header {
     border-radius: 10px 10px 0 0;
 }
 
-.small-avatar {
-    width: var(--image-size-profile-small);
-    height: auto; 
-    object-fit: contain;
-    border-radius: 100%;
+.avatar {
+    box-shadow: 0px 0px 8px rgba(94, 94, 94, 0.3);
+    background-color: black;
 }
 
-.avatar {
+.small-avatar {
+    width: var(--image-size-profile-small);
+    height: var(--image-size-profile-small); 
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.normal-avatar {
     width: var(--image-size-profile);
-    height: auto; 
-    object-fit: contain;
-    border-radius: 100%;
+    height: var(--image-size-profile); 
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .medium-avatar {
     width: var(--image-size-profile-medium);
-    height: auto; 
-    object-fit: contain;
-    border-radius: 100%;
+    height: var(--image-size-profile-medium);; 
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .large-avatar {
     width: var(--image-size-profile-large);
-    height: auto; 
-    object-fit: contain;
-    border-radius: 100%;
+    height: var(--image-size-profile-large); 
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 
@@ -581,10 +603,10 @@ header .nav-list li {
     position: relative;
 }
 
-.home:nth-child(1) * {
+/* .home:nth-child(1) * {
     box-shadow: none;
 }
-
+ */
 .home:nth-child(2) {
     padding-inline: 3em;
     background: var(--primary-tint-2);
@@ -631,7 +653,7 @@ header .nav-list li {
     padding-inline: 1em; 
 }
 
-.profilepic:hover #collection-profile-pic {
+.profilepic:hover #avatar {
     transform: scale(105%);
     transition: 0.2s;
 }
@@ -680,13 +702,24 @@ header .nav-list li {
     grid-area: feed;
 }
 
+.feed > * + * {
+    margin-top: 2em;
+}
+
+.feed:first-child {
+    margin-top: 1em;
+}
+
 .post-container {
     background-color: var(--invert-neutral-color);
     border-radius: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: start;
+    flex-direction: column;
 }
 
-.post-container, .post-container * {
+.post-container * {
     margin: 0;
     display: flex;
     align-items: start;
@@ -703,15 +736,16 @@ header .nav-list li {
     align-items: center;
 }
 
-#post-username {
+.post-username {
+    font-family: var(--font-medium);
     font-size: var(--font-size-medium);
 }
 
-#post-timestamp {
+.post-timestamp {
     font-size: var(--font-size-small);
 }
 
-#post-caption {
+.post-caption {
     word-break: break-word;
     overflow-wrap: break-word;
     margin-top: 0.5rem;
@@ -720,11 +754,14 @@ header .nav-list li {
 .post-image-container {
     padding: 0;
     padding-inline: 1em;
+    width: 100%;
 }
 
-#post-image {
-    width: 100%;
+.post-image {
+    width: 38em;
     height: auto;
+    max-width: 100%; 
+    max-height: 60em;
     border-radius: 5px;
 }
 
@@ -753,8 +790,16 @@ header .nav-list li {
     transform: scale(0.9);
 }
 
-.image-footer > i:nth-last-child(2) {
+.image-footer > i:last-child {
     margin-left: auto;
+}
+
+.image-footer .like-count {
+    margin-top: 0.5em;
+    margin-right: 0.5em;
+    font-family: var(--font-medium);
+    font-size: var(--font-size-medium);
+    font-weight: bold;
 }
 
 .comments-header {
@@ -763,7 +808,7 @@ header .nav-list li {
     width: fit-content;
 }
 
-#comment-account {
+.comment-account {
     margin-inline: 0.5em;
     font-size: var(--font-size-normal);
     font-weight: bold;
@@ -771,7 +816,7 @@ header .nav-list li {
 }
 
 
-#comment {
+.comment {
     border-left: 1px solid var(--invert-neutral-color-shade-4);
     margin: 0.2rem;
     padding-inline: 0.5rem;
@@ -793,7 +838,7 @@ header .nav-list li {
 
 }
 
-#comment-timestamp {
+.comment-timestamp {
     font-size: 0.7rem;
 }
 
@@ -837,12 +882,30 @@ footer {
     background-color: var(--secondary-tint-4);
 }
 
-.container-p-header img {
+.container-p-avatar {
     margin-right: 1.5em;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-p-avatar i {
+    font-size: var(--font-size-giant);
+    color: rgba(126, 126, 126, 0.879);
+}
+
+.transparent-overlay::before {
+    position: absolute;
+    content: '';
+    background-color: rgba(255, 255, 255, 0.879);
+    width: calc(var(--image-size-profile-large) + 1px);
+    height: calc(var(--image-size-profile-large) + 1px);
+    border-radius: 50%;
 }
 
 .container-p-bio {
-    flex-direction: column;
+    width: 100%;
 }
 
 .container-p-bio-header {
@@ -867,6 +930,7 @@ footer {
 }
 
 #p-username {
+    margin-left: 5px;
     padding-bottom: 0.3em;
 }
 
@@ -970,40 +1034,26 @@ footer {
 }
 
 #modal-new-post textarea {
-    font-family: var(--font-regular);
-    font-size: var(--font-size-normal);
-    overflow: hidden;
-
-    outline: transparent;
-    border: none;
-    width: 100%;
-    padding: 5px;
-    border-radius: 10px;
     margin-top: 1em;
-    resize: none;
+    border-radius: 5px;
 }
 
-#modal-new-post textarea::placeholder {
-    font-family: var(--font-regular);
-    font-size: var(--font-size-normal);
-    color: var(--secondary-tint-2);
-}
-
-#post-avatar {
+.post-header .avatar {
     margin: 0.5em;
     margin-bottom: auto;
 }
 
 #modal-new-post .post-image-container {
     margin-top: 1em;
+    padding-block: 2em;
     background-color: white;
-    border-radius: 10px;
-    width: 15rem;
-    height: 15rem;
+    border-radius: 5px;
+    
+
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: auto;
 }
 
 #modal-new-post .post-image-container label {

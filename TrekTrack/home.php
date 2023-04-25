@@ -1,6 +1,6 @@
 <?php
 require_once 'php/utilities.php'; 
-    session_start();
+require_once 'php/user-info-module.php';
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +12,8 @@ require_once 'php/utilities.php';
     <script src="https://kit.fontawesome.com/66d74c224c.js" crossorigin="anonymous"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="scripts/jquery-3.6.4.min.js"></script>
+    <script src="scripts/feed.js" type="module" defer></script>
     <title>Home</title>
 </head>
 
@@ -48,9 +50,9 @@ require_once 'php/utilities.php';
     <main class="grid-home">
         <aside class="home collection bg-invert-neutral">
             <div class="profilepic">
-                <a href="profile.php" class="not-link"><img src="images/profilepic.png" id="collection-profile-pic"
+                <a href="profile.php" class="not-link"><img src="<?= $avatarSrc ?>" id="collection-profile-pic"
                         class="medium-avatar" alt="User-Profile">
-                    <p id="collection-username" class="text-medium-neutral line-after-neutral clickable">@username</p>
+                    <p id="collection-username" class="text-medium-neutral line-after-neutral clickable">@<?= $userName ?></p>
                 </a>
             </div>
             <div class="list-collection-container" >
@@ -82,43 +84,42 @@ require_once 'php/utilities.php';
             </ul>
             </div>
         </aside>
-        <div class="home feed bg-invert-neutral">
-            <div class="post-container">
-                <div class="post-header">
-                    <img src="images/profilepic.png" alt="User Avatar" id="post-avatar" class="avatar">
-                    <div class="post-user-info">
-                        <h3 id="post-username">Username</h3>
-                        <p id="post-timestamp">2 weeks ago</p>
-                        <p id="post-caption">Hello im new here</p>
+        <div class="home feed bg-invert-neutral container-feed">
+            <template id="template-post">
+                <div class="post-container">
+                    <div class="post-header">
+                        <img alt="User Avatar" class="normal-avatar avatar post-avatar">
+                        <div class="post-user-info">
+                            <p class="post-username"></p>
+                            <p class="post-timestamp"></p>
+                            <p class="post-caption"></p>
+                        </div>
+                    </div>
+                    <div class="post-image-container">
+                        <img alt="Example Image" class="post-image">
+                        <div class="image-footer">
+                            <i class="fa-regular fa-heart like-button"></i><p class="like-count"></p>
+                            <i class="fa-regular fa-comment"></i>
+                            <i class="fa-regular fa-paper-plane"></i>
+                        </div>
+                    </div>
+                    <div class="post-comments">
+                        <div class="comments-header">
+                            <a class="not-link clickable"><img src="images/profilepic.png" alt="User Avatar"
+                                    class="small-avatar avatar"></a>
+                            <a class="clickable not-link">
+                                <p class="comment-account"><b></b>goat</p>
+                            </a>
+                        </div>
+                        <p class="comment">welcome!</p>
+                        <div class="comments-footer">
+                            <p class="comment-timestamp">1w</p>
+                            <p class="like-p">Like</p>
+                            <p class="reply-p">Reply</p>
+                        </div>
                     </div>
                 </div>
-                <div class="post-image-container">
-                    <img src="images/trialbg.jpg" alt="Example Image" id="post-image">
-                    <div class="image-footer">
-                        <i class="fa-regular fa-heart"></i>
-                        <i class="fa-regular fa-paper-plane"></i>
-                        <i class="fa-regular fa-comment"></i>
-                        <i class="fa-regular fa-map"></i>
-                        <i class="fa-regular fa-bookmark"></i>
-                    </div>
-                </div>
-                <div class="post-comments">
-                    <div class="comments-header">
-                        <a class="not-link clickable"><img src="images/profilepic.png" alt="User Avatar"
-                                id="comment-avatar" class="small-avatar"></a>
-                        <a class="clickable not-link">
-                            <p id="comment-account"><b></b>goat</p>
-                        </a>
-                    </div>
-                    <p id="comment">welcome!</p>
-                    <div class="comments-footer">
-                        <p id="comment-timestamp">1w</p>
-                        <p id="like-p">Like</p>
-                        <p id="reply-p">Reply</p>
-                        <p id="share-p">Share</p>
-                    </div>
-                </div>
-            </div>
+            </template>
         </div>
         <aside class="home social bg-invert-neutral">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, fugit voluptatibus animi molestias nam non

@@ -14,28 +14,6 @@ function invalidUsername($username) {
 }
 
 function existingUsername($conn, $username) {
-    $sql = "SELECT * FROM users WHERE usersUid = ?;";
-    $stmt = mysqli_stmt_init($conn);
-    $resultData = mysqli_stmt_get_result($stmt);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../signup.php?error=stmtfailed");
-        exit();
-    }
-
-    mysqli_stmt_bind_param($stmt, "s", $username);
-    mysqli_stmt_execute($stmt);
-
-    if (mysqli_fetch_assoc($resultData)) {
-        $result = true;
-    }
-    else {
-        $result = false;
-    }
-    return $result;
-    mysqli_stmt_close($stmt);
-}
-
-function existingUsername($conn, $username) {
     $query = "SELECT * FROM users WHERE user_name = ?;";
 
     $stmt = mysqli_prepare($conn, $query);
@@ -98,26 +76,6 @@ function invalidEmail($email) {
         $result = false;
     }
     return $result;
-}
-
-function existingEmail($conn, $email) {
-    $sql = "SELECT * FROM users WHERE usersEmail = ?;";
-    $stmt = mysqli_stmt_init($conn);
-    $resultData = mysqli_stmt_get_result($stmt);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../signup.php?error=stmtfailed");
-        exit();
-    }
-    mysqli_stmt_bind_param($stmt, "s", $email);
-    mysqli_stmt_execute($stmt);
-    if ($row = mysqli_fetch_assoc($resultData)) {
-        $result = true;
-    }
-    else {
-        $result = false;
-    }
-    return $result;
-    mysqli_stmt_close($stmt);
 }
 
 function difPassword($password, $passwordrepeat) {
