@@ -1,4 +1,4 @@
-import { /* userData */ autoResize, removeWhiteSpace, preventEnterKey, submitForm, preventReloadSubmit} from './util.js';
+import { /* userData */ autoResize, removeWhiteSpace, preventEnterKey, preventReloadSubmit} from './util.js';
 
 const avatarP = document.getElementById("p-avatar");
 

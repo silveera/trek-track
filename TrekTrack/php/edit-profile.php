@@ -35,15 +35,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (in_array($fileMimeType, $allowedMimeTypes)) {
             $uploadDir = '../filesystem/avatars/';
             $type = explode(".", $_FILES["p-avatar"]["name"]);
-            /* $fileName = $userID . '.' . end($type); */
-            $fileName = $userID . ".png";
+            $fileName = $userID . '.' . end($type);
+            /* $fileName = $userID . ".png"; */
             $uploadFile = $uploadDir . $fileName;
             $newRef = "filesystem/avatars/" . $fileName;
-            
-        /*     $uploadfile = $uploadDir . basename($_FILES['p-avatar']['name']); */
 
-            /* echo '<pre>';
-            if (move_uploaded_file($_FILES['p-avatar']['tmp_name'], $uploadfile)) {
+            $result = glob($uploadDir . $userID . ".*");
+
+            if (!empty($result)) {
+                foreach ($result as $file) {
+                    unlink($file);
+                }
+            }
+                
+            echo '<pre>';
+            if (move_uploaded_file($_FILES['p-avatar']['tmp_name'], $uploadFile)) {
                 echo "File is valid, and was successfully uploaded.\n";
             } else {
                 echo "Possible file upload attack!\n";
@@ -52,16 +58,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo 'Here is some more debugging info:';
             print_r($_FILES);
 
-            print "</pre>"; */
+            print "</pre>";
 
-            $result = glob($uploadDir . $userID . ".*");
-
-            if (file_exists($uploadFile)) {
-                unlink($uploadFile);
-            };
-                
-            /* move_uploaded_file($_FILES["p-avatar"]["tmp_name"], $uploadFile); */
-            imagepng(imagecreatefromstring(file_get_contents($_FILES["p-avatar"]["tmp_name"])), $uploadFile, 5);
+            /* imagepng(imagecreatefromstring(file_get_contents($_FILES["p-avatar"]["tmp_name"])), $uploadFile, 5); */
 
             /* echo "File is valid, and was successfully uploaded.\n"; */
             if ($avatarSrc != $newRef || !file_exists($uploadFile)) {

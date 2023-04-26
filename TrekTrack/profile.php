@@ -16,7 +16,6 @@ require_once 'php/user-info-module.php';
     <script src="scripts/jquery-3.6.4.min.js"></script>
     <script src="scripts/profile.js" type="module" defer></script>
     <script src="scripts/modal.js" type="module" defer></script>
-    <script src="scripts/feed.js" type="module" defer></script>
 </head>
 
 <body>
