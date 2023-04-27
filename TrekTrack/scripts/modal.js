@@ -1,6 +1,6 @@
 import { autoResize, removeWhiteSpace, preventEnterKey } from './util.js';
 
-document.addEventListener('DOMContentLoaded', function () {
+
     const txtNewPostCaption = document.getElementById("new-post-caption");
 
     const fileNewPostImage = document.getElementById("new-post-image");
@@ -106,5 +106,4 @@ document.addEventListener('DOMContentLoaded', function () {
         btnNewPostSubmit.setAttribute("type", "submit");
     });
     
-});
 

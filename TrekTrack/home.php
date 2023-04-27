@@ -83,6 +83,16 @@ require_once 'php/user-info-module.php';
                 </li>
             </ul>
             </div>
+            <div class="container-ongoing-trip">
+                <div class="ongoing-trip">
+                    <p>Ongoing trip:</p>
+                    <div class="cont-icon"><i class="fa-solid fa-location-dot"></i><p>Start</p></div>
+                    <div class="cont-line"><div class="line"></div></div>
+                    <div class="cont-icon trip-stop"><i class="fa-solid fa-route"></i><p>Stop</p></div>
+                    <div class="cont-line"><div class="line"></div></div>
+                    <div class="cont-icon"><i class="fa-solid fa-flag"></i><p>End</p><div>
+                </div>
+            </div>
         </aside>
         <div class="home feed bg-invert-neutral container-feed">
             <template id="template-post">
