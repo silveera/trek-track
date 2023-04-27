@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !(empty($_POST["new-post-caption"]) 
         $fileMimeType = mime_content_type($_FILES["new-post-image"]["tmp_name"]);
 
         if (in_array($fileMimeType, $allowedMimeTypes)) {
-            $uploadDir = '../filesystem/posts/';
+            /* $uploadDir = '../filesystem/posts/';
             $fileName = $postID . "_" . $userID . ".png";
 
             $uploadFile = $uploadDir . $fileName;
@@ -39,7 +39,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !(empty($_POST["new-post-caption"]) 
                 unlink($uploadFile);
             };
                     
-            imagepng(imagecreatefromstring(file_get_contents($_FILES["new-post-image"]["tmp_name"])), $uploadFile, 5);
+            imagepng(imagecreatefromstring(file_get_contents($_FILES["new-post-image"]["tmp_name"])), $uploadFile, 5); */
+            $uploadDir = '../filesystem/posts/';
+            $type = explode(".", $_FILES["new-post-image"]["name"]);
+            $fileName = $postID . "_" . $userID . "." . end($type);
+            /* $fileName = $userID . ".png"; */
+            $uploadFile = $uploadDir . $fileName;
+            $newRef = "filesystem/posts/" . $fileName;
+
+/*             $result = glob($uploadDir . $postID . "_" . $userID . ".*");
+
+            if (!empty($result)) {
+                foreach ($result as $file) {
+                    unlink($file);
+                }
+            } */
+                
+            echo '<pre>';
+            if (move_uploaded_file($_FILES["new-post-image"]["tmp_name"], $uploadFile)) {
+                echo "File is valid, and was successfully uploaded.\n";
+            } else {
+                echo "Possible file upload attack!\n";
+            }
+
+            echo 'Here is some more debugging info:';
+            print_r($_FILES);
+
+            print "</pre>";
+
+            /* imagepng(imagecreatefromstring(file_get_contents($_FILES["p-avatar"]["tmp_name"])), $uploadFile, 5); */
+
+            /* echo "File is valid, and was successfully uploaded.\n"; */
         } else {
             echo "Invalid file type. Please upload a JPEG, or PNG image.";
             die();
