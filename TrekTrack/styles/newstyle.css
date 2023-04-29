@@ -603,10 +603,10 @@ header .nav-list li {
     position: relative;
 }
 
-/* .home:nth-child(1) * {
+ .home:nth-child(1) * {
     box-shadow: none;
 }
- */
+ 
 .home:nth-child(2) {
     padding-inline: 3em;
     background: var(--primary-tint-2);
@@ -619,7 +619,59 @@ header .nav-list li {
 .home {
     padding: 1rem;
 }
-
+/* below is where i started the styling (not using rn)
+.grid-home .social {
+    height: max-content;
+    position: sticky;
+    top: 0; 
+    bottom: 0;
+  }
+  
+  .social .messages {
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+  }
+  
+  .social .messages .heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .social .messages i {
+    font-size: 1.4rem;
+  }
+  
+  .social .messages .search-bar {
+    display: flex;
+    margin-bottom: 1rem;
+  }
+  
+  .social .messages .category {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .social .messages .category h6 {
+    width: 100%;
+    text-align: center;
+    border-bottom: 4px solid var(--color-light);
+    padding-bottom: 0.5rem;
+    font-size: 0.85rem;
+  }
+  
+  .social .messages .category .active {
+    border-color: var(--color-dark);
+  }
+  
+  .social .messages .message-requests {
+    color: var(--color-primary);
+  }
+  
+/* this ^^ is where i added the extra styling  */
 .collection {
     grid-area: collection;
 }

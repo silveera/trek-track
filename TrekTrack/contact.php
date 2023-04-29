@@ -26,6 +26,7 @@ require_once 'php/utilities.php';
         </div>
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
+                <li><a href="home.php"><i class="fa-solid fa-house not-link"></i><p>Home</p></a></li>
                 <li><a href="privacy.php">Privacy</a></li>
                 <li><a href="about.php">About</a></li>
                 <li><a href="contact.php">Contact</a></li>
@@ -61,7 +62,18 @@ require_once 'php/utilities.php';
             <p>For media inquiries, partnership opportunities, or advertising requests, please contact our marketing team at marketing@trekandtrack.com.</p>
             
             <p>We look forward to hearing from you and assisting you in any way we can. Together, let's continue to explore the world and create unforgettable memories with Trek&amp;Track.</p>
+            <div>
+        <form method="POST">
+                <a href="mailto:miwatf@ttu.ee"></a>
+                <input type="text" name="Name" placeholder="Full Name" required>
+                <input type="email" name="Email Address" placeholder="Email" required>
+                <input type="number" name="Phone Number" placeholder="Phone Number" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        </div>
         </article>
+        
     </main>
 </body>
 
