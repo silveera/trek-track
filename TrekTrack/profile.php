@@ -176,7 +176,7 @@ require_once 'php/user-info-module.php';
                             </button>
                         </div>
                     </div>
-                    <div class="container-p-trips hidden">
+                    <div class="container-p-trips" style='display: none;'>
                         <div class="container-p-no">
                             <p>
                                 It appears you have no trips yet. Click the button below to start planning your next adventure!

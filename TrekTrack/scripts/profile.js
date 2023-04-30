@@ -20,6 +20,14 @@ const formEditProfile = document.getElementById("form-edit-profile");
 
 const postTimestamps = document.querySelectorAll('.post-timestamp');
 
+const btnPosts = document.getElementById('button-p-posts');
+
+const btnTrips = document.getElementById('button-p-trips');
+
+const contPosts = document.querySelector('.container-p-posts');
+
+const contTrips = document.querySelector('.container-p-trips');
+
 /* function limitRows() {
     // Count line breaks in the textarea
     // If the number of line breaks is less than or equal to the maximum allowed rows, update the 'rows' attribute
@@ -86,6 +94,16 @@ buttonEditP.addEventListener("click", function () {
         txtBio.style.backgroundColor = "inherit";
         
     }
+});
+
+btnPosts.addEventListener('click', function () {
+    contPosts.style.display = "flex";
+    contTrips.style.display = "none";
+});
+
+btnTrips.addEventListener('click', function () {
+    contPosts.style.display = "none";
+    contTrips.style.display = "flex";
 });
 
 txtBio.addEventListener('input', autoResize);
