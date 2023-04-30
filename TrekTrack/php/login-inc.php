@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
         $uidExists = existingUsername($conn, $username);
         global $errMsg, $errType;
 
-        $userInfo = setUserInfo($conn, $username);
+        $userInfo = fetchUserInfoNAME($conn, $username);
 
         $pwHashed = $userInfo["user_password"];
         $checkPassword = password_verify($password, $pwHashed);

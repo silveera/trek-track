@@ -14,15 +14,15 @@ to enos.itcollege.ee and then connect to DB at anysql.itcollege.ee
 /* DATABASE,USER,PASSWORD
 ICS0008_15,ICS0008_WT_15,b765f0649248 */
 
-/* $serverName = "127.0.0.1";
+$serverName = "127.0.0.1";
 $dbUsername = "root";
 $dbPassword = "";
-$dbName = "trektrack"; */
+$dbName = "trektrack";
 
-$serverName = "anysql.itcollege.ee";
+/* $serverName = "anysql.itcollege.ee";
 $dbUsername = "ICS0008_WT_15";
 $dbPassword = "b765f0649248";
-$dbName = "ICS0008_15";
+$dbName = "ICS0008_15"; */
 
 $conn = mysqli_connect($serverName, $dbUsername, $dbPassword, $dbName);
 

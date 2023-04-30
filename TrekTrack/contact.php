@@ -28,7 +28,7 @@ require_once 'php/utilities.php';
             <ul class="head nav-list">
                 <li><a href="privacy.php">Privacy</a></li>
                 <li><a href="about.php">About</a></li>
-                <li><a href="contact.php">Contact</a></li>
+                <li><a href="contact.php" style="border-bottom:2px solid;">Contact</a></li>
             </ul>
         </nav>
         <div class="head account">

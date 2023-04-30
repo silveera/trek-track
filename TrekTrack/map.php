@@ -32,7 +32,7 @@ require_once 'php/user-info-module.php';
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
                 <li><a href="home.php"><i class="fa-solid fa-house not-link"></i><p>Home</p></a></li>
-                <li><a href="map.php"><i class="fa-solid fa-map not-link"></i><p>Map</p></a></li>
+                <li><a href="map.php"><i class="fa-solid fa-map not-link"></i><p style="border-bottom:2px solid;">Map</p></a></li>
                 <li><a href="profile.php"><i class="fa-solid fa-user not-link"></i><p>Profile</p></a></li>
             </ul>
         </nav>
@@ -48,9 +48,9 @@ require_once 'php/user-info-module.php';
     <main class="grid-home">
         <aside class="home collection bg-invert-neutral">
             <div class="profilepic">
-                <a href="profile.php" class="not-link"><img src="<?= $avatarSrc ?>" id="collection-profile-pic"
-                        class="medium-avatar" alt="User-Profile">
-                    <p id="collection-username" class="text-medium-neutral line-after-neutral clickable">@<?= $userName ?></p>
+                <a href="profile.php" class="not-link"><img src="<?= $clientAvatarSrc ?>" id="collection-profile-pic"
+                        class="medium-avatar avatar" alt="User-Profile">
+                    <p id="collection-username" class="text-medium-neutral line-after-neutral clickable">@<?= $clientUserName ?></p>
                 </a>
             </div>
             <ul class="home list-collection">

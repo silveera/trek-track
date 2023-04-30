@@ -1,6 +1,8 @@
 <?php
 require_once 'php/utilities.php';
 require_once 'php/user-info-module.php';
+require_once 'php/profile-checker.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -14,8 +16,9 @@ require_once 'php/user-info-module.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <script src="scripts/jquery-3.6.4.min.js"></script>
-    <script src="scripts/profile.js" type="module" defer></script>
-    <script src="scripts/modal.js" type="module" defer></script>
+    <script src="scripts/profile.js" type="module" ></script>
+    <script src="scripts/modal.js" type="module" ></script>
+    <script src="scripts/feed.js" type="module" ></script>
 </head>
 
 <body>
@@ -40,7 +43,7 @@ require_once 'php/user-info-module.php';
                         <p>Map</p>
                     </a></li>
                 <li><a href="profile.php"><i class="fa-solid fa-user not-link"></i>
-                        <p>Profile</p>
+                        <p style="border-bottom:2px solid;">Profile</p>
                     </a></li>
             </ul>
         </nav>
@@ -51,8 +54,8 @@ require_once 'php/user-info-module.php';
     <main class="grid-home">
         <aside class="home collection bg-invert-neutral">
             <div class="profilepic">
-                <a href="profile.php" class="not-link"><img id="avatar" src="<?= $avatarSrc ?>" class="medium-avatar avatar" alt="User-Profile">
-                    <p id="collection-username" class="text-medium-neutral clickable">@<?= $userName ?></p>
+                <a href="profile.php" class="not-link"><img id="avatar" src="<?= $clientAvatarSrc ?>" class="medium-avatar avatar" alt="User-Profile">
+                    <p id="collection-username" class="text-medium-neutral clickable">@<?= $clientUserName ?></p>
                 </a>
             </div>
             <div class="list-collection-container">
@@ -85,7 +88,7 @@ require_once 'php/user-info-module.php';
             </div>
         </aside>
         <div class="profile bg-invert-neutral">
-            <form class="container-p-header" id="form-edit-profile" method="post" enctype="multipart/form-data" action="php/edit-profile.php">
+            <form class="container-p-header" id="form-edit-profile" method="post" enctype="multipart/form-data" action="php/edit-profile.php" <?= $client ? "" : "disabled" ?>>
                 <div id="container-p-avatar" class="container-p-avatar" style="position: relative;">
                     <label for="input-p-avatar" id="label-input-p-avatar" style="position: absolute; display: none;"><i class="fa-solid fa-camera-rotate"></i></label>
                     <input type="file" id="input-p-avatar" style="display: none;" accept="image/jpeg, image/png" name="p-avatar">
@@ -95,8 +98,8 @@ require_once 'php/user-info-module.php';
                     <div>
                         <div class="container-p-bio-header">
                             <p id="p-username" class="text-medium-neutral"><?= $userName ?></p>
-                            <button type="button" id="button-p-edit">Edit Profile</button>
-                            <button type="button" id="button-p-settings"><i class="fa-solid fa-gear"></i></button>
+                            <button type="button" id="button-p-edit" style="display: <?= $client ? "flex" : "none" ?>;">Edit Profile</button>
+                            <button type="button" id="button-p-settings" style="display: <?= $client ? "flex" : "none" ?>;"><i class="fa-solid fa-gear"></i></button>
                         </div>
                         <div class="container-p-bio-text" id="container-p-bio-text">
                             <textarea readonly id="text-p-bio" style="cursor: default; background-color: inherit;" rows="4" maxlength="280" name="p-bio"><?= $userBio ?></textarea>
@@ -107,8 +110,9 @@ require_once 'php/user-info-module.php';
             <div class="container-p-content-buttons">
                 <div>
                     <div class="container-p-content-button">
-                        <button id="button-p-posts" class="not-button button-p-content">My Posts</button>
+                        <button id="button-p-posts" class="not-button button-p-content"><?= $client ? "My" : "$userName's"?> Posts</button>
                     </div>
+                    <?php if ($client){ ?>
                     <button id="button-p-new-post" class="button-p-new not-button button-new-post"><i class="fa-solid fa-plus"></i></button>
                     <div id="modal-new-post" class="modal">
                         <div class="post-container">
@@ -117,9 +121,9 @@ require_once 'php/user-info-module.php';
                             </div>
                             <form id="form-new-post" method="post" enctype="multipart/form-data" action="php/submit-post.php">
                                 <div class="post-header">
-                                    <img src="<?= $avatarSrc ?>" alt="User Avatar" id="post-avatar" class="normal-avatar avatar">
+                                    <img src="<?= $clientAvatarSrc ?>" alt="User Avatar" id="post-avatar" class="normal-avatar avatar">
                                     <div class="post-user-info">
-                                        <h3 id="post-username"><?= $userName ?></h3>
+                                        <p class="post-username"><?= $clientUserName ?></p>
                                         <p id="post-timestamp" class="post-timestamp" data-date=""><?= $currentDate ?></p>
                                         <textarea id="new-post-caption" name="new-post-caption" maxlength="280" rows="1" placeholder="Enter caption: Maximum length 280"></textarea>
                                     </div>
@@ -136,24 +140,77 @@ require_once 'php/user-info-module.php';
                             </form>
                         </div>
                     </div>
+                    <?php } ?>
                 </div>
                     <div>
                         <div class="container-p-content-button">
-                            <button id="button-p-trips" class="not-button button-p-content">My Trips</button>
+                            <button id="button-p-trips" class="not-button button-p-content"><?= $client ? "My" : "$userName's"?> Trips</button>
                         </div>
+                        <?php if ($client){ ?>
                         <button id="button-p-new-trip" class="button-p-new not-button"><i class="fa-solid fa-plus"></i></button>
+                        <?php } ?>   
                     </div>
                 </div>
                 <div class="container-p-content">
                     <div class="container-p-posts">
                         <div class="container-p-no">
+                        <?php if ($client){ ?>
                             <p>
                                 It appears you have no posts yet. Click the button below to share a memory!
                             </p>
                             <button id="button-first-post">
                                 Create New Post
                             </button>
+                        <?php } else { ?>
+                            <p>
+                                It appears <?= $userName ?> has no posts yet.
+                            </p>
+                        <?php } ?>
                         </div>
+                        <template id="template-comment">
+                            <div class="container-comment">
+                                <div class="comments-header">
+                                    <a class="not-link profile-link"><img alt="User Avatar"
+                                            class="small-avatar avatar comment-avatar"></a>
+                                    <a class="not-link profile-link">
+                                        <p class="comment-username"></p>
+                                    </a>
+                                    <p class="reply-content">replied to</p>
+                                    <a class="reply-content replied-to not-link"></a>
+                                </div>
+                                <div class="cont-comment-content"><textarea class="comment" name="comment-content" maxlength="280" rows="1" placeholder="Enter comment" readonly></textarea></div>
+                                <div class="comments-footer">
+                                    <p class="comment-timestamp"></p>
+                                    <i class="fa-regular fa-heart comment-like-button" tabindex="0"></i><p class="comment-like-count counter"></p>
+                                    <i class="fa-regular fa-comments comment-reply-button" tabindex="0"></i><p class="comment-reply-count counter"></p>
+                                    <div class="non-reply-content show-replies clickable"><p><span class="show-status">Show</span><span class="comment-reply-count"></span>replies</p><i class="fa-solid fa-chevron-down"></i></div>
+                                </div>
+                                <div class="comment-replies"></div>
+                            </div>
+                        </template>
+                        <template id="template-post">
+                            <div class="post-container profile-page">
+                                <div class="post-header">
+                                    <a class="profile-link not-link"><img alt="User Avatar" class="normal-avatar avatar post-avatar"></a>
+                                    <div class="post-user-info">
+                                        <a class="profile-link not-link"><p class="post-username"></p></a>
+                                        <p class="post-timestamp"></p>
+                                        <p class="post-caption"></p>
+                                    </div>
+                                </div>
+                                <div class="post-image-container">
+                                    <img alt="Example Image" class="post-image">
+                                    <div class="image-footer">
+                                        <i class="fa-regular fa-heart like-button" tabindex="0"></i><p class="like-count counter"></p>
+                                        <i class="fa-regular fa-comment comment-button" tabindex="0"></i><p class="comment-count counter"></p>
+                                        <i class="fa-regular fa-paper-plane"></i>
+                                    </div>
+                                </div>
+                                <div class="post-comments">
+                                    
+                                </div>
+                            </div>
+                        </template>
                     </div>
                     <div class="container-p-trips hidden">
                         <div class="container-p-no">

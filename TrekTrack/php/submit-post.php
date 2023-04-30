@@ -1,8 +1,9 @@
 <?php
 require_once 'utilities.php';
 require_once 'user-info-module.php';
+require_once 'profile-checker.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && !(empty($_POST["new-post-caption"]) && empty($_FILES['new-post-image']['name']))) {
+if ($client && $_SERVER['REQUEST_METHOD'] == 'POST' && !(empty($_POST["new-post-caption"]) && empty($_FILES['new-post-image']['name']))) {
 
     if (!empty($_POST["new-post-caption"])) {
         $caption = $_POST["new-post-caption"];

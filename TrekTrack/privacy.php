@@ -26,7 +26,7 @@ require_once 'php/utilities.php';
         </div>
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
-                <li><a href="privacy.php">Privacy</a></li>
+                <li><a href="privacy.php" style="border-bottom:2px solid;">Privacy</a></li>
                 <li><a href="about.php">About</a></li>
                 <li><a href="contact.php">Contact</a></li>
             </ul>
@@ -48,7 +48,7 @@ require_once 'php/utilities.php';
 
 <h2>Introduction</h2>
 
-<p>Welcome to the Privacy Policy for [Your Website Name], a social media platform dedicated to sharing travel memories and making travel plans. We are committed to protecting the privacy of our users and have created this Privacy Policy to inform you about the information we collect, how we use it, and the choices you have regarding your personal information.</p>
+<p>Welcome to the Privacy Policy for Trek&Track, a social media platform dedicated to sharing travel memories and making travel plans. We are committed to protecting the privacy of our users and have created this Privacy Policy to inform you about the information we collect, how we use it, and the choices you have regarding your personal information.</p>
 
 <p>Please read this Privacy Policy carefully. By using our website and services, you agree to the collection and use of your information in accordance with this policy.</p>
 
