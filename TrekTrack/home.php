@@ -143,22 +143,6 @@ require_once 'php/user-info-module.php';
                 </div>
             </template>
         </div>
-<!--         <aside class="home social bg-invert-neutral">
-        <div class="messages">
-            <div class="heading">
-                <h4>Messages</h4>
-            </div>
-            <div class="search-bar">
-               
-                <input type="search" placeholder="Search messages" id="message-search">
-            </div>
-            <div class="category">
-                <h6 class="active">Primary</h6>
-                <h6>General</h6>
-                <h6 class="message-requests">Requests(7)</h6>
-            </div>
-        </div>
-    </aside> -->
     </main>
     <footer class="quick-links bg-transparent">
         <p></p>

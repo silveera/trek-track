@@ -26,6 +26,7 @@ require_once 'php/utilities.php';
         </div>
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
+            <li><a href="home.php"><i class="fa-solid fa-house not-link"></i><p>Home</p></a></li>
                 <li><a href="privacy.php">Privacy</a></li>
                 <li><a href="about.php">About</a></li>
                 <li><a href="contact.php">Contact</a></li>
