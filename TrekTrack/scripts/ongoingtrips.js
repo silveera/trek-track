@@ -1,11 +1,7 @@
-document.addEventListener("DOMContentLoaded", function() {
+/* 
     const tripToggle = document.getElementById("trip-toggle");
     const tripFormContainer = document.getElementById("trip-form-container");
     const tripForm = document.getElementById("trip-form");
-
-    tripToggle.addEventListener("click", function() {
-        tripFormContainer.style.display = tripFormContainer.style.display === "none" ? "block" : "none";
-    });
 
     tripForm.addEventListener("submit", function(event) {
         event.preventDefault();
@@ -23,4 +19,4 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("stops-text").textContent = stops.join(", ");
         document.getElementById("end-text").textContent = end;
     }
-});
+ */

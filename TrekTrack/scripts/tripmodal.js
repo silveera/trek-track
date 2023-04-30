@@ -13,6 +13,13 @@ const btnNewTripModal = document.getElementById("button-p-new-trip");
 
 const btnFirstTripModal = document.getElementById("button-first-trip");
 
+const containerPTrips = document.querySelector(".container-p-trips");
+const containerPPosts = document.querySelector(".container-p-posts");
+
+if (window.location.hash === "#ongoing-trips") {
+    containerPPosts.style.display = "none";
+    containerPTrips.style.display = "flex";
+}
 
 btnNewTripModal.onclick = function () {
     modalNewTrip.style.display = "flex";

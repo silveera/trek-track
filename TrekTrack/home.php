@@ -87,7 +87,7 @@ require_once 'php/user-info-module.php';
             </div>
             <div class="container-ongoing-trip">
                 <div class="ongoing-trip">
-                    <p id="trip-toggle">Ongoing trip:</p>
+                    <p>Ongoing Trip:</p><a id="trip-toggle" class="" href='profile.php#ongoing-trips'> Switch Trip</a>
                     <div class="cont-icon"><i class="fa-solid fa-location-dot"></i>
                         <p id="start-text">Start</p>
                     </div>

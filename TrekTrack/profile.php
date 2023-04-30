@@ -14,9 +14,13 @@ require_once 'php/user-info-module.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <script src="scripts/jquery-3.6.4.min.js"></script>
-    <script src="scripts/profile.js" type="module" defer></script>
-    <script src="scripts/modal.js" type="module" defer></script>
-    <script src="scripts/tripmodal.js" type="module" defer></script>
+    <script src="scripts/profile.js" type="module"></script>
+    <script src="scripts/modal.js" type="module"></script>
+    <script src="scripts/tripmodal.js" type="module"></script>
+    <script defer>
+        
+    </script>
+
 </head>
 
 <body>
@@ -190,7 +194,7 @@ require_once 'php/user-info-module.php';
             </div>
             
     </main>
-    
+     
 </body>
 
 </html>
