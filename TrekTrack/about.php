@@ -10,6 +10,7 @@ require_once 'php/utilities.php';
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles/newstyle.css">
     <script src="https://kit.fontawesome.com/66d74c224c.js" crossorigin="anonymous"></script>
+    <script src="scripts/darkmode.js" defer></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
@@ -26,6 +27,13 @@ require_once 'php/utilities.php';
         </div>
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
+                <li class="toggle-switch-wrapper">
+                    <label class="toggle-switch-label" for="toggle-switch-input">Dark Mode</label>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="toggle-switch-input">
+                        <span class="toggle-switch-slider"></span>
+                    </div>
+                </li>
                 <li><a href="privacy.php">Privacy</a></li>
                 <li><a href="about.php" style="border-bottom:2px solid;">About</a></li>
                 <li><a href="contact.php">Contact</a></li>

@@ -12,6 +12,7 @@ require_once 'php/profile-checker.php';
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles/newstyle.css">
     <script src="https://kit.fontawesome.com/66d74c224c.js" crossorigin="anonymous"></script>
+    <script src="scripts/darkmode.js" defer></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
@@ -36,6 +37,13 @@ require_once 'php/profile-checker.php';
         </div>
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
+                <li class="toggle-switch-wrapper">
+                    <label class="toggle-switch-label" for="toggle-switch-input">Dark Mode</label>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="toggle-switch-input">
+                        <span class="toggle-switch-slider"></span>
+                    </div>
+                </li>
                 <li><a href="home.php"><i class="fa-solid fa-house not-link"></i>
                         <p>Home</p>
                     </a></li>

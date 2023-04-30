@@ -10,11 +10,11 @@ require_once 'php/user-info-module.php';
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles/newstyle.css">
     <script src="https://kit.fontawesome.com/66d74c224c.js" crossorigin="anonymous"></script>
+    <script src="scripts/darkmode.js" defer></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="scripts/jquery-3.6.4.min.js"></script>
     <script src="scripts/feed.js" type="module" defer></script>
-    <script src="scripts/darkmode.js" defer></script>
     <title>Home</title>
 </head>
 
