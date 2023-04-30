@@ -2,16 +2,16 @@
 
 ## Overview
 
- This platform aims to seamlessly combine the aspects of social media and a travel portal by providing services such as trip planning with the key feature of an interactive map. On this map, the user will be able to see activities and other users near their trip destination as well as their past and future trips. Besides the map, a feed and social panels will be present which will assist with discovery. 
+ This platform aims to seamlessly combine the aspects of social media and a travel portal by providing services such as trip planning. 
 
 ## Team
 
 Mainly:
-Batu Durmazel - CSS, HTML
-Michelle Watford - JS
+Batu Durmazel - CSS, HTML, MySQL
+Michelle Watford - JS, HTML
 Yuto Kobayashi - PHP, MySQL
 
-Design, structure etc. decided by each member.
+Design, structure etc. decided through communication in group meetings.
 
 ## Goals, Objectives and Phases
 
@@ -47,10 +47,10 @@ HOME
   +--PROFILE
     +--MY POSTS
     +--MY TRIPS
-    +--CALENDAR
-    +--SETTINGS
-  +--MAP
-  +--SUPPORT
+    +--FRIENDS
+    +--
+  +--
+  +--
 ```
 
 ### Content Types
