@@ -45,6 +45,7 @@ require_once 'php/user-info-module.php';
                 <li><a href="map.php"><i class="fa-solid fa-map not-link"></i><p>Map</p></a></li>
                 <li><a href="profile.php"><i class="fa-solid fa-user not-link"></i><p>Profile</p></a></li>
             </ul>
+
         </nav>
         <div class="head account">
             <a href="login.php" id="button-head-log-in"
@@ -58,9 +59,9 @@ require_once 'php/user-info-module.php';
     <main class="grid-home">
         <aside class="home collection bg-invert-neutral">
             <div class="profilepic">
-                <a href="profile.php" class="not-link"><img src="<?= $avatarSrc ?>" id="collection-profile-pic"
-                        class="medium-avatar" alt="User-Profile">
-                    <p id="collection-username" class="text-medium-neutral line-after-neutral clickable">@<?= $userName ?></p>
+                <a href="profile.php" class="not-link"><img src="<?= $clientAvatarSrc ?>" id="collection-profile-pic"
+                        class="medium-avatar avatar" alt="User-Profile">
+                    <p id="collection-username" class="text-medium-neutral line-after-neutral clickable">@<?= $clientUserName ?></p>
                 </a>
             </div>
             <div class="list-collection-container" >
@@ -103,12 +104,33 @@ require_once 'php/user-info-module.php';
             </div>
         </aside>
         <div class="home feed bg-invert-neutral container-feed">
+            <template id="template-comment">
+                <div class="container-comment">
+                    <div class="comments-header">
+                        <a class="not-link profile-link"><img alt="User Avatar"
+                                class="small-avatar avatar comment-avatar"></a>
+                        <a class="not-link profile-link">
+                             <p class="comment-username"></p>
+                        </a>
+                        <p class="reply-content">replied to</p>
+                        <a class="reply-content replied-to not-link"></a>
+                    </div>
+                    <div class="cont-comment-content"><textarea class="comment" name="comment-content" maxlength="280" rows="1" placeholder="Enter comment" readonly></textarea></div>
+                    <div class="comments-footer">
+                        <p class="comment-timestamp"></p>
+                        <i class="fa-regular fa-heart comment-like-button" tabindex="0"></i><p class="comment-like-count counter"></p>
+                        <i class="fa-regular fa-comments comment-reply-button" tabindex="0"></i><p class="comment-reply-count counter"></p>
+                        <div class="non-reply-content show-replies clickable"><p><span class="show-status">Show</span><span class="comment-reply-count"></span>replies</p><i class="fa-solid fa-chevron-down"></i></div>
+                    </div>
+                    <div class="comment-replies"></div>
+                </div>
+            </template>
             <template id="template-post">
                 <div class="post-container">
                     <div class="post-header">
-                        <img alt="User Avatar" class="normal-avatar avatar post-avatar">
+                        <a class="profile-link not-link"><img alt="User Avatar" class="normal-avatar avatar post-avatar"></a>
                         <div class="post-user-info">
-                            <p class="post-username"></p>
+                            <a class="profile-link not-link"><p class="post-username"></p></a>
                             <p class="post-timestamp"></p>
                             <p class="post-caption"></p>
                         </div>
@@ -116,25 +138,13 @@ require_once 'php/user-info-module.php';
                     <div class="post-image-container">
                         <img alt="Example Image" class="post-image">
                         <div class="image-footer">
-                            <i class="fa-regular fa-heart like-button"></i><p class="like-count"></p>
-                            <i class="fa-regular fa-comment"></i>
+                            <i class="fa-regular fa-heart like-button" tabindex="0"></i><p class="like-count counter"></p>
+                            <i class="fa-regular fa-comment comment-button" tabindex="0"></i><p class="comment-count counter"></p>
                             <i class="fa-regular fa-paper-plane"></i>
                         </div>
                     </div>
                     <div class="post-comments">
-                        <div class="comments-header">
-                            <a class="not-link clickable"><img src="images/profilepic.png" alt="User Avatar"
-                                    class="small-avatar avatar"></a>
-                            <a class="clickable not-link">
-                                <p class="comment-account"><b></b>goat</p>
-                            </a>
-                        </div>
-                        <p class="comment">welcome!</p>
-                        <div class="comments-footer">
-                            <p class="comment-timestamp">1w</p>
-                            <p class="like-p">Like</p>
-                            <p class="reply-p">Reply</p>
-                        </div>
+                        
                     </div>
                 </div>
             </template>

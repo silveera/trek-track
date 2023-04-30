@@ -19,7 +19,7 @@ require_once 'php/utilities.php';
     <header class="primary-gradient">
         <div class="head logo">
             <a href="<?= checkLoginStatus() ? "home.php" : "index.php" ?>" class="not-link"><img src="images/logoex.png" width="50" id="logo"
-                    alt="Trek&Track-Logo"></a>
+                alt="Trek&Track-Logo"></a>
             <a href="<?= checkLoginStatus() ? "home.php" : "index.php" ?>" class="text-thick-invert-neutral not-link logo-text">
                 <p>Trek&Track</p>
             </a>
@@ -27,7 +27,7 @@ require_once 'php/utilities.php';
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
                 <li><a href="privacy.php">Privacy</a></li>
-                <li><a href="about.php">About</a></li>
+                <li><a href="about.php" style="border-bottom:2px solid;">About</a></li>
                 <li><a href="contact.php">Contact</a></li>
             </ul>
         </nav>

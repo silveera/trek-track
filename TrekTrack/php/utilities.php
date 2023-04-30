@@ -47,7 +47,7 @@ function checkArraySetMissing($arraykey, $value)
     return "";
 }
 
-function setUserInfo($conn, $username) {
+function fetchUserInfoNAME($conn, $username) {
     $query = "SELECT * FROM users WHERE user_name = ?;";
 
     $stmt = mysqli_prepare($conn, $query);
