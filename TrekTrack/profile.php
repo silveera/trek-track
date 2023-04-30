@@ -16,6 +16,7 @@ require_once 'php/user-info-module.php';
     <script src="scripts/jquery-3.6.4.min.js"></script>
     <script src="scripts/profile.js" type="module" defer></script>
     <script src="scripts/modal.js" type="module" defer></script>
+    <script src="scripts/tripmodal.js" type="module" defer></script>
 </head>
 
 <body>
@@ -140,6 +141,28 @@ require_once 'php/user-info-module.php';
                             <button id="button-p-trips" class="not-button button-p-content">My Trips</button>
                         </div>
                         <button id="button-p-new-trip" class="button-p-new not-button"><i class="fa-solid fa-plus"></i></button>
+                        <div id="modal-new-trip" class="modal">
+                        <div class="trip-container">
+                            <div class="modal-header">
+                                <h1>Create a Trip!</h1>
+                            </div>
+                            <form id="form-new-trip" method="post" enctype="multipart/form-data" action="php/submit-trip.php">
+                                <div class="trip-header">
+                                    <img src="<?= $avatarSrc ?>" alt="User Avatar" id="trip-avatar" class="normal-avatar avatar">
+                                    <div class="trip-user-info">
+                                        <h3 id="trip-username"><?= $userName ?></h3>
+                                        <p id="trip-timestamp" class="trip-timestamp" data-date=""><?= $currentDate ?></p>
+                                        <textarea id="new-trip-title" name="new-trip-title" maxlength="65" rows="1" placeholder="Enter Trip Title: Maximum length 65"></textarea>
+                                    </div>
+                                </div>
+    
+                                <div class="buttons-modal-new-trip">
+                                    <button type="reset" id="cancel-new-trip" class="modal-close" name="cancel">Cancel</button>
+                                    <button type="button" id="button-new-trip-submit" name="submit">Submit Trip</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     </div>
                 </div>
                 <div class="container-p-content">
@@ -158,18 +181,14 @@ require_once 'php/user-info-module.php';
                             <p>
                                 It appears you have no trips yet. Click the button below to start planning your next adventure!
                             </p>
-                            <button>
+                            <button id="button-first-trip">
                                 Plan New Trip
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <aside class="home social bg-invert-neutral" style="display: none;">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, fugit voluptatibus animi molestias nam non
-                    minima at, laudantium consectetur ipsam qui beatae dolorum pariatur quasi perferendis ratione, voluptate
-                    magnam ullam!</p>
-            </aside>
+            
     </main>
     
 </body>
