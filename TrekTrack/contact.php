@@ -8,6 +8,7 @@ require_once 'php/utilities.php';
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="images/Icon.svg">
     <link rel="stylesheet" href="styles/newstyle.css">
     <script src="https://kit.fontawesome.com/66d74c224c.js" crossorigin="anonymous"></script>
     <script src="scripts/darkmode.js" defer></script>

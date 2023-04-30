@@ -8,6 +8,7 @@ require_once 'php/utilities.php';
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="images/Icon.svg">
     <link rel="stylesheet" href="styles/newstyle.css">
     <script src="https://kit.fontawesome.com/66d74c224c.js" crossorigin="anonymous"></script>
     <script src="scripts/darkmode.js" defer></script>
@@ -19,10 +20,8 @@ require_once 'php/utilities.php';
 <body>
     <header class="primary-gradient">
         <div class="head logo">
-            <a href="<?= checkLoginStatus() ? "home.php" : "index.php" ?>" class="not-link"><img src="images/logoex.png" width="50" id="logo"
-                alt="Trek&Track-Logo"></a>
-            <a href="<?= checkLoginStatus() ? "home.php" : "index.php" ?>" class="text-thick-invert-neutral not-link logo-text">
-                <p>Trek&Track</p>
+            <a href="<?= checkLoginStatus() ? "home.php" : "index.php" ?>" class="not-link">
+                <img src="images/Banner.svg" height="30" max-width="100%" id="logo" alt="Trek&Track-Logo">
             </a>
         </div>
         <nav class="text-medium-invert-neutral">

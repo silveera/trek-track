@@ -10,6 +10,7 @@ if (checkLoginStatus()) {
 <html lang="en">
 
 <head>
+    <link rel="icon" href="images/Icon.svg">
     <link rel="stylesheet" href="styles/newstyle.css">
     <script src="scripts/main.js"></script>
     <meta charset="UTF-8">
