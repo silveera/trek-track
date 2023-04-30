@@ -1,4 +1,4 @@
-import {escapeHtml, userData} from "./util.js";
+import {escapeHtml, userData, timeStamper} from "./util.js";
 
 const contFeed = document.querySelector(".container-feed");
 
@@ -48,7 +48,11 @@ if ('content' in document.createElement('template')) {
                 clone.querySelector(".like-button").style.color = "#86adff";
             }
         };
-            
+
+        
+
+        
+        clone.querySelector(".post-timestamp").innerText = timeStamper(feedItem["created_at"]);
 
         clone.querySelector(".like-count").id = feedItem["post_id"] + "likecount";
         clone.querySelector(".like-button").id = feedItem["post_id"] + "likebtn";

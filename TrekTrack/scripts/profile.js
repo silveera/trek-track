@@ -1,4 +1,4 @@
-import { /* userData */ autoResize, removeWhiteSpace, preventEnterKey, preventReloadSubmit} from './util.js';
+import { /* userData */ autoResize, removeWhiteSpace, preventEnterKey, preventReloadSubmit, timeStamper} from './util.js';
 
 const avatarP = document.getElementById("p-avatar");
 
@@ -148,19 +148,58 @@ console.log(avatars);
     }
   });
 
-postTimestamps.forEach(element => {
-    let date = new Date("2023-04-24 00:31:19 +0300");
+/* postTimestamps.forEach(element => {
+    let date = new Date("2023-04-24 00:31:19");
+    var current = new Date();
 
-                
-    element.innerHTML = new Intl.DateTimeFormat(navigator.language, {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        timeZoneName: 'short'
-    }).format(date);
-    console.log(date);
-});
+ });  */
 
 /* new Intl.DateTimeFormat().format(date) */
+/* 
+function convertToUserLocalTime(estonianTimestamp) {
+    // Parse the timestamp into year, month, day, hour, minute, and second
+    const [year, month, day, hour, minute, second] = estonianTimestamp.split(/[- :]/).map(Number);
+
+    // Create a Date object with the timestamp in Estonian time (UTC+03:00)
+    const estonianDate = new Date(Date.UTC(year, month - 1, day, hour - 3, minute, second));
+
+    // Log the local time to the console
+    console.log(estonianDate.toLocaleString());
+}
+   */
+/* function timeAgo(date) {
+    const now = new Date();
+    const diffInSeconds = Math.floor((now - date) / 1000);
+  
+    const units = [
+      { name: "year", seconds: 31536000 },
+      { name: "month", seconds: 2592000 },
+      { name: "week", seconds: 604800 },
+      { name: "day", seconds: 86400 },
+      { name: "hour", seconds: 3600 },
+      { name: "minute", seconds: 60 },
+      { name: "second", seconds: 1 },
+    ];
+  
+    for (const unit of units) {
+      const value = Math.floor(diffInSeconds / unit.seconds);
+      if (value >= 1) {
+        return `${value} ${unit.name}${value > 1 ? "s" : ""} ago`;
+      }
+    }
+  
+    return "just now";
+  }
+  
+  function convertEstonianTimeToLocalAndTimeAgo(estonianTimestamp) {
+    const [year, month, day, hour, minute, second] = estonianTimestamp.split(/[- :]/).map(Number);
+    const estonianDate = new Date(Date.UTC(year, month - 1, day, hour, minute, second));
+    
+    const estonianOffset = 2 * 60 * 60 * 1000; // 2 hours, 2*60*60*1000 milliseconds
+    const localOffset = new Date().getTimezoneOffset() * 60 * 1000;
+    const localDate = new Date(estonianDate.getTime() - estonianOffset + localOffset);
+  
+    console.log("Local time:", localDate);
+    console.log("Time ago:", timeAgo(localDate));
+  }
+   */

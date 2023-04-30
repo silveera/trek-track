@@ -178,9 +178,9 @@ require_once 'php/user-info-module.php';
                                         <h3 id="trip-username"><?= $userName ?></h3>
                                         <p id="trip-timestamp" class="trip-timestamp" data-date=""><?= $currentDate ?></p>
                                         <textarea id="new-trip-title" name="new-trip-title" maxlength="65" rows="1" placeholder="Enter Trip Title: Maximum length 65"></textarea>
-                                        <label for="start">Start:</label><textarea id="start" name="start" required></textarea>
-                                        <label for="stops">Stops:</label><textarea id="stops" name="stops" required></textarea>
-                                        <label for="end">End:</label><textarea id="end" name="end" required></textarea>
+                                        <label for="start">Start:</label><input type="text" id="start" name="start" required>
+                                        <label for="stops">Stops:</label><input type ="text" id="stops" name="stops" required>
+                                        <label for="end">End:</label><input type="text" id="end" name="end" required>
                                     </div>
                                 </div>
     

@@ -71,3 +71,31 @@ const map = {
 export function escapeHtml(text) {
     return text.replace(/[&<>"']/g, function(m) { return map[m]; });
 };
+
+export function timeStamper(date) {
+    const timestamp = new Date(date);
+
+    const secondsAgo = Math.floor((new Date() - timestamp) / 1000);
+
+    let displayTime;
+    if (secondsAgo < 60) {
+      displayTime = "just now";
+    } else if (secondsAgo < 60 * 60) {
+      const minutesAgo = Math.floor(secondsAgo / 60);
+      displayTime = `${minutesAgo} ${minutesAgo === 1 ? 'minute' : 'minutes'} ago`;
+    } else if (secondsAgo < 60 * 60 * 24) {
+      const hoursAgo = Math.floor(secondsAgo / (60 * 60));
+      displayTime = `${hoursAgo} ${hoursAgo === 1 ? 'hour' : 'hours'} ago`;
+    } else if (secondsAgo < 60 * 60 * 24 * 7) {
+      const daysAgo = Math.floor(secondsAgo / (60 * 60 * 24));
+      displayTime = `${daysAgo} ${daysAgo === 1 ? 'day' : 'days'} ago`;
+    } else if (secondsAgo < 60 * 60 * 24 * 30) {
+      const weeksAgo = Math.floor(secondsAgo / (60 * 60 * 24 * 7));
+      displayTime = `${weeksAgo} ${weeksAgo === 1 ? 'week' : 'weeks'} ago`;
+    } else {
+      const monthsAgo = Math.floor(secondsAgo / (60 * 60 * 24 * 30));
+      displayTime = `${monthsAgo} ${monthsAgo === 1 ? 'month' : 'months'} ago`;
+    }
+
+    return displayTime;
+}
