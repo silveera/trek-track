@@ -64,7 +64,6 @@ require_once 'php/utilities.php';
             <p>We look forward to hearing from you and assisting you in any way we can. Together, let's continue to explore the world and create unforgettable memories with Trek&amp;Track.</p>
             <div>
         <form method="POST">
-                <a href="mailto:miwatf@ttu.ee"></a>
                 <input type="text" name="Name" placeholder="Full Name" required>
                 <input type="email" name="Email Address" placeholder="Email" required>
                 <input type="number" name="Phone Number" placeholder="Phone Number" required>
@@ -75,6 +74,20 @@ require_once 'php/utilities.php';
         </article>
         
     </main>
+    <script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const name = document.querySelector('input[name="Name"]').value;
+        const email = document.querySelector('input[name="Email Address"]').value;
+        const phone = document.querySelector('input[name="Phone Number"]').value;
+        const message = document.querySelector('textarea[name="message"]').value;
+        const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0APhone Number: ${phone}%0D%0AMessage: ${message}`;
+        const subject = 'Contact Us Form Submission';
+        const mailto = `mailto:support@trekandtrack.com?subject=${subject}&body=${body}`;
+        window.location.href = mailto;
+    });
+</script>
 </body>
 
 </html>
