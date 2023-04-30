@@ -442,7 +442,7 @@ header {
 
 .text-medium-invert-neutral {
     font-family: var(--font-medium);
-    color: var(--invert-neutral-color);
+    color: #FFFFFF;
 }
 
 .text-medium-accent-1 {
