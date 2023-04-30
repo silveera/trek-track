@@ -36,9 +36,7 @@ require_once 'php/user-info-module.php';
                 <li><a href="home.php"><i class="fa-solid fa-house not-link"></i>
                         <p>Home</p>
                     </a></li>
-                <li><a href="map.php"><i class="fa-solid fa-map not-link"></i>
-                        <p>Map</p>
-                    </a></li>
+                    <li><a href="contact.php"></p>Contact</p></a></li>
                 <li><a href="profile.php"><i class="fa-solid fa-user not-link"></i>
                         <p>Profile</p>
                     </a></li>
