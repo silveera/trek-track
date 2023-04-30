@@ -14,6 +14,7 @@ require_once 'php/user-info-module.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="scripts/jquery-3.6.4.min.js"></script>
     <script src="scripts/feed.js" type="module" defer></script>
+    <script src="scripts/darkmode.js" defer></script>
     <title>Home</title>
 </head>
 
@@ -33,6 +34,13 @@ require_once 'php/user-info-module.php';
         </div>
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
+                <li class="toggle-switch-wrapper">
+                    <label class="toggle-switch-label" for="toggle-switch-input">Dark Mode</label>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="toggle-switch-input">
+                        <span class="toggle-switch-slider"></span>
+                    </div>
+                </li>
                 <li><a href="home.php"><i class="fa-solid fa-house not-link"></i><p>Home</p></a></li>
                 <li><a href="map.php"><i class="fa-solid fa-map not-link"></i><p>Map</p></a></li>
                 <li><a href="profile.php"><i class="fa-solid fa-user not-link"></i><p>Profile</p></a></li>
