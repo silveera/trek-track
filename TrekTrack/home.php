@@ -60,7 +60,7 @@ require_once 'php/user-info-module.php';
             <div class="list-collection-container">
                 <ul class="list-collection">
                     <li>
-                        <p id="collection-trips" class="icon"><i class="fa-regular fa-map"></i>My Trips</p>
+                    <a href="profile.php#ongoing-trips"><p id="collection-trips" class="icon"><i class="fa-regular fa-map"></i>My Trips</p></a>
                         <div class="dropdown-content">
                             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia qui perferendis labore
                                 possimus, asperiores cupiditate explicabo vero deserunt delectus similique nam deleniti

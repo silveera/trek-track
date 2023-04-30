@@ -21,6 +21,14 @@ if (window.location.hash === "#ongoing-trips") {
     containerPTrips.style.display = "flex";
 }
 
+const tripLinks = document.querySelectorAll("a[href='profile.php#ongoing-trips']");
+
+tripLinks.forEach(element => {
+    element.addEventListener('click', function () {
+        window.location.reload();
+    });
+});
+
 btnNewTripModal.onclick = function () {
     modalNewTrip.style.display = "flex";
     autoResize.call(txtNewTripTitle);
