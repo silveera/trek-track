@@ -883,7 +883,7 @@ header .nav-list li {
 
 .image-footer {
     flex-direction: row;
-    align-items: center;
+    align-items: baseline;
     justify-content: start;
     width: 100%;
 }
@@ -1362,3 +1362,25 @@ main input::placeholder {
     }
 
 }
+
+
+    .share-btn::before {
+        background-size: 200% 200%;
+        border-radius: 50%;
+        font-size: var(--font-size-huge);
+    }
+  
+.facebook-btn i {
+    color: #3b5998;
+}
+
+.facebook-btn {
+    margin-left: auto;
+}
+  .twitter-btn i { 
+    color: #1da1f2; 
+}
+  .linkedin-btn i { 
+    color: #0077b5; 
+}
+  

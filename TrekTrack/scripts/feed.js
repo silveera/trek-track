@@ -56,7 +56,8 @@ if ('content' in document.createElement('template')) {
 
         clone.querySelector(".like-count").id = feedItem["post_id"] + "likecount";
         clone.querySelector(".like-button").id = feedItem["post_id"] + "likebtn";
-        
+
+
 /*         $("#"+feedItem["post_id"]+"likebtn").on("click", function() {
             $.ajax({
                 url: "php/like-post.php",
@@ -111,7 +112,6 @@ if ('content' in document.createElement('template')) {
                 alert("Error updating the like count");
             }
         });
-    });
+    })}
 
-}
-
+    

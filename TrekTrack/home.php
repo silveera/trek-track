@@ -15,11 +15,12 @@ require_once 'php/user-info-module.php';
     <script src="scripts/jquery-3.6.4.min.js"></script>
     <script src="scripts/feed.js" type="module" defer></script>
     <script src="scripts/ongoingtrips.js" type="module" defer></script>
-    <script src="scripts/main.js" type="module" defer></script>
     <title>Home</title>
 </head>
 
 <body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v16.0" nonce="w8VcQxbH"></script>
     <header class="primary-gradient">
         <div class="head logo">
             <a href="home.php" class="not-link"><img src="images/logoex.png" width="50" id="logo" alt="Trek&Track-Logo"></a>
@@ -60,7 +61,9 @@ require_once 'php/user-info-module.php';
             <div class="list-collection-container">
                 <ul class="list-collection">
                     <li>
-                    <a href="profile.php#ongoing-trips"><p id="collection-trips" class="icon"><i class="fa-regular fa-map"></i>My Trips</p></a>
+                        <a href="profile.php#ongoing-trips">
+                            <p id="collection-trips" class="icon"><i class="fa-regular fa-map"></i>My Trips</p>
+                        </a>
                         <div class="dropdown-content">
                             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia qui perferendis labore
                                 possimus, asperiores cupiditate explicabo vero deserunt delectus similique nam deleniti
@@ -123,7 +126,9 @@ require_once 'php/user-info-module.php';
                             <i class="fa-regular fa-heart like-button"></i>
                             <p class="like-count"></p>
                             <i class="fa-regular fa-comment"></i>
-                            <i class="fa-regular fa-paper-plane"></i>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=" class="facebook-btn not-link" target="_blank"><i class="fa-brands fa-facebook share-btn"></i></a>
+                            <a href="https://twitter.com/intent/tweet?text=https://enos.itcollege.ee/~badurm/trektrack1/TrekTrack/home.php" class="twitter-btn not-link"><i class="fa-brands fa-square-twitter share-btn" target="_blank"></i></a>
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://enos.itcollege.ee/~badurm/trektrack1/TrekTrack/home.php" class="linkedin-btn not-link" target="_blank"><i class="fa-brands fa-linkedin share-btn"></i></a>
                         </div>
                     </div>
                     <div class="post-comments">
@@ -147,6 +152,7 @@ require_once 'php/user-info-module.php';
     <footer class="quick-links bg-transparent">
         <p></p>
     </footer>
+
 </body>
 
 </html>
