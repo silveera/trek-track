@@ -7,7 +7,7 @@ const txtNewTripTitle = document.getElementById("new-trip-title");
 
 const btnNewTripSubmit = document.getElementById("button-new-trip-submit");
 
-const btnNewTripCancel = document.getElementsByClassName("modal-close")[0];
+const btnNewTripCancel = document.querySelectorAll(".modal-close");
 
 const btnNewTripModal = document.getElementById("button-p-new-trip");
 
@@ -23,3 +23,9 @@ btnFirstTripModal.onclick = function () {
     modalNewTrip.style.display = "flex";
     autoResize.call(txtNewTripTitle);
 };
+
+btnNewTripCancel.forEach(element => {
+    element.addEventListener('click', function () {
+    modalNewTrip.style.display = "none";
+    })
+});
