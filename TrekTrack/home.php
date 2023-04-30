@@ -105,17 +105,6 @@ require_once 'php/user-info-module.php';
                     </div>
                 </div>
             </div>
-            <div id="trip-form-container" style="display: none;">
-                <form id="trip-form">
-                    <label for="start">Start:</label>
-                    <input type="text" id="start" name="start" required>
-                    <label for="stops">Stops:</label>
-                    <input type="text" id="stops" name="stops" required>
-                    <label for="end">End:</label>
-                    <input type="text" id="end" name="end" required>
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
         </aside>
         <div class="home feed bg-invert-neutral container-feed">
             <template id="template-post">

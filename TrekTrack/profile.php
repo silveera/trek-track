@@ -17,6 +17,7 @@ require_once 'php/user-info-module.php';
     <script src="scripts/profile.js" type="module"></script>
     <script src="scripts/modal.js" type="module"></script>
     <script src="scripts/tripmodal.js" type="module"></script>
+    <script src="scripts/ongoingtrips.js" type="module"></script>
 
 </head>
 
@@ -86,6 +87,26 @@ require_once 'php/user-info-module.php';
                     </li>
                 </ul>
             </div>
+            <div class="container-ongoing-trip">
+                <div class="ongoing-trip">
+                    <p>Ongoing Trip:</p><a id="trip-toggle" class="" href='profile.php#ongoing-trips'> Switch Trip</a>
+                    <div class="cont-icon"><i class="fa-solid fa-location-dot"></i>
+                        <p id="start-text">Start</p>
+                    </div>
+                    <div class="cont-line">
+                        <div class="line"></div>
+                    </div>
+                    <div class="cont-icon trip-stop"><i class="fa-solid fa-route"></i>
+                        <p id="stops-text">Stop</p>
+                    </div>
+                    <div class="cont-line">
+                        <div class="line"></div>
+                    </div>
+                    <div class="cont-icon"><i class="fa-solid fa-flag"></i>
+                        <p id="end-text">End</p>
+                    </div>
+                </div>
+            </div>
         </aside>
         <div class="profile bg-invert-neutral">
             <form class="container-p-header" id="form-edit-profile" method="post" enctype="multipart/form-data" action="php/edit-profile.php">
@@ -146,23 +167,26 @@ require_once 'php/user-info-module.php';
                         </div>
                         <button id="button-p-new-trip" class="button-p-new not-button"><i class="fa-solid fa-plus"></i></button>
                         <div id="modal-new-trip" class="modal">
-                        <div class="trip-container">
+                        <div class="trip-container post-container">
                             <div class="modal-header">
                                 <h1>Create a Trip!</h1>
                             </div>
-                            <form id="form-new-trip" method="post" enctype="multipart/form-data" action="php/submit-trip.php">
+                            <form id="form-new-trip" method="post" enctype="multipart/form-data"> <!--action="php/submit-trip.php" -->
                                 <div class="trip-header">
                                     <img src="<?= $avatarSrc ?>" alt="User Avatar" id="trip-avatar" class="normal-avatar avatar">
                                     <div class="trip-user-info">
                                         <h3 id="trip-username"><?= $userName ?></h3>
                                         <p id="trip-timestamp" class="trip-timestamp" data-date=""><?= $currentDate ?></p>
                                         <textarea id="new-trip-title" name="new-trip-title" maxlength="65" rows="1" placeholder="Enter Trip Title: Maximum length 65"></textarea>
+                                        <label for="start">Start:</label><textarea id="start" name="start" required></textarea>
+                                        <label for="stops">Stops:</label><textarea id="stops" name="stops" required></textarea>
+                                        <label for="end">End:</label><textarea id="end" name="end" required></textarea>
                                     </div>
                                 </div>
     
                                 <div class="buttons-modal-new-trip">
                                     <button type="reset" id="cancel-new-trip" class="modal-close" name="cancel">Cancel</button>
-                                    <button type="button" id="button-new-trip-submit" name="submit">Submit Trip</button>
+                                    <button type="button" id="btn-new-trip-submit" name="submit" class='modal-close'>Submit Trip</button>
                                 </div>
                             </form>
                         </div>

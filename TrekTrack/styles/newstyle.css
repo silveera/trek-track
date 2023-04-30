@@ -324,7 +324,7 @@ header {
 .modal {
     display: none; 
     position: fixed; 
-    z-index: 2; 
+    z-index: 3; 
 
     left: 0;
     top: 0;
@@ -754,7 +754,7 @@ header .nav-list li {
     align-items: baseline;
     justify-content: center;
     height: auto;
-    z-index: 5;
+    z-index: 2;
 }
 
 .ongoing-trip * {
