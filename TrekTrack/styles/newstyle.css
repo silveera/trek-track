@@ -256,7 +256,7 @@ nav i::before {
     display: none;
 }
 
-p > i::before {
+ul p > i::before {
     background: var(--gradient-btn-1);
     background-size: 200% 200%;
     border-radius: 100%;
@@ -264,7 +264,7 @@ p > i::before {
     color: var(--invert-neutral-color);
 }
 
-p > i:hover::before {
+ul p > i:hover::before {
     background-position: right bottom;
 }
 
@@ -636,7 +636,6 @@ header .nav-list li {
 
 .list-collection-container {
     display: block;
-    height: 100%;
     width: 100%;
 }
 
@@ -679,6 +678,72 @@ header .nav-list li {
 
 .dropdown-content {
     display: none;
+    font-size: var(--font-size-normal);
+}
+
+.collection .container-ongoing-trip {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+
+    margin-top: auto;
+    
+    border-left: 2px solid red;
+}
+
+.ongoing-trip {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+    height: auto;
+    z-index: 5;
+}
+
+.ongoing-trip * {
+    font-size: var(--font-size-large);
+}
+
+.ongoing-trip p {
+    margin: 0;
+}
+
+.ongoing-trip > p {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 0.4em;
+    font-family: var(--font-medium);
+}
+
+.cont-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+}
+
+.cont-icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+}
+
+.line {
+    content: '';
+    background-color: var(--accent-tint-1);
+    height: 1em;
+    width: 3px;
+    border-radius: 10px;
+}
+
+.trip-stop * {
     font-size: var(--font-size-normal);
 }
 
