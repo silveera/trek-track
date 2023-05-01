@@ -11,6 +11,7 @@ if (checkLoginStatus()) {
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="images/Icon.svg">
     <link rel="stylesheet" href="styles/newstyle.css">
     <script src="https://kit.fontawesome.com/66d74c224c.js" crossorigin="anonymous"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

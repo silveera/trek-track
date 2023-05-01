@@ -8,8 +8,10 @@ require_once 'php/utilities.php';
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="images/Icon.svg">
     <link rel="stylesheet" href="styles/newstyle.css">
     <script src="https://kit.fontawesome.com/66d74c224c.js" crossorigin="anonymous"></script>
+    <script src="scripts/darkmode.js" defer></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
@@ -18,14 +20,19 @@ require_once 'php/utilities.php';
 <body>
     <header class="primary-gradient">
         <div class="head logo">
-            <a href="<?= checkLoginStatus() ? "home.php" : "index.php" ?>" class="not-link"><img src="images/logoex.png" width="50" id="logo"
-                alt="Trek&Track-Logo"></a>
-            <a href="<?= checkLoginStatus() ? "home.php" : "index.php" ?>" class="text-thick-invert-neutral not-link logo-text">
-                <p>Trek&Track</p>
+            <a href="<?= checkLoginStatus() ? "home.php" : "index.php" ?>" class="not-link">
+                <img src="images/Banner.svg" height="30" max-width="100%" id="logo" alt="Trek&Track-Logo">
             </a>
         </div>
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
+                <li class="toggle-switch-wrapper">
+                    <label class="toggle-switch-label" for="toggle-switch-input">Dark Mode</label>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="toggle-switch-input">
+                        <span class="toggle-switch-slider"></span>
+                    </div>
+                </li>
                 <li><a href="privacy.php">Privacy</a></li>
                 <li><a href="about.php" style="border-bottom:2px solid;">About</a></li>
                 <li><a href="contact.php">Contact</a></li>
