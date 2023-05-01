@@ -29,11 +29,7 @@ require_once 'php/profile-checker.php';
                 <p>Trek&Track</p>
             </a>
         </div>
-        <div class="head search-bar bg-invert-neutral">
-            <label for="head-search-bar" id="label-head-search-bar"></label>
-            <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
-            <input type="search" id="head-search-bar" placeholder=" Search Trek&Track..." name="search">
-        </div>
+        
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
                 <li><a href="home.php"><i class="fa-solid fa-house not-link"></i>
@@ -55,35 +51,17 @@ require_once 'php/profile-checker.php';
         <aside class="home collection bg-invert-neutral">
             <div class="profilepic">
                 <a href="profile.php" class="not-link"><img id="avatar" src="<?= $clientAvatarSrc ?>" class="medium-avatar avatar" alt="User-Profile">
-                    <p id="collection-username" class="text-medium-neutral clickable">@<?= $clientUserName ?></p>
+                    <p id="collection-username" class="text-medium-neutral clickable"><?= $clientUserName ?></p>
                 </a>
             </div>
             <div class="list-collection-container">
                 <ul class="list-collection">
-                    <li>
-                        <p id="collection-trips" class="icon"><i class="fa-regular fa-map"></i>My Trips</p>
-                        <div class="dropdown-content">
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia qui perferendis labore
-                                possimus, asperiores cupiditate explicabo vero deserunt delectus similique nam deleniti
-                                fugiat dolorem natus nisi quod eligendi culpa dignissimos.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <p><i class="fa-regular fa-calendar"></i>Calendar</p>
-                        <div class="dropdown-content">
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia qui perferendis labore
-                                possimus, asperiores cupiditate explicabo vero deserunt delectus similique nam deleniti
-                                fugiat dolorem natus nisi quod eligendi culpa dignissimos.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <p>Friends' Trips</p>
-                        <div class="dropdown-content">
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia qui perferendis labore
-                                possimus, asperiores cupiditate explicabo vero deserunt delectus similique nam deleniti
-                                fugiat dolorem natus nisi quod eligendi culpa dignissimos.</p>
-                        </div>
-                    </li>
+                <li>
+                    <p><i class="fa-regular fa-images"></i>My Posts</p>
+                </li>
+                <li>
+                    <p id="collection-trips" class="icon"><i class="fa-regular fa-map"></i>My Trips</p>
+                </li>
                 </ul>
             </div>
         </aside>
@@ -99,7 +77,6 @@ require_once 'php/profile-checker.php';
                         <div class="container-p-bio-header">
                             <p id="p-username" class="text-medium-neutral"><?= $userName ?></p>
                             <button type="button" id="button-p-edit" style="display: <?= $client ? "flex" : "none" ?>;">Edit Profile</button>
-                            <button type="button" id="button-p-settings" style="display: <?= $client ? "flex" : "none" ?>;"><i class="fa-solid fa-gear"></i></button>
                         </div>
                         <div class="container-p-bio-text" id="container-p-bio-text">
                             <textarea readonly id="text-p-bio" style="cursor: default; background-color: inherit;" rows="4" maxlength="280" name="p-bio"><?= $userBio ?></textarea>

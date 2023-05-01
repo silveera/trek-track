@@ -14,6 +14,7 @@ require_once 'php/user-info-module.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="scripts/jquery-3.6.4.min.js"></script>
     <script src="scripts/feed.js" type="module" ></script>
+    <script src="scripts/social.js" type="module" ></script>
     <title>Home</title>
 </head>
 
@@ -26,11 +27,7 @@ require_once 'php/user-info-module.php';
                 <p>Trek&Track</p>
             </a>
         </div>
-        <div class="head search-bar bg-invert-neutral">
-            <label for="head-search-bar" id="label-head-search-bar"></label>
-            <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
-            <input type="search" id="head-search-bar" placeholder=" Search Trek&Track..." name="search">
-        </div>
+        
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
                 <li><a href="home.php"><i class="fa-solid fa-house not-link"></i><p style="border-bottom: 2px solid;">Home</p></a></li>
@@ -53,34 +50,16 @@ require_once 'php/user-info-module.php';
             <div class="profilepic">
                 <a href="profile.php" class="not-link"><img src="<?= $clientAvatarSrc ?>" id="collection-profile-pic"
                         class="medium-avatar avatar" alt="User-Profile">
-                    <p id="collection-username" class="text-medium-neutral line-after-neutral clickable">@<?= $clientUserName ?></p>
+                    <p id="collection-username" class="text-medium-neutral line-after-neutral clickable"><?= $clientUserName ?></p>
                 </a>
             </div>
             <div class="list-collection-container" >
             <ul class="list-collection">
                 <li>
+                    <p><i class="fa-regular fa-images"></i>My Posts</p>
+                </li>
+                <li>
                     <p id="collection-trips" class="icon"><i class="fa-regular fa-map"></i>My Trips</p>
-                    <div class="dropdown-content">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia qui perferendis labore
-                            possimus, asperiores cupiditate explicabo vero deserunt delectus similique nam deleniti
-                            fugiat dolorem natus nisi quod eligendi culpa dignissimos.</p>
-                    </div>
-                </li>
-                <li>
-                    <p><i class="fa-regular fa-calendar"></i>Calendar</p>
-                    <div class="dropdown-content">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia qui perferendis labore
-                            possimus, asperiores cupiditate explicabo vero deserunt delectus similique nam deleniti
-                            fugiat dolorem natus nisi quod eligendi culpa dignissimos.</p>
-                    </div>
-                </li>
-                <li>
-                    <p>Friends' Trips</p>
-                    <div class="dropdown-content">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia qui perferendis labore
-                            possimus, asperiores cupiditate explicabo vero deserunt delectus similique nam deleniti
-                            fugiat dolorem natus nisi quod eligendi culpa dignissimos.</p>
-                    </div>
                 </li>
             </ul>
             </div>
@@ -142,9 +121,31 @@ require_once 'php/user-info-module.php';
             </template>
         </div>
         <aside class="home social bg-invert-neutral">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, fugit voluptatibus animi molestias nam non
-                minima at, laudantium consectetur ipsam qui beatae dolorum pariatur quasi perferendis ratione, voluptate
-                magnam ullam!</p>
+            <div class="container-friend-searchbar">
+                <h1 class="text-medium-neutral">Friends</h1>
+                <input type="search" class="search" id="friends-search" placeholder="Search or add">
+            </div>
+            <div class="no-friends-container">
+                <p class="text-medium-neutral">It appears you have no friends yet!</p><br>
+                <p class="text-medium-neutral">Search for them using the searchbar or add them on their profile to get started.</p>
+            </div>
+            <div class="social-container">
+                <template id="friend-template">
+                <div class="friend-container">
+                    <a class="clickable not-link profile-link"><img alt="User Avatar" class="okay-avatar avatar friend-avatar"></a>
+                    <div class="friend-info">
+                        <a class="clickable not-link friend-username profile-link"></a>
+                        <div class="container-status-buttons">
+                        <p class="status-text"></p>
+                        <i class="fa-solid fa-user-plus positive button-add-friend status-none" tabindex="0"></i>
+                        <i class="fa-solid fa-user-xmark negative button-reject-friend status-received" tabindex="0"></i>
+                        <i class="fa-solid fa-user-check positive button-accept-friend status-received" tabindex="0"></i>
+                        <i class="fa-solid fa-user-minus negative button-remove-friend status-accepted" tabindex="0"></i>
+                        </div>
+                    </div>
+                </div>
+                </template>
+            </div>
         </aside>
     </main>
     <footer class="quick-links bg-transparent">

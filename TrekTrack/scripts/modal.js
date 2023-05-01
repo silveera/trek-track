@@ -19,7 +19,6 @@ const labelPostImg = document.getElementById("label-post-image");
 
 const contPostImg = document.getElementById("post-image-container");
 
-
 btnNewPostModal.onclick = function () {
     modalNewPost.style.display = "flex";
     autoResize.call(txtNewPostCaption);

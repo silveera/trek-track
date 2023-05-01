@@ -14,6 +14,7 @@ to enos.itcollege.ee and then connect to DB at anysql.itcollege.ee
 /* DATABASE,USER,PASSWORD
 ICS0008_15,ICS0008_WT_15,b765f0649248 */
 
+
 $serverName = "127.0.0.1";
 $dbUsername = "root";
 $dbPassword = "";
@@ -26,7 +27,3 @@ $dbName = "ICS0008_15"; */
 
 $conn = mysqli_connect($serverName, $dbUsername, $dbPassword, $dbName);
 
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-    header("location: ../signup.php?error=invalidsignup");
-}

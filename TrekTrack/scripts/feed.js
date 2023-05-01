@@ -325,6 +325,7 @@ if ('content' in document.createElement('template')) {
         const commentClone = tempComment.content.cloneNode(true);
 
         commentClone.querySelector(".container-comment").classList.add("active-comment");
+        commentClone.querySelector(".container-comment").classList.add("comment-container");
         commentClone.querySelector(".container-comment").id = currentCommentID + "commentcontainer";
 
         commentClone.querySelector(".comment-avatar").src = userData["user_avatar_ref"];
@@ -486,6 +487,7 @@ if ('content' in document.createElement('template')) {
         commentClone.querySelector(".comment-avatar").src = userData["user_avatar_ref"];
 
         commentClone.querySelector(".comment-username").innerText = "You";
+        commentClone.querySelector(".comment-username").style.color = "#86adff";
         commentClone.querySelector(".comment-timestamp").innerText = "Just now";
 
         commentClone.querySelector(".comment-like-button").id = currentReplyID + "replylikebtn";
@@ -502,15 +504,17 @@ if ('content' in document.createElement('template')) {
 
         commentClone.querySelector(".comment-like-count").style.display = "none";
 
-        commentClone.querySelector(".comment-replies").remove(  );
+        commentClone.querySelector(".comment-replies").remove();
 
         if (replyUsername == userData["user_name"]) {
             commentClone.querySelector(".replied-to").innerText = "yourself";
             commentClone.querySelector(".replied-to").href = "profile.php";
+            commentClone.querySelector(".replied-to").style.color = "#86adff";
         } else if (replyUsername == "You") {
             replyUsername = userData["user_name"];
             commentClone.querySelector(".replied-to").innerText = "yourself";
             commentClone.querySelector(".replied-to").href = "profile.php";
+            commentClone.querySelector(".replied-to").style.color = "#86adff";
         } else {
             commentClone.querySelector(".replied-to").innerText = replyUsername;
             commentClone.querySelector(".replied-to").href = "profile.php?username=" + replyUsername;
