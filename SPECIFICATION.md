@@ -7,7 +7,7 @@
 ## Team
 
 Mainly:
-Batu Durmazel - CSS, HTML, MySQL
+Batu Durmazel - CSS, HTML, PHP, MySQL, JS
 Michelle Watford - JS, HTML
 Yuto Kobayashi - PHP, MySQL
 
