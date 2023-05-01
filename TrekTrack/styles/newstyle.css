@@ -341,7 +341,7 @@ header {
 .modal {
     display: none; 
     position: fixed; 
-    z-index: 2; 
+    z-index: 3; 
 
     left: 0;
     top: 0;
@@ -592,10 +592,10 @@ header .nav-list li {
     position: relative;
 }
 
-/* .home:nth-child(1) * {
+ .home:nth-child(1) * {
     box-shadow: none;
 }
- */
+ 
 .home:nth-child(2) {
     padding-inline: 3em;
     background: var(--primary-tint-2);
@@ -606,7 +606,59 @@ header .nav-list li {
     padding: 0;
     position: relative;
 }
-
+/* below is where i started the styling (not using rn)
+.grid-home .social {
+    height: max-content;
+    position: sticky;
+    top: 0; 
+    bottom: 0;
+  }
+  
+  .social .messages {
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+  }
+  
+  .social .messages .heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .social .messages i {
+    font-size: 1.4rem;
+  }
+  
+  .social .messages .search-bar {
+    display: flex;
+    margin-bottom: 1rem;
+  }
+  
+  .social .messages .category {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .social .messages .category h6 {
+    width: 100%;
+    text-align: center;
+    border-bottom: 4px solid var(--color-light);
+    padding-bottom: 0.5rem;
+    font-size: 0.85rem;
+  }
+  
+  .social .messages .category .active {
+    border-color: var(--color-dark);
+  }
+  
+  .social .messages .message-requests {
+    color: var(--color-primary);
+  }
+  
+/* this ^^ is where i added the extra styling  */
 .collection {
     grid-area: collection;
 }
@@ -686,7 +738,7 @@ header .nav-list li {
     align-items: baseline;
     justify-content: center;
     height: auto;
-    z-index: 5;
+    z-index: 2;
 }
 
 .ongoing-trip * {
@@ -816,7 +868,7 @@ header .nav-list li {
 
 .image-footer {
     flex-direction: row;
-    align-items: center;
+    align-items: baseline;
     justify-content: start;
     width: 100%;
 }
@@ -1523,3 +1575,25 @@ main input::placeholder {
     }
 
 }
+
+
+    .share-btn::before {
+        background-size: 200% 200%;
+        border-radius: 50%;
+        font-size: var(--font-size-huge);
+    }
+  
+.facebook-btn i {
+    color: #3b5998;
+}
+
+.facebook-btn {
+    margin-left: auto;
+}
+  .twitter-btn i { 
+    color: #1da1f2; 
+}
+  .linkedin-btn i { 
+    color: #0077b5; 
+}
+  

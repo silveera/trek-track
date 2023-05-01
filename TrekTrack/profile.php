@@ -44,9 +44,7 @@ require_once 'php/profile-checker.php';
                 <li><a href="home.php"><i class="fa-solid fa-house not-link"></i>
                         <p>Home</p>
                     </a></li>
-                <li><a href="map.php"><i class="fa-solid fa-map not-link"></i>
-                        <p>Map</p>
-                    </a></li>
+                    <li><a href="contact.php"></p>Contact</p></a></li>
                 <li><a href="profile.php"><i class="fa-solid fa-user not-link"></i>
                         <p style="border-bottom:2px solid;">Profile</p>
                     </a></li>
@@ -72,6 +70,26 @@ require_once 'php/profile-checker.php';
                     <p id="collection-trips" class="icon"><i class="fa-regular fa-map"></i>My Trips</p>
                 </li>
                 </ul>
+            </div>
+            <div class="container-ongoing-trip">
+                <div class="ongoing-trip">
+                    <p>Ongoing Trip:</p><a id="trip-toggle" class="" href='profile.php#ongoing-trips'> Switch Trip</a>
+                    <div class="cont-icon"><i class="fa-solid fa-location-dot"></i>
+                        <p id="start-text">Start</p>
+                    </div>
+                    <div class="cont-line">
+                        <div class="line"></div>
+                    </div>
+                    <div class="cont-icon trip-stop"><i class="fa-solid fa-route"></i>
+                        <p id="stops-text">Stop</p>
+                    </div>
+                    <div class="cont-line">
+                        <div class="line"></div>
+                    </div>
+                    <div class="cont-icon"><i class="fa-solid fa-flag"></i>
+                        <p id="end-text">End</p>
+                    </div>
+                </div>
             </div>
         </aside>
         <div class="profile bg-invert-neutral">
@@ -135,6 +153,31 @@ require_once 'php/profile-checker.php';
                         <?php if ($client){ ?>
                         <button id="button-p-new-trip" class="button-p-new not-button"><i class="fa-solid fa-plus"></i></button>
                         <?php } ?>   
+                        <div id="modal-new-trip" class="modal">
+                        <div class="trip-container post-container">
+                            <div class="modal-header">
+                                <h1>Create a Trip!</h1>
+                            </div>
+                            <form id="form-new-trip" method="post" enctype="multipart/form-data"> <!--action="php/submit-trip.php" -->
+                                <div class="trip-header">
+                                    <img src="<?= $avatarSrc ?>" alt="User Avatar" id="trip-avatar" class="normal-avatar avatar">
+                                    <div class="trip-user-info">
+                                        <h3 id="trip-username"><?= $userName ?></h3>
+                                        <p id="trip-timestamp" class="trip-timestamp" data-date=""><?= $currentDate ?></p>
+                                        <textarea id="new-trip-title" name="new-trip-title" maxlength="65" rows="1" placeholder="Enter Trip Title: Maximum length 65"></textarea>
+                                        <label for="start">Start:</label><input type="text" id="start" name="start" required>
+                                        <label for="stops">Stops:</label><input type ="text" id="stops" name="stops" required>
+                                        <label for="end">End:</label><input type="text" id="end" name="end" required>
+                                    </div>
+                                </div>
+    
+                                <div class="buttons-modal-new-trip">
+                                    <button type="reset" id="cancel-new-trip" class="modal-close" name="cancel">Cancel</button>
+                                    <button type="button" id="btn-new-trip-submit" name="submit" class='modal-close'>Submit Trip</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     </div>
                 </div>
                 <div class="container-p-content">
@@ -198,25 +241,21 @@ require_once 'php/profile-checker.php';
                             </div>
                         </template>
                     </div>
-                    <div class="container-p-trips hidden">
+                    <div class="container-p-trips" style='display: none;'>
                         <div class="container-p-no">
                             <p>
                                 It appears you have no trips yet. Click the button below to start planning your next adventure!
                             </p>
-                            <button>
+                            <button id="button-first-trip">
                                 Plan New Trip
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <aside class="home social bg-invert-neutral" style="display: none;">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, fugit voluptatibus animi molestias nam non
-                    minima at, laudantium consectetur ipsam qui beatae dolorum pariatur quasi perferendis ratione, voluptate
-                    magnam ullam!</p>
-            </aside>
+            
     </main>
-    
+     
 </body>
 
 </html>

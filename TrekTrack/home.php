@@ -1,5 +1,5 @@
 <?php
-require_once 'php/utilities.php'; 
+require_once 'php/utilities.php';
 require_once 'php/user-info-module.php';
 ?>
 
@@ -21,10 +21,11 @@ require_once 'php/user-info-module.php';
 </head>
 
 <body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v16.0" nonce="w8VcQxbH"></script>
     <header class="primary-gradient">
         <div class="head logo">
-            <a href="home.php" class="not-link"><img src="images/logoex.png" width="50" id="logo"
-                    alt="Trek&Track-Logo"></a>
+            <a href="home.php" class="not-link"><img src="images/logoex.png" width="50" id="logo" alt="Trek&Track-Logo"></a>
             <a href="home.php" class="text-thick-invert-neutral not-link logo-text">
                 <p>Trek&Track</p>
             </a>
@@ -46,12 +47,9 @@ require_once 'php/user-info-module.php';
 
         </nav>
         <div class="head account">
-            <a href="login.php" id="button-head-log-in"
-                style="display:<?= checkLoginStatus() ? "none" : "block"?>;" class="button text-medium-invert-neutral bg-secondary border-secondary">Log In</a>
-            <a href="signup.php" id="button-head-sign-up"
-                style="display:<?= checkLoginStatus() ? "none" : "block"?>;" class="button text-medium-secondary bg-primary-tint-1 border-primary-tint-1">Sign Up</a>
-            <a href="login.php" id="button-head-log-out"
-                style="display:<?= checkLoginStatus() ? "block" : "none"?>;" class="button text-medium-invert-neutral bg-secondary border-secondary">Log Out</a>
+            <a href="login.php" id="button-head-log-in" style="display:<?= checkLoginStatus() ? "none" : "block" ?>;" class="button text-medium-invert-neutral bg-secondary border-secondary">Log In</a>
+            <a href="signup.php" id="button-head-sign-up" style="display:<?= checkLoginStatus() ? "none" : "block" ?>;" class="button text-medium-secondary bg-primary-tint-1 border-primary-tint-1">Sign Up</a>
+            <a href="login.php" id="button-head-log-out" style="display:<?= checkLoginStatus() ? "block" : "none" ?>;" class="button text-medium-invert-neutral bg-secondary border-secondary">Log Out</a>
         </div>
     </header>
     <main class="grid-home">
@@ -74,12 +72,22 @@ require_once 'php/user-info-module.php';
             </div>
             <div class="container-ongoing-trip">
                 <div class="ongoing-trip">
-                    <p>Ongoing trip:</p>
-                    <div class="cont-icon"><i class="fa-solid fa-location-dot"></i><p>Start</p></div>
-                    <div class="cont-line"><div class="line"></div></div>
-                    <div class="cont-icon trip-stop"><i class="fa-solid fa-route"></i><p>Stop</p></div>
-                    <div class="cont-line"><div class="line"></div></div>
-                    <div class="cont-icon"><i class="fa-solid fa-flag"></i><p>End</p><div>
+                    <p>Ongoing Trip:</p><a id="trip-toggle" class="" href='profile.php#ongoing-trips'> Switch Trip</a>
+                    <div class="cont-icon"><i class="fa-solid fa-location-dot"></i>
+                        <p id="start-text">Start</p>
+                    </div>
+                    <div class="cont-line">
+                        <div class="line"></div>
+                    </div>
+                    <div class="cont-icon trip-stop"><i class="fa-solid fa-route"></i>
+                        <p id="stops-text">Stop</p>
+                    </div>
+                    <div class="cont-line">
+                        <div class="line"></div>
+                    </div>
+                    <div class="cont-icon"><i class="fa-solid fa-flag"></i>
+                        <p id="end-text">End</p>
+                    </div>
                 </div>
             </div>
         </aside>
@@ -160,6 +168,7 @@ require_once 'php/user-info-module.php';
     <footer class="quick-links bg-transparent">
         <p></p>
     </footer>
+
 </body>
 
 </html>
