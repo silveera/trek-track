@@ -1,4 +1,4 @@
-import {escapeHtml, textAreaEvents, userData} from "./util.js";
+import {escapeHtml, textAreaEvents, timeStamper, userData} from "./util.js";
 
 let contFeed = document.querySelector(".container-feed");
 
@@ -8,8 +8,9 @@ const tempFeed = document.getElementById("template-post");
 
 const tempComment = document.getElementById("template-comment");
 
-let active = false;
+let currentURL = new URLSearchParams(window.location.search);
 
+let active = false;
 let currentCommentID = 0;
 let currentReplyID = 0;
 
@@ -27,8 +28,8 @@ if ('content' in document.createElement('template')) {
     feedContent.forEach(function (feedItem) {
         if (location.href.includes("profile.php")) {
             contFeed = document.querySelector(".container-p-posts");
-            let profileName = location.href.split("=")[1];
-            if (profileName !== undefined) {
+            let profileName = currentURL.get("username");
+            if (profileName !== null) {
                 if (feedItem["user_name"] != profileName) {
                     return;
                 } else {
@@ -38,7 +39,7 @@ if ('content' in document.createElement('template')) {
                     }
                     $(".container-p-content").css("height", "auto");
                 }
-            } else if (profileName === undefined) {
+            } else if (profileName === null) {
                 if (feedItem["user_id"] != userData["user_id"]) {
                     return;
                 } else {
@@ -59,11 +60,11 @@ if ('content' in document.createElement('template')) {
             if (feedItem["user_name"] == userData["user_name"]) {
                 link.href = "profile.php";
             } else {
-                link.href = "profile.php?username=" + feedItem["user_name"];
+                link.href = "profile.php?username=" + feedItem["user_name"] + "&id=" + feedItem["user_id"];
             }
         });
 
-        postClone.querySelector(".post-timestamp").innerText = feedItem["created_at"];
+        postClone.querySelector(".post-timestamp").innerText = timeStamper(feedItem["created_at"]);
 
         if (feedItem["caption"] != "") {
             postClone.querySelector(".post-caption").innerText = feedItem["caption"];
@@ -95,7 +96,7 @@ if ('content' in document.createElement('template')) {
             if (liked_by.includes(String(userData["user_id"]))) {
                 postClone.querySelector(".like-button").classList.remove("fa-regular");
                 postClone.querySelector(".like-button").classList.add("fa-solid");
-                postClone.querySelector(".like-button").style.color = "#86adff";
+                postClone.querySelector(".like-button").style.color = "var(--accent-tint-1)";
             }
         }
 
@@ -106,7 +107,7 @@ if ('content' in document.createElement('template')) {
             if (commented_by.includes(String(userData["user_id"]))) {
                 postClone.querySelector(".comment-button").classList.remove("fa-regular");
                 postClone.querySelector(".comment-button").classList.add("fa-solid");
-                postClone.querySelector(".comment-button").style.color = "#86adff";
+                postClone.querySelector(".comment-button").style.color = "var(--accent-tint-1)";
             }
         }
 
@@ -123,7 +124,7 @@ if ('content' in document.createElement('template')) {
 
                 commentClone.querySelector(".comment-avatar").src = comment["user_avatar_ref"];
                 commentClone.querySelector(".comment-username").innerText = comment["user_name"];
-                commentClone.querySelector(".comment-timestamp").innerText = comment["created_at"];
+                commentClone.querySelector(".comment-timestamp").innerText = timeStamper(comment["created_at"]);
                 commentClone.querySelector(".comment").innerText = comment["comment_content"];
                 
                 commentClone.querySelector(".comment-like-button").id = comment["comment_id"] + "commentlikebtn";
@@ -154,7 +155,7 @@ if ('content' in document.createElement('template')) {
                     if (liked_by.includes(String(userData["user_id"]))) {
                         commentClone.querySelector(".comment-like-button").classList.remove("fa-regular");
                         commentClone.querySelector(".comment-like-button").classList.add("fa-solid");
-                        commentClone.querySelector(".comment-like-button").style.color = "#86adff";
+                        commentClone.querySelector(".comment-like-button").style.color = "var(--accent-tint-1)";
                     }
                 }
 
@@ -165,7 +166,7 @@ if ('content' in document.createElement('template')) {
                     if (replied_by.includes(String(userData["user_id"]))) {
                         commentClone.querySelector(".comment-reply-button").classList.remove("fa-regular");
                         commentClone.querySelector(".comment-reply-button").classList.add("fa-solid");
-                        commentClone.querySelector(".comment-reply-button").style.color = "#86adff";
+                        commentClone.querySelector(".comment-reply-button").style.color = "var(--accent-tint-1)";
                     }
                 }
 
@@ -173,7 +174,7 @@ if ('content' in document.createElement('template')) {
                     if (comment["user_name"] == userData["user_name"]) {
                         link.href = "profile.php";
                     } else {
-                        link.href = "profile.php?username=" + comment["user_name"];
+                        link.href = "profile.php?username=" + comment["user_name"] + "&id=" + comment["user_id"];
                     }
                 })
 
@@ -190,7 +191,7 @@ if ('content' in document.createElement('template')) {
 
                         if (reply["user_name"] == userData["user_name"]) {
                             replyClone.querySelector(".comment-username").innerText = "You";
-                            replyClone.querySelector(".comment-username").style.color = "#86adff";
+                            replyClone.querySelector(".comment-username").style.color = "var(--accent-tint-1)";
                         } else {
                             replyClone.querySelector(".comment-username").innerText = reply["user_name"];
                         }
@@ -203,14 +204,14 @@ if ('content' in document.createElement('template')) {
                         if (reply["reply_to_name"] == userData["user_name"] && reply["user_name"] != userData["user_name"]) {
                             replyClone.querySelector(".replied-to").innerText = "you";
                             replyClone.querySelector(".replied-to").href = "profile.php";
-                            replyClone.querySelector(".replied-to").style.color = "#86adff";
+                            replyClone.querySelector(".replied-to").style.color = "var(--accent-tint-1)";
                         } else if (reply["reply_to_name"] == reply["user_name"] && reply["reply_to_name"] != userData["user_name"]) {
                             replyClone.querySelector(".replied-to").innerText = "themselves";
                             replyClone.querySelector(".replied-to").href = "profile.php?username=" + reply["user_name"];
                         } else if (reply["reply_to_name"] == reply["user_name"] && reply["reply_to_name"] == userData["user_name"]) {
                             replyClone.querySelector(".replied-to").innerText = "yourself";
                             replyClone.querySelector(".replied-to").href = "profile.php";
-                            replyClone.querySelector(".replied-to").style.color = "#86adff";
+                            replyClone.querySelector(".replied-to").style.color = "var(--accent-tint-1)";
                         } else {
                             replyClone.querySelector(".replied-to").innerText = reply["reply_to_name"];
                             replyClone.querySelector(".replied-to").href = "profile.php?username=" + reply["reply_to_name"];
@@ -218,7 +219,7 @@ if ('content' in document.createElement('template')) {
 
                         replyClone.querySelector(".comment-avatar").src = reply["user_avatar_ref"];
 
-                        replyClone.querySelector(".comment-timestamp").innerText = reply["created_at"];
+                        replyClone.querySelector(".comment-timestamp").innerText = timeStamper(reply["created_at"]);
                         replyClone.querySelector(".comment").innerText = reply["reply_content"];
                         
                         replyClone.querySelector(".comment-like-button").id = reply["reply_id"] + "replylikebtn";
@@ -241,7 +242,7 @@ if ('content' in document.createElement('template')) {
                             if (liked_by.includes(String(userData["user_id"]))) {
                                 replyClone.querySelector(".comment-like-button").classList.remove("fa-regular");
                                 replyClone.querySelector(".comment-like-button").classList.add("fa-solid");
-                                replyClone.querySelector(".comment-like-button").style.color = "#86adff";
+                                replyClone.querySelector(".comment-like-button").style.color = "var(--accent-tint-1)";
                             }
                         }
         
@@ -249,7 +250,7 @@ if ('content' in document.createElement('template')) {
                             if (reply["user_name"] == userData["user_name"]) {
                                 link.href = "profile.php";
                             } else {
-                                link.href = "profile.php?username=" + reply["user_name"];
+                                link.href = "profile.php?username=" + reply["user_name"] + "&id=" + reply["user_id"];
                             }
                         })
 
@@ -282,13 +283,13 @@ if ('content' in document.createElement('template')) {
                 if ($(likeBtn).hasClass("fa-regular")) {
                     $(likeBtn).removeClass("fa-regular");
                     $(likeBtn).addClass("fa-solid");
-                    likeBtn.css("color", "#86adff");
+                    likeBtn.css("color", "var(--accent-tint-1)");
                     $(likeCount).text(parseInt($(likeCount).html()) + 1);
                     likeCount.show();
                 } else if ($(likeBtn).hasClass("fa-solid")) {
                     $(likeBtn).removeClass("fa-solid");
                     $(likeBtn).addClass("fa-regular");
-                    likeBtn.css("color", "#212529");
+                    likeBtn.css("color", "var(--neutral-color)");
                     if ((parseInt($(likeCount).html()) - 1) == 0){
                         $(likeCount).text(parseInt($(likeCount).html()) - 1);
                         likeCount.hide();
@@ -332,8 +333,6 @@ if ('content' in document.createElement('template')) {
         commentClone.querySelector(".comment-username").innerText = userData["user_name"];
         commentClone.querySelector(".comment-timestamp").innerText = "Just now";
 
-        commentClone.querySelector(".comment-timestamp").innerText = "Just now";
-
         commentClone.querySelector(".comment-like-button").id = currentCommentID + "commentlikebtn";
         commentClone.querySelector(".comment-like-count").id = currentCommentID + "commentlikecount";
 
@@ -354,7 +353,6 @@ if ('content' in document.createElement('template')) {
         const commentTextArea = commentClone.querySelector(".comment");
 
         commentTextArea.removeAttribute("readonly");
-        commentTextArea.style.backgroundColor = "white";
 
         textAreaEvents.call(commentTextArea);
 
@@ -386,12 +384,12 @@ if ('content' in document.createElement('template')) {
 
                         commentElement.closest(".container-comment").find(".comment-like-button").first().removeClass("fa-solid");
                         commentElement.closest(".container-comment").find(".comment-like-button").first().addClass("fa-regular");
-                        commentElement.closest(".container-comment").find(".comment-like-button").first().css("color", "#212529");
+                        commentElement.closest(".container-comment").find(".comment-like-button").first().css("color", "var(--neutral-color)");
 
                         event.target.removeEventListener('keydown', handleEnterKey);
                         commentBtn.removeClass("fa-regular");
                         commentBtn.addClass("fa-solid");
-                        commentBtn.css("color", "#86adff");
+                        commentBtn.css("color", "var(--accent-tint-1)");
                         commentCount.show();
                         currentCommentID++;
                         active = false;
@@ -429,7 +427,7 @@ if ('content' in document.createElement('template')) {
                 if ($(likeBtn).hasClass("fa-regular")) {
                     $(likeBtn).removeClass("fa-regular");
                     $(likeBtn).addClass("fa-solid");
-                    likeBtn.css("color", "#86adff");
+                    likeBtn.css("color", "var(--accent-tint-1)");
                     $(likeCount).text(parseInt($(likeCount).html()) + 1);
                     likeCount.show();
                 } else if ($(likeBtn).hasClass("fa-solid")) {
@@ -487,7 +485,7 @@ if ('content' in document.createElement('template')) {
         commentClone.querySelector(".comment-avatar").src = userData["user_avatar_ref"];
 
         commentClone.querySelector(".comment-username").innerText = "You";
-        commentClone.querySelector(".comment-username").style.color = "#86adff";
+        commentClone.querySelector(".comment-username").style.color = "var(--accent-tint-1)";
         commentClone.querySelector(".comment-timestamp").innerText = "Just now";
 
         commentClone.querySelector(".comment-like-button").id = currentReplyID + "replylikebtn";
@@ -509,12 +507,12 @@ if ('content' in document.createElement('template')) {
         if (replyUsername == userData["user_name"]) {
             commentClone.querySelector(".replied-to").innerText = "yourself";
             commentClone.querySelector(".replied-to").href = "profile.php";
-            commentClone.querySelector(".replied-to").style.color = "#86adff";
+            commentClone.querySelector(".replied-to").style.color = "var(--accent-tint-1)";
         } else if (replyUsername == "You") {
             replyUsername = userData["user_name"];
             commentClone.querySelector(".replied-to").innerText = "yourself";
             commentClone.querySelector(".replied-to").href = "profile.php";
-            commentClone.querySelector(".replied-to").style.color = "#86adff";
+            commentClone.querySelector(".replied-to").style.color = "var(--accent-tint-1)";
         } else {
             commentClone.querySelector(".replied-to").innerText = replyUsername;
             commentClone.querySelector(".replied-to").href = "profile.php?username=" + replyUsername;
@@ -531,7 +529,6 @@ if ('content' in document.createElement('template')) {
         const commentTextArea = commentClone.querySelector(".comment");
 
         commentTextArea.removeAttribute("readonly");
-        commentTextArea.style.backgroundColor = "white";
 
         textAreaEvents.call(commentTextArea);
 
@@ -559,7 +556,7 @@ if ('content' in document.createElement('template')) {
                         event.target.removeEventListener('keydown', handleEnterKey);
                         mainReplyBtn.removeClass("fa-regular");
                         mainReplyBtn.addClass("fa-solid");
-                        mainReplyBtn.css("color", "#86adff");
+                        mainReplyBtn.css("color", "var(--accent-tint-1)");
                         replyCount.show();
                         active = false;
                         currentReplyID++;
@@ -593,7 +590,7 @@ if ('content' in document.createElement('template')) {
                 if ($(likeBtn).hasClass("fa-regular")) {
                     $(likeBtn).removeClass("fa-regular");
                     $(likeBtn).addClass("fa-solid");
-                    likeBtn.css("color", "#86adff");
+                    likeBtn.css("color", "var(--accent-tint-1)");
                     $(likeCount).text(parseInt($(likeCount).html()) + 1);
                     likeCount.show();
                 } else if ($(likeBtn).hasClass("fa-solid")) {

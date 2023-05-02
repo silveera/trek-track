@@ -223,7 +223,7 @@ button.bg-primary-tint-1:hover, .button.bg-primary-tint-1:hover {
 .form-login input, .form-signup input {
     outline: transparent;
     border: none;
-    border-bottom: 3px solid var(--accent-color-1);
+    border-bottom: 3px solid var(--secondary-color);
     width: 20ch;
     padding: 0.2em;
     
@@ -275,6 +275,8 @@ textarea {
     overflow: hidden;
     resize: none;
 
+    background-color: var(--invert-neutral-color);
+    color: var(--neutral-color);
     outline: transparent;
     border: none;
     width: 100%;
@@ -292,17 +294,21 @@ input[type="search"] {
     outline: transparent;
     border: none;
     border-radius: 10px;
-    background-color: white;
+    background-color: var(--invert-neutral-color);
     font-size: var(--font-size-normal);
     font-family: var(--font-medium);
     padding: 5px;
+    color: var(--neutral-color);
 }
 
 input[type="search"]::placeholder {
     color: var(--secondary-tint-2);
     font-size: var(--font-size-normal);
 }
- 
+
+input {
+    color: var(--neutral-color);
+}
 /* input:hover, input:focus {
     border-bottom: 3px solid var(--secondary-shade-1);
     transition: 0.2s;
@@ -318,7 +324,7 @@ header {
     grid-template-areas: "logo nav button";
 
     align-items: center;
-    box-shadow: 0 0 10px 2px var(--primary-shade-2);
+    box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.1);
     position: sticky;
     z-index: 1;
     top: 0;
@@ -377,7 +383,7 @@ header {
 }
 
 .avatar {
-    box-shadow: 0px 0px 8px rgba(94, 94, 94, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
     background-color: black;
 }
 
@@ -526,8 +532,6 @@ header div, header nav > * {
 .logo {
     grid-area: logo;
     justify-content: start;
-    margin-top: 0.2em;
-    filter: hue-rotate(25deg) saturate(190%);
 }
 
 .logo p {
@@ -539,6 +543,12 @@ header div, header nav > * {
 .logo:hover #logo {
     transform: scale(105%);
     transition: 0.2s;
+}
+
+.head.logo a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 nav {
@@ -587,7 +597,7 @@ header .nav-list li {
 }
 
 .home:nth-child(1) {
-    box-shadow: 8px 0px 8px rgba(94, 94, 94, 0.1);
+    box-shadow: 8px 0px 8px rgba(0, 0, 0, 0.1);
     padding: 0;
     position: relative;
 }
@@ -599,10 +609,11 @@ header .nav-list li {
 .home:nth-child(2) {
     padding-inline: 3em;
     background: var(--primary-tint-2);
+    scrollbar-gutter: stable both-edges;
 }
 
 .home:nth-child(3) {
-    box-shadow: -8px 0px 8px rgba(94, 94, 94, 0.1);
+    box-shadow: -8px 0px 8px rgba(0, 0, 0, 0.1);
     padding: 0;
     position: relative;
 }
@@ -718,12 +729,11 @@ header .nav-list li {
     margin-right: 0.2em;
 }
 
-.collection .container-ongoing-trip {
+.container-ongoing-trip {
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: center;
-    position: relative;
     width: 100%;
 
     margin-top: auto;
@@ -732,7 +742,6 @@ header .nav-list li {
 .ongoing-trip {
     bottom: 1em;
     left: 1em;
-    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: baseline;
@@ -1005,12 +1014,12 @@ header .nav-list li {
     justify-content: center;
     align-items: center;
     padding-bottom: 1em;
-    background-color: var(--secondary-tint-3);
+    background-color: var(--secondary-color);
 }
 
 .container-friend-searchbar h1 {
     margin-block: 0.2em;
-    color: var(--invert-neutral-color);
+    color: white;
     font-size: var(--font-size-huger);
     font-family: var(--font-thick);
 }
@@ -1167,8 +1176,9 @@ footer {
 
 .profile {
     background-color: var(--primary-tint-2);
-    grid-area: feed / feed / social / social;
+    /* grid-area: feed / feed / social / social; */
     padding: 2em;
+    scrollbar-gutter: stable both-edges;
 }
 
 .profile > * {
@@ -1179,7 +1189,7 @@ footer {
     margin-top: 2em;
 }
 
-.profile .container-p-header i, .profile .container-p-content-buttons i {
+.button-p-new i {
     font-size: var(--font-size-larger);
 }
 
@@ -1243,9 +1253,12 @@ footer {
     padding-bottom: 0.3em;
 }
 
-#button-p-settings {
-    background-color: transparent;
-    padding: 0;
+.profile-page.friend-container {
+   width: auto;
+}
+
+.profile-page.friend-container i {
+    font-size: var(--font-size-normal);
 }
 
 #text-p-bio {
@@ -1326,7 +1339,7 @@ footer {
 
 .post-container.profile-page {
     margin: 4em;
-    background-color: white;
+    background-color: var(--invert-neutral-color);
     max-height: 100%;
     max-width: 100%;
 }
@@ -1341,7 +1354,7 @@ footer {
 }
 
 #modal-new-post .post-container {
-    background-color: var(--secondary-tint-1);
+    background-color: var(--primary-tint-2);
 
     position: absolute;
     top: 0;
@@ -1375,7 +1388,7 @@ footer {
 #modal-new-post .post-image-container {
     margin-top: 1em;
     padding-block: 2em;
-    background-color: white;
+    background-color: var(--invert-neutral-color);
     border-radius: 10px;
     
 
@@ -1414,7 +1427,121 @@ footer {
     background-color: var(--secondary-tint-4);
 }
 
+#modal-new-trip {
+    position: absolute;
+    top: 0;
+    margin-inline: auto;
 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.trip-container {
+    background-color: var(--invert-neutral-color);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
+
+.trip-container input[type="text"] {
+    outline: transparent;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--invert-neutral-color);
+    font-size: var(--font-size-normal);
+    font-family: var(--font-medium);
+    padding: 5px;
+    color: var(--neutral-color);
+}
+
+.trip-container input[type="text"]::placeholder {
+    color: var(--secondary-tint-2);
+    font-size: var(--font-size-normal);
+}
+
+#modal-new-trip .trip-container {
+    background-color: var(--primary-tint-2);
+
+    position: absolute;
+    top: 0;
+    margin-inline: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.trip-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.trip-header img {
+    margin-right: 0.5em;
+}
+
+.trip-info-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.trip-info-header p {
+    margin: 0;
+}
+
+.username {
+    font-family: var(--font-medium);
+    font-size: var(--font-size-medium);
+}
+
+.trip-container > * {
+    margin: 1em;
+    margin-top: 0;
+}
+
+.trip-container textarea {
+    font-size: var(--font-size-medium);
+    margin-block: 1em;
+}
+
+.trip-container textarea::placeholder {
+    font-size: var(--font-size-medium);
+}
+
+.buttons-modal-new-trip {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.trip-container .trip-stop {
+    font-size: var(--font-size-small);
+}
+
+.trip-stop input {
+    font-size: var(--font-size-small);
+}
+
+.trip-stop input::placeholder {
+    font-size: var(--font-size-small);
+}
+
+#modal-new-trip .buttons-modal-new-trip button {
+    background-color: var(--secondary-tint-3);
+}
+
+#modal-new-trip .buttons-modal-new-trip button:hover {
+    background-color: var(--secondary-tint-4);
+}
 /* LANDING/INDEX PAGE SPECIFIC CSS STARTS HERE 
 --------------------------------------------------*/
 
@@ -1597,3 +1724,70 @@ main input::placeholder {
     color: #0077b5; 
 }
   
+
+/* from W3 schools */
+.toggle-switch-label {
+    margin-right: 0.5em;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--secondary-color);
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: var(--secondary-color);
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px var(--secondary-color);
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }

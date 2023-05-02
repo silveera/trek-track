@@ -20,8 +20,7 @@ require_once 'php/utilities.php';
 <body>
     <header class="primary-gradient">
         <div class="head logo">
-            <a href="<?= checkLoginStatus() ? "home.php" : "index.php" ?>" class="not-link">
-                <img src="images/Banner.svg" height="30" max-width="100%" id="logo" alt="Trek&Track-Logo">
+            <a href="<?= checkLoginStatus() ? "home.php" : "index.php" ?>" class="not-link" style="margin-bottom: -0.1em; margin-top: -0.3em; margin-left: 0.2em;"><img src="images/Banner.svg" width="170px" id="logo" alt="Trek&Track-Logo">
             </a>
         </div>
         <nav class="text-medium-invert-neutral">
@@ -29,9 +28,12 @@ require_once 'php/utilities.php';
                 <li class="toggle-switch-wrapper">
                     <label class="toggle-switch-label" for="toggle-switch-input">Dark Mode</label>
                     <div class="toggle-switch">
-                        <input type="checkbox" id="toggle-switch-input">
-                        <span class="toggle-switch-slider"></span>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-switch-input">
+                            <span class="slider round"></span>
+                        </label>
                     </div>
+
                 </li>
                 <li><a href="privacy.php">Privacy</a></li>
                 <li><a href="about.php" style="border-bottom:2px solid;">About</a></li>

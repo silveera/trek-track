@@ -13,7 +13,6 @@ function invalidUsername($username) {
     return $result;
 }
 
-
 function existingUsername($conn, $username) {
     $query = "SELECT * FROM users WHERE user_name = ?;";
 

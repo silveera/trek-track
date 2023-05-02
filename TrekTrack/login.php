@@ -16,20 +16,27 @@ if (checkLoginStatus()) {
     <script src="https://kit.fontawesome.com/66d74c224c.js" crossorigin="anonymous"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="scripts/darkmode.js" defer></script>
     <title>Login</title>
 </head>
 
 <body>
     <header class="primary-gradient">
         <div class="head logo">
-            <a href="index.php" class="not-link"><img src="images/logoex.png" width="50" id="logo"
-                    alt="Trek&Track-Logo"></a>
-            <a href="index.php" class="text-thick-invert-neutral not-link logo-text">
-                <p>Trek&Track</p>
+            <a href="index.php" class="not-link" style="margin-left: 0.2em; margin-block: 0.2em;"><img src="images/Banner.svg" width="170px" id="logo" alt="Trek&Track-Logo">
             </a>
         </div>
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
+                <li>
+            <label class="toggle-switch-label" for="toggle-switch-input">Dark Mode</label>
+                    <div class="toggle-switch">
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-switch-input">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </li>
                 <li><a href="privacy.php">Privacy</a></li>
                 <li><a href="about.php">About</a></li>
                 <li><a href="contact.php">Contact</a></li>
@@ -48,10 +55,6 @@ if (checkLoginStatus()) {
                 <button type="submit" id="submit" name="submit" class="button border-secondary text-medium-invert-neutral bg-secondary">Log in</button>
                 <p id="errormessage"> <?= checkValueAndReturn("loginerrormsg") ?>  </p>
 
-                <p id="or"> or </p>
-
-                <button type="submit" id="facebook" class="border-secondary text-medium-invert-neutral bg-secondary" formnovalidate>Continue with Facebook</button>
-                <button type="submit" id="google" class="border-secondary text-medium-invert-neutral bg-secondary" formnovalidate>Continue with Google</button>
                 <p id="register">Need an account?<a href="signup.php">SIGN UP</a></p>
             </form>
         </div>

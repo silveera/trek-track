@@ -19,6 +19,12 @@ const labelPostImg = document.getElementById("label-post-image");
 
 const contPostImg = document.getElementById("post-image-container");
 
+let username = null;
+
+if (location.href.includes("profile.php?username")) {
+    username = location.href.split("=")[1]
+} else {
+
 btnNewPostModal.onclick = function () {
     modalNewPost.style.display = "flex";
     autoResize.call(txtNewPostCaption);
@@ -105,4 +111,4 @@ txtNewPostCaption.addEventListener('input', function () {
 
 console.log("modal.js executed successfully.");
 
-
+}

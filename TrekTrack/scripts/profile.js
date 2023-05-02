@@ -28,19 +28,7 @@ const contPosts = document.querySelector('.container-p-posts');
 
 const contTrips = document.querySelector('.container-p-trips');
 
-/* function limitRows() {
-    // Count line breaks in the textarea
-    // If the number of line breaks is less than or equal to the maximum allowed rows, update the 'rows' attribute
-    if (parseInt(this.style.height, 10) >= 96) {
-      // If the number of line breaks exceeds the maximum allowed rows, remove the last line break
-        this.addEventListener('keydown', preventEnterKey);
-        this.style.height = "95";
-
-        } else {
-            // If the textarea height is less than 448, remove the event listener
-            this.removeEventListener('keydown', preventEnterKey);
-          }
-    }; */
+const contContent = document.querySelector('.container-p-content');
 
 fileInputAvatarP.addEventListener("change", function (event) {
     let file = event.target.files[0];
@@ -71,7 +59,7 @@ buttonEditP.addEventListener("click", function () {
         autoResize.call(txtBio);
 
         txtBio.removeAttribute("readonly");
-        txtBio.style.backgroundColor = "white";
+        txtBio.style.backgroundColor = "var(--invert-neutral-color)";
         txtBio.style.cursor = "text"
 
     } else if (buttonEditP.innerHTML == "Save Profile") {
@@ -99,11 +87,13 @@ buttonEditP.addEventListener("click", function () {
 btnPosts.addEventListener('click', function () {
     contPosts.style.display = "flex";
     contTrips.style.display = "none";
+    contContent.style.height = "auto";
 });
 
 btnTrips.addEventListener('click', function () {
     contPosts.style.display = "none";
     contTrips.style.display = "flex";
+    contContent.style.height = "100%";
 });
 
 txtBio.addEventListener('input', autoResize);

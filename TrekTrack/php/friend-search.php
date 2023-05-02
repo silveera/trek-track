@@ -23,7 +23,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action'] == 'search-friends') 
                         OR (users.user_id = user_relations.receiver_id AND user_relations.sender_id = ?)
                     WHERE users.user_id != ? AND (users.user_name LIKE ? 
                     OR (? = '' AND (user_relations.status = 'pending' OR user_relations.status = 'accepted')))
-                    ORDER BY relation_status ASC, COALESCE(user_relations.updated_at, '9999-12-31') DESC, users.user_name DESC;";
+                    ORDER BY
+                    CASE 
+                        WHEN relation_status = 'none' THEN 1
+                        WHEN relation_status = 'pending' THEN 2
+                        WHEN relation_status = 'accepted' THEN 3
+                    END,
+                    COALESCE(user_relations.updated_at, '9999-12-31') DESC,
+                    users.user_name DESC;";
 
         $stmt = mysqli_prepare($conn, $query);
 

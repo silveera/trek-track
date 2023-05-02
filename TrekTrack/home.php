@@ -25,23 +25,21 @@ require_once 'php/user-info-module.php';
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v16.0" nonce="w8VcQxbH"></script>
     <header class="primary-gradient">
         <div class="head logo">
-            <a href="home.php" class="not-link"><img src="images/logoex.png" width="50" id="logo" alt="Trek&Track-Logo"></a>
-            <a href="home.php" class="text-thick-invert-neutral not-link logo-text">
-                <p>Trek&Track</p>
-            </a>
+            <a href="home.php" class="not-link" style="margin-bottom: -0.1em; margin-top: -0.3em; margin-left: 0.2em;"><img src="images/Banner.svg" width="170px" id="logo" alt="Trek&Track-Logo"></a>
         </div>
-        
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
                 <li class="toggle-switch-wrapper">
                     <label class="toggle-switch-label" for="toggle-switch-input">Dark Mode</label>
                     <div class="toggle-switch">
-                        <input type="checkbox" id="toggle-switch-input">
-                        <span class="toggle-switch-slider"></span>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-switch-input">
+                            <span class="slider round"></span>
+                        </label>
                     </div>
                 </li>
                 <li><a href="home.php"><i class="fa-solid fa-house not-link"></i><p>Home</p></a></li>
-                <li><a href="map.php"><i class="fa-solid fa-map not-link"></i><p>Map</p></a></li>
+                <li><a href="contact.php"></p>Contact</p></a></li>
                 <li><a href="profile.php"><i class="fa-solid fa-user not-link"></i><p>Profile</p></a></li>
             </ul>
 
@@ -128,11 +126,12 @@ require_once 'php/user-info-module.php';
                         <div class="image-footer">
                             <i class="fa-regular fa-heart like-button" tabindex="0"></i><p class="like-count counter"></p>
                             <i class="fa-regular fa-comment comment-button" tabindex="0"></i><p class="comment-count counter"></p>
-                            <i class="fa-regular fa-paper-plane"></i>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=" class="facebook-btn not-link" target="_blank"><i class="fa-brands fa-facebook share-btn"></i></a>
+                            <a href="https://twitter.com/intent/tweet?text=https://enos.itcollege.ee/~badurm/trektrack1/TrekTrack/home.php" class="twitter-btn not-link"><i class="fa-brands fa-square-twitter share-btn" target="_blank"></i></a>
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://enos.itcollege.ee/~badurm/trektrack1/TrekTrack/home.php" class="linkedin-btn not-link" target="_blank"><i class="fa-brands fa-linkedin share-btn"></i></a>
                         </div>
                     </div>
                     <div class="post-comments">
-                        
                     </div>
                 </div>
             </template>

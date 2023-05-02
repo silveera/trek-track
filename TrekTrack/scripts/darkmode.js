@@ -1,6 +1,5 @@
 const toggleSwitch = document.querySelector('#toggle-switch-input');
 
-// Helper function to read a cookie value
 function getCookie(name) {
     const cookies = document.cookie.split(';');
     for (let i = 0; i < cookies.length; i++) {
@@ -12,7 +11,6 @@ function getCookie(name) {
     return null;
 }
 
-// Read the theme preference from the cookie, if it exists
 const theme = getCookie('theme');
 if (theme) {
     document.documentElement.setAttribute('data-theme', theme);
@@ -77,19 +75,18 @@ function lightMode() {
 function darkMode() {
     const root = document.documentElement;
 
-    root.style.setProperty('--primary-gradient', 'linear-gradient(90deg, #0f0b81 0%, #6663c8 50%, #0f0b81 100%)');
-    root.style.setProperty('--accent-gradient', 'linear-gradient(135deg, #1c2340 0%, #3f51b5  50%, #3f51b5 100%)');
-    root.style.setProperty('--gradient-btn-1', 'linear-gradient(135deg, rgba(28, 35, 64, 1) 0%, rgba(63, 81, 181, 1) 50%, rgba(63, 81, 181, 1) 51%, rgba(28, 35, 64, 1) 100%)');
+    root.style.setProperty('--primary-gradient', 'linear-gradient(90deg, #5268d6 0%, #86adff  50%, #5268d6 100%)');
+    root.style.setProperty('--accent-gradient', 'linear-gradient(135deg, #5268d6 0%, #86adff 50%, #bad4fd 100%)');
     root.style.setProperty('--primary-gradient-1', 'linear-gradient(135deg, #20553c 0%, #2b6a4e 50%, #2b6a4e 100%)');
     root.style.setProperty('--primary-color', '#2b6a4e');
-    root.style.setProperty('--secondary-tint-1', '#313539');
-    root.style.setProperty('--secondary-tint-2', '#4e5254');
-    root.style.setProperty('--secondary-tint-3', '#6a6e70');
-    root.style.setProperty('--secondary-tint-4', '#86898b');
-    root.style.setProperty('--secondary-color', '#c8d0d3');
-    root.style.setProperty('--secondary-shade-1', '#d4d4d4');
-    root.style.setProperty('--neutral-color', '#FFFFFF');
-    root.style.setProperty('--invert-neutral-color', '#212121');
+    root.style.setProperty('--secondary-tint-1', '#323c81');
+    root.style.setProperty('--secondary-tint-2', '#A9BAF6');
+    root.style.setProperty('--secondary-tint-3', '#4A6EC8');
+    root.style.setProperty('--secondary-tint-4', '#323c81');
+    root.style.setProperty('--secondary-color', '#323c81');
+    root.style.setProperty('--secondary-shade-1', '#25286D');
+    root.style.setProperty('--neutral-color', 'white');
+    root.style.setProperty('--invert-neutral-color', '#292A2B');
     root.style.setProperty('--invert-neutral-color-shade-1', '#353535');
     root.style.setProperty('--invert-neutral-color-shade-2', '#5c5c5c');
     root.style.setProperty('--invert-neutral-color-shade-3', '#818181');

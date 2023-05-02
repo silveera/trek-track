@@ -79,7 +79,7 @@ export function timeStamper(date) {
 
     let displayTime;
     if (secondsAgo < 60) {
-      displayTime = "just now";
+      displayTime = `${secondsAgo} ${secondsAgo === 1 ? 'second' : 'seconds'} ago`;
     } else if (secondsAgo < 60 * 60) {
       const minutesAgo = Math.floor(secondsAgo / 60);
       displayTime = `${minutesAgo} ${minutesAgo === 1 ? 'minute' : 'minutes'} ago`;
@@ -98,4 +98,12 @@ export function timeStamper(date) {
     }
 
     return displayTime;
+}
+
+export function autoResizeTextInput() {
+  this.style.width = this.getAttribute("placeholder").length + "ch";
+
+  if (this.value.length >= this.getAttribute("placeholder").length) {
+    this.style.width = this.value.length + "ch";
+  } 
 }
