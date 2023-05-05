@@ -13,9 +13,12 @@ require_once 'php/utilities.php';
     <script src="https://kit.fontawesome.com/66d74c224c.js" crossorigin="anonymous"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Batu Durmazel, Michelle Watford, Yuto Kobayashi">
+    <meta name="description" content="Join a passionate community of travellers who love to share our travel memories, make  exciting travel plans, and meet new people from around the globe.">
+    <meta name="keywords" content="travel, social, media, posts, friends, explore">
     <script src="scripts/darkmode.js" defer></script>
     <title>Landing</title>
-<noscript>Your browser does not support JavaScript!</noscript></head>
+<noscript><p>Your browser does not support JavaScript!</p></noscript></head>
 
 <body>
     <header class="primary-gradient">

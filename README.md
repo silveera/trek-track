@@ -4,7 +4,7 @@ Uni-ID: badurm
 E-mail: badurm@ttu.ee
 Main roles: HTML, CSS
 Git: https://gitlab.cs.ttu.ee/badurm/trecktrack/-/tree/main
-Enos: https://enos.itcollege.ee/~badurm/trektrack/
+Enos: https://enos.itcollege.ee/~badurm/trektrack1/
 
 ## Michelle Watford
 

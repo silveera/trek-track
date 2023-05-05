@@ -16,6 +16,9 @@ require_once 'php/profile-checker.php';
     <script src="scripts/darkmode.js" defer></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Batu Durmazel, Michelle Watford, Yuto Kobayashi">
+    <meta name="description" content="Join a passionate community of travellers who love to share our travel memories, make  exciting travel plans, and meet new people from around the globe.">
+    <meta name="keywords" content="travel, social, media, posts, friends, explore">
     <title>Profile</title>
     <script src="scripts/jquery-3.6.4.min.js"></script>
     <script src="scripts/profile.js" type="module"></script>
@@ -25,7 +28,7 @@ require_once 'php/profile-checker.php';
     <script src="scripts/tripmodal.js" type="module"></script>
     <script src="scripts/ongoingtrips.js" type="module"></script>
     <script src="scripts/delete-item.js" type="module"></script>
-<noscript>Your browser does not support JavaScript!</noscript></head>
+<noscript><p>Your browser does not support JavaScript!</p></noscript></head>
 
 <body>
     <header class="primary-gradient">
