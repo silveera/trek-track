@@ -22,7 +22,7 @@ require_once 'php/user-info-module.php';
     <script src="scripts/social.js" type="module" ></script>
     <script src="scripts/ongoingtrips.js" type="module" ></script>
     <title>Home</title>
-<noscript>Your browser does not support JavaScript!</noscript></head>
+<noscript><p>Your browser does not support JavaScript!</p></noscript></head>
 
 <body>
     <div id="fb-root"></div>

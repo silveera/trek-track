@@ -18,7 +18,7 @@ require_once 'php/utilities.php';
     <meta name="description" content="Join a passionate community of travellers who love to share our travel memories, make  exciting travel plans, and meet new people from around the globe.">
     <meta name="keywords" content="travel, social, media, posts, friends, explore">
     <title>About Us</title>
-<noscript>Your browser does not support JavaScript!</noscript></head>
+<noscript><p>Your browser does not support JavaScript!</p></noscript></head>
 
 <body>
     <header class="primary-gradient">

@@ -21,7 +21,7 @@ if (checkLoginStatus()) {
     <meta name="keywords" content="travel, social, media, posts, friends, explore">
     <script src="scripts/darkmode.js" defer></script>
     <title>Login</title>
-<noscript>Your browser does not support JavaScript!</noscript></head>
+<<noscript><p>Your browser does not support JavaScript!</p></noscript></head>
 
 <body>
     <header class="primary-gradient">

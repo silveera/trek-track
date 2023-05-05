@@ -28,7 +28,7 @@ require_once 'php/profile-checker.php';
     <script src="scripts/tripmodal.js" type="module"></script>
     <script src="scripts/ongoingtrips.js" type="module"></script>
     <script src="scripts/delete-item.js" type="module"></script>
-<noscript>Your browser does not support JavaScript!</noscript></head>
+<noscript><p>Your browser does not support JavaScript!</p></noscript></head>
 
 <body>
     <header class="primary-gradient">
