@@ -23,6 +23,7 @@ require_once 'php/profile-checker.php';
     <script src="scripts/feed.js" type="module"></script>
     <script src="scripts/social.js" type="module"></script>
     <script src="scripts/tripmodal.js" type="module"></script>
+    <script src="scripts/ongoingtrips.js" type="module"></script>
 </head>
 
 <body>
@@ -33,7 +34,7 @@ require_once 'php/profile-checker.php';
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
                 <li class="toggle-switch-wrapper">
-                    <label class="toggle-switch-label" for="toggle-switch-input">Dark Mode</label>
+                    <label class="toggle-switch-label clickable" for="toggle-switch-input" tabindex="0">Dark Mode</label>
                     <div class="toggle-switch">
                         <label class="switch">
                             <input type="checkbox" id="toggle-switch-input">
@@ -71,24 +72,39 @@ require_once 'php/profile-checker.php';
                     </li>
                 </ul>
             </div>
-            <div class="container-ongoing-trip">
+            <div class="cont-line collection-center"><div class="line"></div></div>
+            <div class="container-ongoing-trip current-trip">
+                <p class="text-medium-invert-neutral p-ongoing-trip">Ongoing Trip:</p>
+                <div class="trip-cont-invis" style="display: none;">
+                <div class="trip-header">
+                    <div class="trip-creator">
+                        <p class="trip-title">Loading...</p>
+                        <p class="trip-timestamp">Loading...</p>
+                    </div>
+                    <div>
+                        <a href="profile.php#trips" class="not-link"><i class="fa-solid fa-arrow-right-arrow-left switch-trip-button" tabindex="0"></i></a>
+                    </div>
+                </div>
                 <div class="ongoing-trip">
-                    <p>Ongoing Trip:</p><a id="trip-toggle" class="" href='profile.php#ongoing-trips'> Switch Trip</a>
                     <div class="cont-icon"><i class="fa-solid fa-location-dot"></i>
-                        <p id="start-text">Start</p>
+                        <p class="trip-start">Loading...</p><span>Start</span>
                     </div>
                     <div class="cont-line">
                         <div class="line"></div>
                     </div>
                     <div class="cont-icon trip-stop"><i class="fa-solid fa-route"></i>
-                        <p id="stops-text">Stop</p>
+                        <p class="trip-stops">Loading...</p><span>Stop</span>
                     </div>
                     <div class="cont-line">
                         <div class="line"></div>
                     </div>
                     <div class="cont-icon"><i class="fa-solid fa-flag"></i>
-                        <p id="end-text">End</p>
+                        <p class="trip-end">Loading...</p><span>End</span>
                     </div>
+                </div>
+                </div>
+                <div class="no-ongoing-trips">
+                    <p>You do not have any ongoing trips. Click <a href="profile.php#trips" class="not-link"><i class="fa-solid fa-arrow-right-arrow-left switch-trip-button" tabindex="0"></i></a> to pick or create one!</p>
                 </div>
             </div>
         </aside>
@@ -136,7 +152,7 @@ require_once 'php/profile-checker.php';
                                         <img src="<?= $clientAvatarSrc ?>" alt="User Avatar" id="post-avatar" class="normal-avatar avatar">
                                         <div class="post-user-info">
                                             <p class="post-username"><?= $clientUserName ?></p>
-                                            <p id="post-timestamp" class="post-timestamp" data-date=""><?= $currentDate ?></p>
+                                            <p id="post-timestamp" class="post-timestamp" data-date="">Just now</p>
                                             <textarea id="new-post-caption" name="new-post-caption" maxlength="280" rows="1" placeholder="Enter caption: Maximum length 280"></textarea>
                                         </div>
                                     </div>
@@ -168,34 +184,34 @@ require_once 'php/profile-checker.php';
                                 <h1>Create a Trip!</h1>
                             </div>
                             <form id="form-new-trip" method="post" action="php/submit-trip.php">
-                                    <div class="trip-header">
-                                        <img src="<?= $avatarSrc ?>" alt="User Avatar" id="trip-avatar" class="normal-avatar avatar">
-                                        <div class="trip-info-header">
-                                            <p id="trip-username" class="username"><?= $userName ?></p>
-                                            <p id="trip-timestamp" class="trip-timestamp" data-date=""><?= $currentDate ?></p>
-                                        </div>
+                                <div class="trip-header">
+                                    <img src="<?= $avatarSrc ?>" alt="User Avatar" id="trip-avatar" class="normal-avatar avatar">
+                                    <div class="trip-info-header">
+                                        <p id="trip-username" class="username"><?= $userName ?></p>
+                                        <p id="trip-timestamp" class="trip-timestamp" data-date="">Just now</p>
                                     </div>
-                                    <div class="trip-content">
-                                        <textarea id="new-trip-title" name="trip_title" maxlength="32" rows="1" cols="32" placeholder="Enter Trip Title..."></textarea>
-                                        <div class="container-ongoing-trip">
-                                            <div class="ongoing-trip">
-                                                <div class="cont-icon"><i class="fa-solid fa-location-dot"></i>
-                                                    <input type="text" id="input-start" name="trip_start" placeholder="Trip Start" class="new-trip-input" maxlength="24">
-                                                </div>
-                                                <div class="cont-line">
-                                                    <div class="line"></div>
-                                                </div>
-                                                <div class="cont-icon trip-stop"><i class="fa-solid fa-route"></i>
-                                                    <input type="text" id="input-stop" name="trip_stop" placeholder="Trip Stop" class="new-trip-input" maxlength="24">
-                                                </div>
-                                                <div class="cont-line">
-                                                    <div class="line"></div>
-                                                </div>
-                                                <div class="cont-icon"><i class="fa-solid fa-flag"></i>
-                                                    <input type="text" id="input-destination" name="trip_end" placeholder="Destination" class="new-trip-input" maxlength="24">
-                                                </div>
+                                </div>
+                                <div class="trip-content">
+                                    <textarea id="new-trip-title" name="trip_title" maxlength="18" rows="1" cols="22" placeholder="Enter Trip Title..."></textarea>
+                                    <div class="container-ongoing-trip">
+                                        <div class="ongoing-trip">
+                                            <div class="cont-icon"><i class="fa-solid fa-location-dot"></i>
+                                                <input type="text" id="input-start" name="trip_start" placeholder="Trip Start" class="new-trip-input" maxlength="16" cols="16">
+                                            </div>
+                                            <div class="cont-line">
+                                                <div class="line"></div>
+                                            </div>
+                                            <div class="cont-icon trip-stop"><i class="fa-solid fa-route"></i>
+                                                <input type="text" id="input-stop" name="trip_stop" placeholder="Trip Stop" class="new-trip-input" maxlength="16" cols="16">
+                                            </div>
+                                            <div class="cont-line">
+                                                <div class="line"></div>
+                                            </div>
+                                            <div class="cont-icon"><i class="fa-solid fa-flag"></i>
+                                                <input type="text" id="input-destination" name="trip_end" placeholder="Destination" class="new-trip-input" maxlength="16" cols="16">
                                             </div>
                                         </div>
+                                    </div>
                                     <div class="buttons-modal-new-trip">
                                         <button type="reset" id="cancel-new-trip" class="modal-close" name="cancel">Cancel</button>
                                         <button type="button" id="btn-new-trip-submit" name="submit" class='modal-close'>Submit Trip</button>
@@ -208,7 +224,7 @@ require_once 'php/profile-checker.php';
             </div>
             <div class="container-p-content">
                 <div class="container-p-posts">
-                    <div class="container-p-no">
+                    <div class="container-p-no-posts container-p-no">
                         <?php if ($client) { ?>
                             <p>
                                 It appears you have no posts yet. Click the button below to share a memory!
@@ -222,68 +238,113 @@ require_once 'php/profile-checker.php';
                             </p>
                         <?php } ?>
                     </div>
-                    <template id="template-comment">
-                        <div class="container-comment">
-                            <div class="comments-header">
-                                <a class="not-link profile-link"><img alt="User Avatar" class="small-avatar avatar comment-avatar"></a>
-                                <a class="not-link profile-link">
-                                    <p class="comment-username"></p>
-                                </a>
-                                <p class="reply-content">replied to</p>
-                                <a class="reply-content replied-to not-link"></a>
-                            </div>
-                            <div class="cont-comment-content"><textarea class="comment" name="comment-content" maxlength="280" rows="1" placeholder="Enter comment" readonly></textarea></div>
-                            <div class="comments-footer">
-                                <p class="comment-timestamp"></p>
-                                <i class="fa-regular fa-heart comment-like-button" tabindex="0"></i>
-                                <p class="comment-like-count counter"></p>
-                                <i class="fa-regular fa-comments comment-reply-button" tabindex="0"></i>
-                                <p class="comment-reply-count counter"></p>
-                                <div class="non-reply-content show-replies clickable">
-                                    <p><span class="show-status">Show</span><span class="comment-reply-count"></span>replies</p><i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                            </div>
-                            <div class="comment-replies"></div>
-                        </div>
-                    </template>
-                    <template id="template-post">
-                        <div class="post-container">
-                            <div class="post-header">
-                                <a class="profile-link not-link"><img alt="User Avatar" class="normal-avatar avatar post-avatar"></a>
-                                <div class="post-user-info">
-                                    <a class="profile-link not-link">
-                                        <p class="post-username"></p>
+                    <div class="feed-posts">
+                        <template id="template-comment">
+                            <div class="container-comment">
+                                <div class="comments-header">
+                                    <a class="not-link profile-link"><img alt="User Avatar" class="small-avatar avatar comment-avatar"></a>
+                                    <a class="not-link profile-link">
+                                        <p class="comment-username"></p>
                                     </a>
-                                    <p class="post-timestamp"></p>
-                                    <p class="post-caption"></p>
+                                    <p class="reply-content">replied to</p>
+                                    <a class="reply-content replied-to not-link"></a>
                                 </div>
-                            </div>
-                            <div class="post-image-container">
-                                <img alt="Example Image" class="post-image">
-                                <div class="image-footer">
-                                    <i class="fa-regular fa-heart like-button" tabindex="0"></i>
-                                    <p class="like-count counter"></p>
-                                    <i class="fa-regular fa-comment comment-button" tabindex="0"></i>
-                                    <p class="comment-count counter"></p>
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u=" class="facebook-btn not-link" target="_blank"><i class="fa-brands fa-facebook share-btn"></i></a>
-                                    <a href="https://twitter.com/intent/tweet?text=https://enos.itcollege.ee/~badurm/trektrack1/TrekTrack/home.php" class="twitter-btn not-link"><i class="fa-brands fa-square-twitter share-btn" target="_blank"></i></a>
-                                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://enos.itcollege.ee/~badurm/trektrack1/TrekTrack/home.php" class="linkedin-btn not-link" target="_blank"><i class="fa-brands fa-linkedin share-btn"></i></a>
+                                <div class="cont-comment-content"><textarea class="comment" name="comment-content" maxlength="280" rows="1" placeholder="Enter comment" readonly></textarea></div>
+                                <div class="comments-footer">
+                                    <p class="comment-timestamp"></p>
+                                    <i class="fa-regular fa-heart comment-like-button" tabindex="0"></i>
+                                    <p class="comment-like-count counter"></p>
+                                    <i class="fa-regular fa-comments comment-reply-button" tabindex="0"></i>
+                                    <p class="comment-reply-count counter"></p>
+                                    <div class="non-reply-content show-replies clickable show-button">
+                                        <p><span class="show-status">Show</span><span class="comment-reply-count"></span>replies</p><i class="fa-solid fa-chevron-down"></i>
+                                    </div>
                                 </div>
+                                <div class="comment-replies"></div>
                             </div>
-                            <div class="post-comments">
+                        </template>
+                        <template id="template-post">
+                            <div class="post-container">
+                                <div class="post-header">
+                                    <a class="profile-link not-link"><img alt="User Avatar" class="normal-avatar avatar post-avatar"></a>
+                                    <div class="post-user-info">
+                                        <a class="profile-link not-link">
+                                            <p class="post-username"></p>
+                                        </a>
+                                        <p class="post-timestamp"></p>
+                                        <p class="post-caption"></p>
+                                    </div>
+                                </div>
+                                <div class="post-image-container">
+                                    <img alt="Example Image" class="post-image">
+                                    <div class="image-footer">
+                                        <i class="fa-regular fa-heart like-button" tabindex="0"></i>
+                                        <p class="like-count counter"></p>
+                                        <i class="fa-regular fa-comment comment-button" tabindex="0"></i>
+                                        <p class="comment-count counter"></p>
+                                        <div class="show-comments clickable show-button">
+                                            <p><span class="show-status">Show</span><span class="comment-count"></span>comments</p><i class="fa-solid fa-chevron-down"></i>
+                                        </div>
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u=" class="facebook-btn not-link" target="_blank"><i class="fa-brands fa-facebook share-btn"></i></a>
+                                        <a href="https://twitter.com/intent/tweet?text=https://enos.itcollege.ee/~badurm/trektrack1/TrekTrack/home.php" class="twitter-btn not-link" target="_blank"><i class="fa-brands fa-square-twitter share-btn"></i></a>
+                                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://enos.itcollege.ee/~badurm/trektrack1/TrekTrack/home.php" class="linkedin-btn not-link" target="_blank"><i class="fa-brands fa-linkedin share-btn"></i></a>
+                                    </div>
+                                </div>
+                                <div class="post-comments">
 
+                                </div>
                             </div>
-                        </div>
-                    </template>
+                        </template>
+                    </div>
                 </div>
                 <div class="container-p-trips" style='display: none;'>
-                    <div class="container-p-no">
-                        <p>
-                            It appears you have no trips yet. Click the button below to start planning your next adventure!
-                        </p>
-                        <button id="button-first-trip">
-                            Plan New Trip
-                        </button>
+                    <div class="container-p-no-trips container-p-no">
+                        <?php if ($client) { ?>
+                            <p>
+                                It appears you have no trips yet. Click the button below to start planning your next adventure!
+                            </p>
+                            <button id="button-first-trip">
+                                Plan New Trip
+                            </button>
+                        <?php } else { ?>
+                            <p>
+                                It appears <?= $userName ?> has no trips yet.
+                            </p>
+                        <?php } ?>
+                    </div>
+                    <div class="feed-trips">
+                        <template id="template-trip">
+                            <div class="container-ongoing-trip" data-tripId="0">
+                                <div class="trip-header">
+                                    <div class="trip-creator">
+                                        <p class="trip-title">Loading...</p>
+                                        <p class="trip-timestamp">Loading...</p>
+                                    </div>
+                                    <div>
+                                        <?php if ($client) { ?>
+                                        <i class="fa-solid fa-map-pin button-ongoing-trip" tabindex="0"></i><i class="fa-solid fa-trash-can button-delete" tabindex="0"></i>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                                <div class="ongoing-trip">
+                                    <div class="cont-icon"><i class="fa-solid fa-location-dot"></i>
+                                        <p class="trip-start">Loading...</p><span>Start</span>
+                                    </div>
+                                    <div class="cont-line">
+                                        <div class="line"></div>
+                                    </div>
+                                    <div class="cont-icon trip-stop"><i class="fa-solid fa-route"></i>
+                                        <p class="trip-stops">Loading...</p><span>Stop</span>
+                                    </div>
+                                    <div class="cont-line">
+                                        <div class="line"></div>
+                                    </div>
+                                    <div class="cont-icon"><i class="fa-solid fa-flag"></i>
+                                        <p class="trip-end">Loading...</p><span>End</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
                     </div>
                 </div>
             </div>

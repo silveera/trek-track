@@ -29,7 +29,7 @@ if (checkLoginStatus()) {
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
                 <li>
-            <label class="toggle-switch-label" for="toggle-switch-input">Dark Mode</label>
+            <label class="toggle-switch-label clickable" for="toggle-switch-input">Dark Mode</label>
                     <div class="toggle-switch">
                         <label class="switch">
                             <input type="checkbox" id="toggle-switch-input">
@@ -49,8 +49,6 @@ if (checkLoginStatus()) {
                 <input type="text" placeholder="Username" id="uid" name="uid" value="<?= checkValueAndReturn("loginusername") ?>" class="<?= checkArraySetMissing('loginerrortypes','username' ) ?>" required>
 
                 <input type="password" placeholder="Password" id="pw" name="pw" value="<?= checkValueAndReturn("loginpassword") ?>" class="<?= checkArraySetMissing('loginerrortypes','password' ) ?>" required>
-    
-                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" class="tex">Forgot your password?</a>
     
                 <button type="submit" id="submit" name="submit" class="button border-secondary text-medium-invert-neutral bg-secondary">Log in</button>
                 <p id="errormessage"> <?= checkValueAndReturn("loginerrormsg") ?>  </p>

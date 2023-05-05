@@ -30,6 +30,10 @@ const contTrips = document.querySelector('.container-p-trips');
 
 const contContent = document.querySelector('.container-p-content');
 
+const noPosts = document.querySelector(".container-p-no-posts");
+
+const noTrips = document.querySelector(".container-p-no-trips");
+
 fileInputAvatarP.addEventListener("change", function (event) {
     let file = event.target.files[0];
     let reader = new FileReader();
@@ -84,16 +88,30 @@ buttonEditP.addEventListener("click", function () {
     }
 });
 
+if (window.location.hash === "#trips") {
+  contPosts.style.display = "none";
+  contTrips.style.display = "block";
+} else if (window.location.hash === "#posts") {
+  contTrips.style.display = "none";
+  contPosts.style.display = "block";
+}
+
 btnPosts.addEventListener('click', function () {
-    contPosts.style.display = "flex";
     contTrips.style.display = "none";
-    contContent.style.height = "auto";
+    contPosts.style.display = "block";
+    location.hash = "#posts";
 });
 
 btnTrips.addEventListener('click', function () {
     contPosts.style.display = "none";
-    contTrips.style.display = "flex";
-    contContent.style.height = "100%";
+    contTrips.style.display = "block";
+    location.hash = "#trips";
+});
+
+$(".switch-trip-button").on("click", function () {
+    contPosts.style.display = "none";
+    contTrips.style.display = "block";
+    location.hash = "#trips";
 });
 
 txtBio.addEventListener('input', autoResize);

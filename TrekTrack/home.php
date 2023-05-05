@@ -17,6 +17,7 @@ require_once 'php/user-info-module.php';
     <script src="scripts/jquery-3.6.4.min.js"></script>
     <script src="scripts/feed.js" type="module" ></script>
     <script src="scripts/social.js" type="module" ></script>
+    <script src="scripts/ongoingtrips.js" type="module" ></script>
     <title>Home</title>
 </head>
 
@@ -30,7 +31,7 @@ require_once 'php/user-info-module.php';
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
                 <li class="toggle-switch-wrapper">
-                    <label class="toggle-switch-label" for="toggle-switch-input">Dark Mode</label>
+                    <label class="toggle-switch-label clickable" for="toggle-switch-input">Dark Mode</label>
                     <div class="toggle-switch">
                         <label class="switch">
                             <input type="checkbox" id="toggle-switch-input">
@@ -68,24 +69,39 @@ require_once 'php/user-info-module.php';
                 </li>
             </ul>
             </div>
-            <div class="container-ongoing-trip">
+            <div class="cont-line collection-center"><div class="line"></div></div>
+            <div class="container-ongoing-trip current-trip">
+                <p class="text-medium-invert-neutral p-ongoing-trip">Ongoing Trip:</p>
+                <div class="trip-cont-invis" style="display: none;">
+                <div class="trip-header">
+                    <div class="trip-creator">
+                        <p class="trip-title">Loading...</p>
+                        <p class="trip-timestamp">Loading...</p>
+                    </div>
+                    <div>
+                        <a href="profile.php#trips" class="not-link"><i class="fa-solid fa-arrow-right-arrow-left switch-trip-button" tabindex="0"></i></a>
+                    </div>
+                </div>
                 <div class="ongoing-trip">
-                    <p>Ongoing Trip:</p><a id="trip-toggle" class="" href='profile.php#ongoing-trips'> Switch Trip</a>
                     <div class="cont-icon"><i class="fa-solid fa-location-dot"></i>
-                        <p id="start-text">Start</p>
+                        <p class="trip-start">Loading...</p><span>Start</span>
                     </div>
                     <div class="cont-line">
                         <div class="line"></div>
                     </div>
                     <div class="cont-icon trip-stop"><i class="fa-solid fa-route"></i>
-                        <p id="stops-text">Stop</p>
+                        <p class="trip-stops">Loading...</p><span>Stop</span>
                     </div>
                     <div class="cont-line">
                         <div class="line"></div>
                     </div>
                     <div class="cont-icon"><i class="fa-solid fa-flag"></i>
-                        <p id="end-text">End</p>
+                        <p class="trip-end">Loading...</p><span>End</span>
                     </div>
+                </div>
+                </div>
+                <div class="no-ongoing-trips">
+                    <p>You do not have any ongoing trips. Click <a href="profile.php#trips" class="not-link"><i class="fa-solid fa-arrow-right-arrow-left switch-trip-button" style="color: var(--accent-tint-1);" tabindex="0"></i></a> to pick or create one!</p>
                 </div>
             </div>
         </aside>
@@ -106,7 +122,7 @@ require_once 'php/user-info-module.php';
                         <p class="comment-timestamp"></p>
                         <i class="fa-regular fa-heart comment-like-button" tabindex="0"></i><p class="comment-like-count counter"></p>
                         <i class="fa-regular fa-comments comment-reply-button" tabindex="0"></i><p class="comment-reply-count counter"></p>
-                        <div class="non-reply-content show-replies clickable"><p><span class="show-status">Show</span><span class="comment-reply-count"></span>replies</p><i class="fa-solid fa-chevron-down"></i></div>
+                        <div class="non-reply-content show-replies clickable show-button"><p><span class="show-status">Show</span><span class="comment-reply-count"></span>replies</p><i class="fa-solid fa-chevron-down"></i></div>
                     </div>
                     <div class="comment-replies"></div>
                 </div>
@@ -125,9 +141,9 @@ require_once 'php/user-info-module.php';
                         <img alt="Example Image" class="post-image">
                         <div class="image-footer">
                             <i class="fa-regular fa-heart like-button" tabindex="0"></i><p class="like-count counter"></p>
-                            <i class="fa-regular fa-comment comment-button" tabindex="0"></i><p class="comment-count counter"></p>
+                            <i class="fa-regular fa-comment comment-button" tabindex="0"></i><p class="comment-count counter"></p><div class="show-comments clickable show-button"><p><span class="show-status">Show</span><span class="comment-count"></span>comments</p><i class="fa-solid fa-chevron-down"></i></div>
                             <a href="https://www.facebook.com/sharer/sharer.php?u=" class="facebook-btn not-link" target="_blank"><i class="fa-brands fa-facebook share-btn"></i></a>
-                            <a href="https://twitter.com/intent/tweet?text=https://enos.itcollege.ee/~badurm/trektrack1/TrekTrack/home.php" class="twitter-btn not-link"><i class="fa-brands fa-square-twitter share-btn" target="_blank"></i></a>
+                            <a href="https://twitter.com/intent/tweet?text=https://enos.itcollege.ee/~badurm/trektrack1/TrekTrack/home.php" class="twitter-btn not-link" target="_blank"><i class="fa-brands fa-square-twitter share-btn"></i></a>
                             <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://enos.itcollege.ee/~badurm/trektrack1/TrekTrack/home.php" class="linkedin-btn not-link" target="_blank"><i class="fa-brands fa-linkedin share-btn"></i></a>
                         </div>
                     </div>
@@ -142,8 +158,8 @@ require_once 'php/user-info-module.php';
                 <input type="search" class="search" id="friends-search" placeholder="Search or add">
             </div>
             <div class="no-friends-container">
-                <p class="text-medium-neutral">It appears you have no friends yet!</p><br>
-                <p class="text-medium-neutral">Search for them using the searchbar or add them on their profile to get started.</p>
+                <p>It appears you have no friends yet!</p><br>
+                <p>Search for them using the searchbar or add them on their profile to get started.</p>
             </div>
             <div class="social-container">
                 <template id="friend-template">

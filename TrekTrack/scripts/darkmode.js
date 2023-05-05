@@ -1,5 +1,7 @@
 const toggleSwitch = document.querySelector('#toggle-switch-input');
 
+const labelToggleSwitch = document.querySelector('.toggle-switch-label');
+
 function getCookie(name) {
     const cookies = document.cookie.split(';');
     for (let i = 0; i < cookies.length; i++) {
@@ -41,13 +43,14 @@ function switchTheme(event) {
 
 function lightMode() {
     const root = document.documentElement;
+    labelToggleSwitch.innerText = "Dark Mode";
   
     root.style.setProperty('--primary-gradient', 'linear-gradient(90deg, #2d9d8a 0%, #95cd98 50%, #2d9d8a 100%)');
     root.style.setProperty('--accent-gradient', 'linear-gradient(135deg, #5268d6 0%, #86adff 50%, #bad4fd 100%)');
     root.style.setProperty('--gradient-btn-1', 'linear-gradient(135deg, rgba(82,104,214,1) 0%, rgba(186,212,253,1) 50%, rgba(176,226,173,1) 51%, rgba(45,157,138,1) 100%)');
     root.style.setProperty('--primary-gradient-1', 'linear-gradient(135deg, #218070 0%, #95cd98 50%, #b0e2ad 100%)');
     root.style.setProperty('--primary-color', '#95cd98');
-    root.style.setProperty('--secondary-tint-1', '#E5EEEC');
+    root.style.setProperty('--secondary-tint-1', '#D7ECD8');
     root.style.setProperty('--secondary-tint-2', '#B1CBC6');
     root.style.setProperty('--secondary-tint-3', '#7EA8A0');
     root.style.setProperty('--secondary-tint-4', '#4A857A');
@@ -74,6 +77,7 @@ function lightMode() {
 
 function darkMode() {
     const root = document.documentElement;
+    labelToggleSwitch.innerText = "Light Mode";
 
     root.style.setProperty('--primary-gradient', 'linear-gradient(90deg, #5268d6 0%, #86adff  50%, #5268d6 100%)');
     root.style.setProperty('--accent-gradient', 'linear-gradient(135deg, #5268d6 0%, #86adff 50%, #bad4fd 100%)');

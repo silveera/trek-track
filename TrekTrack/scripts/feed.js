@@ -33,21 +33,19 @@ if ('content' in document.createElement('template')) {
                 if (feedItem["user_name"] != profileName) {
                     return;
                 } else {
-                    let noPosts = document.querySelector(".container-p-no");
+                    let noPosts = document.querySelector(".container-p-no-posts");
                     if (noPosts != null) {
                         noPosts.remove();
                     }
-                    $(".container-p-content").css("height", "auto");
                 }
             } else if (profileName === null) {
                 if (feedItem["user_id"] != userData["user_id"]) {
                     return;
                 } else {
-                    let noPosts = document.querySelector(".container-p-no");
+                    let noPosts = document.querySelector(".container-p-no-posts");
                     if (noPosts != null) {
                         noPosts.remove();
                     }
-                    $(".container-p-content").css("height", "auto");
                 }
             }
         }
@@ -79,7 +77,10 @@ if ('content' in document.createElement('template')) {
         }
 
         postClone.querySelector(".like-count").innerText = feedItem["like_amount"];
-        postClone.querySelector(".comment-count").innerText = feedItem["comment_amount"];
+
+        postClone.querySelectorAll(".comment-count").forEach(element => {
+            element.innerText = feedItem["comment_amount"];
+        })
             
         postClone.querySelector(".like-count").id = feedItem["post_id"] + "likecount";
         postClone.querySelector(".like-button").id = feedItem["post_id"] + "likebtn";
@@ -109,6 +110,12 @@ if ('content' in document.createElement('template')) {
                 postClone.querySelector(".comment-button").classList.add("fa-solid");
                 postClone.querySelector(".comment-button").style.color = "var(--accent-tint-1)";
             }
+        }
+
+        if (feedItem["comment_amount"] > 1) {
+            postClone.querySelector(".show-comments").style.display = "flex";
+        } else {
+            postClone.querySelector(".show-comments").style.display = "none";
         }
 
         if ("comments" in feedItem) {
@@ -306,22 +313,21 @@ if ('content' in document.createElement('template')) {
 
     $(contFeed).on("click", ".comment-button", function() {
         if ($(".active-comment").length > 0) {
-            let closestCommentCount = $(".active-comment").closest(".post-container").find(".comment-count");
             $(".active-comment").remove();
-        
-            if ((parseInt(closestCommentCount.html()) - 1) == 0){
-                closestCommentCount.text(parseInt(closestCommentCount.html()) - 1);
-                closestCommentCount.hide();
-            } else {
-                closestCommentCount.text(parseInt(closestCommentCount.html()) - 1);
-            };
         }
 
         active = true;
         let postId = $(this).attr("id").replace("commentbtn", "");
-        let commentCount = $("#"+postId+"commentcount");
+        let commentCount = $(this).closest(".post-container").find(".comment-count");
         let commentBtn = $("#"+postId+"commentbtn");
         let commentContainer = $("#"+postId+"comments");
+        let showComments = $(this).closest(".post-container").find(".show-comments");
+        
+        if (commentContainer.css("display") == "none") {
+            showComments.find(".show-status").text("Hide");
+            showComments.find(".fa-chevron-down").addClass("fa-chevron-up").removeClass("fa-chevron-down");
+            commentContainer.show();
+        }
 
         const commentClone = tempComment.content.cloneNode(true);
 
@@ -358,10 +364,11 @@ if ('content' in document.createElement('template')) {
 
         function handleEnterKey(event) {
             if (event.key === "Enter") {
-                let comment = $(this).val();
-                if (comment == "") {
+                let comment = $(this).val().trim();
+                if (!comment) {
                     $(this).closest(".container-comment").remove();
                     active = false;
+                    alert("Comment cannot be empty.");
                     return;
                 }
                 let commentElement = $(this)
@@ -384,13 +391,19 @@ if ('content' in document.createElement('template')) {
 
                         commentElement.closest(".container-comment").find(".comment-like-button").first().removeClass("fa-solid");
                         commentElement.closest(".container-comment").find(".comment-like-button").first().addClass("fa-regular");
-                        commentElement.closest(".container-comment").find(".comment-like-button").first().css("color", "var(--neutral-color)");
+                        commentElement.closest(".container-comment").find(".comment-like-button").first().css("color", "var(--invert-neutral-color-shade-4)");
 
                         event.target.removeEventListener('keydown', handleEnterKey);
                         commentBtn.removeClass("fa-regular");
                         commentBtn.addClass("fa-solid");
                         commentBtn.css("color", "var(--accent-tint-1)");
+
+                        $(commentCount).text(parseInt($(commentCount).html()) + 1);
                         commentCount.show();
+
+                        if (parseInt(commentCount.first().text()) > 1) {
+                            showComments.css("display", "flex");
+                        }
                         currentCommentID++;
                         active = false;
                     },
@@ -404,7 +417,7 @@ if ('content' in document.createElement('template')) {
 
         commentContainer.prepend(commentClone);
         commentTextArea.focus();
-        $(commentCount).text(parseInt($(commentCount).html()) + 1);
+
     });
 
     $(contFeed).on("click", ".post-user-image", function() {
@@ -433,7 +446,7 @@ if ('content' in document.createElement('template')) {
                 } else if ($(likeBtn).hasClass("fa-solid")) {
                     $(likeBtn).removeClass("fa-solid");
                     $(likeBtn).addClass("fa-regular");
-                    likeBtn.css("color", "#727272");
+                    likeBtn.css("color", "var(--invert-neutral-color-shade-4)");
                     if ((parseInt($(likeCount).html()) - 1) == 0){
                         $(likeCount).text(parseInt($(likeCount).html()) - 1);
                         likeCount.hide();
@@ -450,15 +463,7 @@ if ('content' in document.createElement('template')) {
 
     $(contFeed).on("click", ".comment-reply-button", function() {
         if ($(".active-comment").length > 0) {
-            let closestReplyCount = $(".active-comment").closest(".post-container").find(".reply-count");
             $(".active-comment").remove();
-        
-            if ((parseInt(closestReplyCount.html()) - 1) == 0){
-                closestReplyCount.text(parseInt(closestReplyCount.html()) - 1);
-                closestReplyCount.hide();
-            } else {
-                closestReplyCount.text(parseInt(closestReplyCount.html()) - 1);
-            };
         }
 
         active = true;
@@ -466,7 +471,7 @@ if ('content' in document.createElement('template')) {
         let replyUsername = $(this).closest(".container-comment").find(".comment-username").first().text();
         let mainReplyBtn = $("#"+commentId+"commentreplybtn");
         let replyBtn = $(this).closest(".container-comment").find(".comment-reply-button").first();
-        let replyCount = $("#"+commentId+"commentreplycount");
+        let replyCount = $(this).closest(".comment-container").find(".comment-reply-count");
         let replyContainer = $(this).closest(".comment-container").find(".comment-replies")/* $("#"+commentId+"commentreplycontainer") */;
         let showReply = $(this).closest(".comment-container").find(".show-replies");
 
@@ -497,12 +502,15 @@ if ('content' in document.createElement('template')) {
         commentClone.querySelector(".comment-like-button").classList.remove("comment-like-button");
 
         commentClone.querySelector(".comment-reply-button").id = currentReplyID + "replyreplybtn";
+        
 
         commentClone.querySelector(".comment-like-count").innerText = "0";
 
         commentClone.querySelector(".comment-like-count").style.display = "none";
 
         commentClone.querySelector(".comment-replies").remove();
+        commentClone.querySelector(".comment-reply-count").remove();
+        commentClone.querySelector(".show-replies").remove();
 
         if (replyUsername == userData["user_name"]) {
             commentClone.querySelector(".replied-to").innerText = "yourself";
@@ -534,10 +542,11 @@ if ('content' in document.createElement('template')) {
 
         function handleEnterKey(event) {
             if (event.key === "Enter") {
-                let reply = $(this).val();
-                if (reply == "") {
+                let reply = $(this).val().trim();
+                if (!reply) {
                     $(this).closest(".container-comment").remove();
                     active = false;
+                    alert("Reply cannot be empty.");
                     return;
                 }
                 let replyElement = $(this)
@@ -557,7 +566,14 @@ if ('content' in document.createElement('template')) {
                         mainReplyBtn.removeClass("fa-regular");
                         mainReplyBtn.addClass("fa-solid");
                         mainReplyBtn.css("color", "var(--accent-tint-1)");
+                        $(replyCount).text(parseInt($(replyCount).html()) + 1);
                         replyCount.show();
+
+                        console.log(parseInt(replyCount.first().text()));
+                        if (parseInt(replyCount.first().text()) > 1) {
+                            showReply.css("display", "flex");
+                        }
+
                         active = false;
                         currentReplyID++;
                     },
@@ -572,7 +588,6 @@ if ('content' in document.createElement('template')) {
 
         replyContainer.append(commentClone);
         commentTextArea.focus();
-        $(replyCount).text(parseInt($(replyCount).html()) + 1);
     });
 
     $(contFeed).on("click", ".comment-like-button", function() {
@@ -596,7 +611,7 @@ if ('content' in document.createElement('template')) {
                 } else if ($(likeBtn).hasClass("fa-solid")) {
                     $(likeBtn).removeClass("fa-solid");
                     $(likeBtn).addClass("fa-regular");
-                    likeBtn.css("color", "#727272");
+                    likeBtn.css("color", "var(--invert-neutral-color-shade-4)");
                     if ((parseInt($(likeCount).html()) - 1) == 0){
                         $(likeCount).text(parseInt($(likeCount).html()) - 1);
                         likeCount.hide();
@@ -622,6 +637,20 @@ if ('content' in document.createElement('template')) {
             $(this).find(".show-status").text("Show");
             $(this).find(".fa-chevron-up").addClass("fa-chevron-down").removeClass("fa-chevron-up");
             replyContainer.hide();
+        };
+    });
+
+    $(contFeed).on("click", ".show-comments", function() {
+        let commentContainer = $(this).closest(".post-container").find(".post-comments");
+
+        if ($(this).find(".show-status").text() == "Show") {
+            $(this).find(".show-status").text("Hide");
+            $(this).find(".fa-chevron-down").addClass("fa-chevron-up").removeClass("fa-chevron-down");
+            commentContainer.show();
+        } else {
+            $(this).find(".show-status").text("Show");
+            $(this).find(".fa-chevron-up").addClass("fa-chevron-down").removeClass("fa-chevron-up");
+            commentContainer.hide();
         };
     });
 }

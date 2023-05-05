@@ -25,7 +25,7 @@ require_once 'php/utilities.php';
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
                 <li>
-                    <label class="toggle-switch-label" for="toggle-switch-input">Dark Mode</label>
+                    <label class="toggle-switch-label clickable" for="toggle-switch-input">Dark Mode</label>
                     <div class="toggle-switch">
                         <label class="switch">
                             <input type="checkbox" id="toggle-switch-input">

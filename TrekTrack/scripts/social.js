@@ -11,8 +11,10 @@ const noFriendsContainer = document.querySelector('.no-friends-container');
 let profileID = undefined;
 let profileFriendContainer = undefined;
 
+const params = new URLSearchParams(window.location.search);
+
 if (location.href.includes("profile.php?username")) {
-    profileID = location.href.split("=")[2];
+    profileID = params.get("id");
     profileFriendContainer = document.querySelector('.friend-container.profile-page');
 }
 
@@ -27,40 +29,102 @@ function displaySearchResults(response) {
 
     if ('content' in document.createElement('template')) {
         /* let parsedResponse = JSON.parse(response); */
-        console.log(response);
         response.forEach(result => {
             if (profileID != undefined && result['user_id'] == profileID) {
                 let profileStatus = result['relation_status'];
 
                 switch (profileStatus) {
                     case 'none':
+                        profileFriendContainer.querySelectorAll("i").forEach(function (element) {
+                            element.style.display = "none";
+                        });
+                        profileFriendContainer.querySelector(".button-add-friend").style.display = "flex";
                         break;
                     case 'pending':
                         if (userData["user_id"] == result['receiver_id']) {
-                            profileStatus = 'received';
-                            profileFriendContainer.querySelector(".status-none").style.display = "none";
-                            profileFriendContainer.querySelectorAll(".status-received").forEach(element => {
-                                element.style.display = "flex";
+                            profileFriendContainer.querySelectorAll("i").forEach(function (element) {
+                                element.style.display = "none";
                             });
+                            profileStatus = 'received';
+                            profileFriendContainer.querySelector(".button-accept-friend").style.display = "flex";
+                            profileFriendContainer.querySelector(".button-reject-friend").style.display = "flex";
                         } else if (userData["user_id"] == result['sender_id']) {
+                            profileFriendContainer.querySelectorAll("i").forEach(function (element) {
+                                element.style.display = "none";
+                            });
                             profileStatus = 'sent';
-                            profileFriendContainer.querySelector(".status-none").style.display = "none";
                             profileFriendContainer.querySelector(".button-reject-friend").style.display = "flex";
                         }
                         break;
                     case 'accepted':
-                        profileFriendContainer.querySelector(".button-accept-friend").style.display = "none";
-                        profileFriendContainer.querySelector(".status-none").style.display = "none";
+                        profileFriendContainer.querySelectorAll("i").forEach(function (element) {
+                            element.style.display = "none";
+                        });
                         profileFriendContainer.querySelector(".button-remove-friend").style.display = "flex";
                         /* friendClone.querySelector(".friend-container").style.backgroundColor = "var(--primary-tint-2)"; */
                         break;
                     default:
                         profileStatus = 'none';
+                        profileFriendContainer.querySelectorAll("i").forEach(function (element) {
+                            element.style.display = "none";
+                        });     
+                        profileFriendContainer.querySelector(".button-add-friend").style.display = "flex";
                         break;
                 }
             }
 
             if (document.getElementById(result['user_id'] + 'friendcontainer') != null) {
+                let friendClone = document.getElementById(result['user_id'] + 'friendcontainer');
+                let statusText = friendClone.querySelector('.status-text');
+                let friendStatus = result['relation_status'];
+
+                switch (friendStatus) {
+                    case 'none':
+                        friendClone.querySelectorAll("i").forEach(function (element) {
+                            element.style.display = "none";
+                        });
+                        statusText.textContent = 'Add friend:';
+                        friendClone.querySelector(".button-add-friend").style.display = "flex";
+                        break;
+                    case 'pending':
+                        if (userData["user_id"] == result['receiver_id']) {
+                            friendStatus = 'received';
+                            friendClone.querySelectorAll("i").forEach(function (element) {
+                                element.style.display = "none";
+                            });
+                            statusText.textContent = 'New request!';
+                            friendClone.querySelector(".button-accept-friend").style.display = "flex";
+                            friendClone.querySelector(".button-reject-friend").style.display = "flex";
+                            friendClone.querySelectorAll(".status-received").forEach(element => {
+                                element.style.display = "flex";
+                            });
+                        } else if (userData["user_id"] == result['sender_id']) {
+                            friendStatus = 'sent';
+                            friendClone.querySelectorAll("i").forEach(function (element) {
+                                element.style.display = "none";
+                            });
+                            statusText.textContent = 'Request pending...';
+                            friendClone.querySelector(".button-reject-friend").style.display = "flex";
+                        }
+                        break;
+                    case 'accepted':
+                        friendClone.querySelectorAll("i").forEach(function (element) {
+                            element.style.display = "none";
+                        });
+                        statusText.innerHTML = 'Friends for ' + timeStamper(result['updated_at']).replace(' ago', '').replace(/minutes|minute/g, 'm ').replace(/hours|hour/g, 'h ').replace(/days|day/g, 'd ').replace(/weeks|week/g, 'w ').replace(/months|month/g, 'mo ').replace(/years|year/g, 'y ').replace(/seconds|second/g, "s ").replace(" ", '');
+                        friendClone.querySelector(".button-remove-friend").style.display = "flex";
+                        /* friendClone.querySelector(".friend-container").style.backgroundColor = "var(--primary-tint-2)"; */
+                        break;
+                    default:
+                        friendClone.querySelectorAll("i").forEach(function (element) {
+                            element.style.display = "none";
+                        });
+                        friendStatus = 'none';
+                        statusText.textContent = 'Add friend:';
+                        friendClone.querySelector(".button-add-friend").style.display = "flex";
+                        break;
+                }
+
                 socialContainer.prepend(document.getElementById(result['user_id'] + 'friendcontainer'));
                 return;
             }
@@ -69,8 +133,6 @@ function displaySearchResults(response) {
 
             let status = result['relation_status'];
             let statusText = friendClone.querySelector('.status-text');
-
-            console.log(status);
 
             switch (status) {
                 case 'none':
@@ -140,12 +202,17 @@ $('#friends-search').on('input', function () {
     }
 });
 
+function checkForUpdates() {
+    searchFriends("");
+}
+
+let update = setInterval(checkForUpdates, 1000);
 
 $(document).on("click", ".button-add-friend", function () {
     let friendContainer = $(this).closest(".friend-container");
     let friendUserId;
 
-    if (profileID != undefined) {
+    if (profileID != undefined && friendContainer.hasClass("profile-page")) {
         friendUserId = profileID;
     } else {
         friendUserId = friendContainer.attr("id").replace("friendcontainer", "");
@@ -169,7 +236,7 @@ $(document).on("click", ".button-add-friend", function () {
             friendContainer.find(".button-add-friend").css("display", "none");
             friendContainer.find(".button-reject-friend").css("display", "flex");
 
-            if (profileID != undefined) {
+            if (profileID != undefined && friendUserId == profileID) {
                 profileFriendContainer.querySelector(".button-add-friend").style.display = "none";
                 profileFriendContainer.querySelector(".button-reject-friend").style.display = "flex";
             }
@@ -184,7 +251,7 @@ function friendRemove() {
     let friendContainer = $(this).closest(".friend-container");
     let friendUserId;
 
-    if (profileID != undefined) {
+    if (profileID != undefined && friendContainer.hasClass("profile-page")) {
         friendUserId = profileID;
     } else {
         friendUserId = friendContainer.attr("id").replace("friendcontainer", "");
@@ -210,7 +277,7 @@ function friendRemove() {
                 statusText.text("Request cancelled.");
             } else if (statusText.text() == "New request!") {
                 statusText.text("Request rejected.");
-            } else if (statusText.text() == "Friends for:" || statusText.text() == "Request accepted!") {
+            } else if (statusText.text().includes("Friends for") || statusText.text() == "Request accepted!") {
                 statusText.text("Friend removed.");
             }
 
@@ -220,7 +287,7 @@ function friendRemove() {
 
             friendContainer.find(".button-add-friend").css("display", "flex");
 
-            if (profileID != undefined) {
+            if (profileID != undefined && friendUserId == profileID) {
                 profileFriendContainer.querySelectorAll("i").forEach(function (element) {
                     element.style.display = "none";
                 });
@@ -240,7 +307,7 @@ $(document).on("click", ".button-accept-friend", function () {
     let friendContainer = $(this).closest(".friend-container");
     let friendUserId;
 
-    if (profileID != undefined) {
+    if (profileID != undefined && friendContainer.hasClass("profile-page")) {
         friendUserId = profileID;
     } else {
         friendUserId = friendContainer.attr("id").replace("friendcontainer", "");
@@ -264,7 +331,7 @@ $(document).on("click", ".button-accept-friend", function () {
             friendContainer.find(".button-accept-friend").css("display", "none");
             friendContainer.find(".button-remove-friend").css("display", "flex");
             
-            if (profileID != undefined) {
+            if (profileID != undefined && friendUserId == profileID) {
                 profileFriendContainer.querySelector(".button-reject-friend").style.display = "none";
                 profileFriendContainer.querySelector(".button-accept-friend").style.display = "none";
                 profileFriendContainer.querySelector(".button-remove-friend").style.display = "flex";

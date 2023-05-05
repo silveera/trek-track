@@ -12,7 +12,7 @@ export function autoResize() {
 };
 
 export function removeWhiteSpace() {
-    this.value  = this.value.replace(/\s+/g, ' ').trim();
+    this.value = this.value.replace(/\s+/g, ' ').trim();
 };
 
 export function textAreaEvents () {
@@ -78,7 +78,9 @@ export function timeStamper(date) {
     const secondsAgo = Math.floor((new Date() - timestamp) / 1000);
 
     let displayTime;
-    if (secondsAgo < 60) {
+    if (secondsAgo <= 1) {
+      displayTime = '1 second ago';
+    } else if (secondsAgo < 60) {
       displayTime = `${secondsAgo} ${secondsAgo === 1 ? 'second' : 'seconds'} ago`;
     } else if (secondsAgo < 60 * 60) {
       const minutesAgo = Math.floor(secondsAgo / 60);

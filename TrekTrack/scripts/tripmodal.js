@@ -18,7 +18,6 @@ const txtNewTripInputs = document.querySelectorAll(".new-trip-input");
 const containerPTrips = document.querySelector(".container-p-trips");
 const containerPPosts = document.querySelector(".container-p-posts");
 
-
 txtNewTripTitle.addEventListener('input', autoResize);
 txtNewTripTitle.addEventListener('focus', autoResize);
 txtNewTripTitle.addEventListener('blur', autoResize);
@@ -26,19 +25,6 @@ txtNewTripTitle.addEventListener('blur', autoResize);
 txtNewTripTitle.addEventListener('blur', removeWhiteSpace);
 txtNewTripTitle.addEventListener('focus', removeWhiteSpace);
 txtNewTripTitle.addEventListener('keydown', preventEnterKey);
-
-if (window.location.hash === "#ongoing-trips") {
-    containerPPosts.style.display = "none";
-    containerPTrips.style.display = "flex";
-}
-
-const tripLinks = document.querySelectorAll("a[href='profile.php#ongoing-trips']");
-
-tripLinks.forEach(element => {
-    element.addEventListener('click', function () {
-        window.location.reload();
-    });
-});
 
 btnNewTripModal.onclick = function () {
     modalNewTrip.style.display = "flex";

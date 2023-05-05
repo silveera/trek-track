@@ -53,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action'] == 'search-friends') 
             $friendsArray[] = $row;
         }
 
+        $_SESSION['updateTime'] = time();
         return $friendsArray;
     }
 
