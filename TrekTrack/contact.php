@@ -20,7 +20,7 @@ require_once 'php/utilities.php';
 <body>
     <header class="primary-gradient">
         <div class="head logo">
-            <a href="<?= checkLoginStatus() ? "home.php" : "index.php" ?>" class="not-link" style="margin-bottom: -0.1em; margin-top: -0.3em; margin-left: 0.2em;"><img src="images/Banner.svg" width="170px" id="logo" alt="Trek&Track-Logo"></a>
+            <a href="<?= checkLoginStatus() ? "home.php" : "index.php" ?>" class="not-link" style="margin-bottom: -0.1em; margin-top: -0.3em; margin-left: 0.2em;"><img src="images/Banner.svg" width="170" id="logo" alt="Trek&Track-Logo"></a>
         </div>
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">

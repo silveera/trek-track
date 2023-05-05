@@ -23,7 +23,7 @@ if (checkLoginStatus()) {
 <body>
     <header class="primary-gradient">
         <div class="head logo">
-            <a href="index.php" class="not-link" style="margin-left: 0.2em; margin-block: 0.2em;"><img src="images/Banner.svg" width="170px" id="logo" alt="Trek&Track-Logo">
+            <a href="index.php" class="not-link" style="margin-left: 0.2em; margin-block: 0.2em;"><img src="images/Banner.svg" width="170" id="logo" alt="Trek&Track-Logo">
             </a>
         </div>
         <nav class="text-medium-invert-neutral">

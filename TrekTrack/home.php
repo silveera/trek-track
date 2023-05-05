@@ -26,7 +26,7 @@ require_once 'php/user-info-module.php';
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v16.0" nonce="w8VcQxbH"></script>
     <header class="primary-gradient">
         <div class="head logo">
-            <a href="home.php" class="not-link" style="margin-bottom: -0.1em; margin-top: -0.3em; margin-left: 0.2em;"><img src="images/Banner.svg" width="170px" id="logo" alt="Trek&Track-Logo"></a>
+            <a href="home.php" class="not-link" style="margin-bottom: -0.1em; margin-top: -0.3em; margin-left: 0.2em;"><img src="images/Banner.svg" width="170" id="logo" alt="Trek&Track-Logo"></a>
         </div>
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
@@ -78,7 +78,7 @@ require_once 'php/user-info-module.php';
                         <p class="trip-timestamp">Loading...</p>
                     </div>
                     <div>
-                        <a href="profile.php#trips" class="not-link"><i class="fa-solid fa-arrow-right-arrow-left switch-trip-button" title="Switch Ongoing Trip" tabindex="0"></i></a>
+                        <a href="profile.php#trips" class="not-link"><i class="fa-solid fa-arrow-right-arrow-left switch-trip-button" title="Switch Ongoing Trip"></i></a>
                     </div>
                 </div>
                 <div class="ongoing-trip">
@@ -100,7 +100,7 @@ require_once 'php/user-info-module.php';
                 </div>
                 </div>
                 <div class="no-ongoing-trips">
-                    <p>You do not have any ongoing trips. Click <a href="profile.php#trips" class="not-link"><i class="fa-solid fa-arrow-right-arrow-left switch-trip-button" title="Switch Ongoing Trip" style="color: var(--accent-tint-1);" tabindex="0"></i></a> to pick or create one!</p>
+                    <p>You do not have any ongoing trips. Click <a href="profile.php#trips" class="not-link"><i class="fa-solid fa-arrow-right-arrow-left switch-trip-button" title="Switch Ongoing Trip" style="color: var(--accent-tint-1);"></i></a> to pick or create one!</p>
                 </div>
             </div>
         </aside>
