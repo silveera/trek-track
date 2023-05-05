@@ -13,6 +13,7 @@ function invalidUsername($username) {
     return $result;
 }
 
+// Function to check if the given username already exists in the db
 function existingUsername($conn, $username) {
     $query = "SELECT * FROM users WHERE user_name = ?;";
 
@@ -39,6 +40,7 @@ function existingUsername($conn, $username) {
     return $result;
 }
 
+// Function to check if the given email already exists in the db
 function existingEmail($conn, $email) {
     $query = "SELECT * FROM users WHERE user_email = ?;";
 
@@ -78,6 +80,7 @@ function invalidEmail($email) {
     return $result;
 }
 
+// Function to check if the given passwords do not match
 function difPassword($password, $passwordrepeat) {
     if ($password !== $passwordrepeat) {
         $result = true;

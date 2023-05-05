@@ -5,6 +5,7 @@ require_once 'user-info-module.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $reply_id = $_POST['reply_id'];
 
+// toggles a like for a comment reply by a given user.
     function likereply($conn, $reply_id, $userID) {
         $query = "SELECT * FROM comment_reply_likes WHERE reply_id = ? AND user_id = ?;";
         $stmt = mysqli_prepare($conn, $query);
@@ -65,3 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     likereply($conn, $reply_id, $userID);
 }
+
+// this page checks if the request method used is POST, if is is, it gets the reply_id 
+// from the request & calls the likereply function with the connection, reply ID, and user ID parameters.

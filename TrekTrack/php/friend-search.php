@@ -3,6 +3,12 @@ require_once 'utilities.php';
 require_once 'user-info-module.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action'] == 'search-friends') {
+    // function for fetching friend relationships for a given user ID and search query in friend search bar,
+    // uses SQL query that joins the users and user_relations tables to get information about the users and their relationship 
+    // statuses. search query is used to filter users based on their user names, or if the search query is empty, it returns
+    // users with 'pending' or 'accepted' relationship statuses. returns an array of users containing information like user ID,
+    // user name, user avatar reference, relation status, and the sender and receiver IDs for the relationship.
+
     function fetchRelationInfo($conn, $currentUserID, $search){
         $query = "SELECT users.user_id,
                             users.user_name,
@@ -62,3 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action'] == 'search-friends') 
     header('Content-Type: application/json');
     echo json_encode($friendsSearch);
 }
+
+// if the request method is GET & the action parameter is 'search-friends', page calls the fetchRelationInfo function with the
+// connection, user ID, & search query parameters. returns the friend search results, & the script sets the content type to JSON
+// & echoes the JSON-encoded array of friend search results.
