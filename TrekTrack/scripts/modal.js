@@ -1,3 +1,11 @@
+// This page imports functions from util.js & logs a success message to the console, 
+// defines several variables using document.getElementById & document.getElementsByClassName 
+// to select specific elements from the HTML page. 
+// If the current URL includes "profile.php?username", the username variable is set to the value of the username query parameter. // Event listeners are added to the txtNewPostCaption element to handle automatic resizing, removing white space, & preventing
+// the enter key from submitting the form. 
+// Event listeners are also added to the modal buttons to open & close the modal & display the preview of an image when it is selected.
+
+
 import { autoResize, removeWhiteSpace, preventEnterKey } from './util.js';
 
 console.log("modal.js loaded successfully.");

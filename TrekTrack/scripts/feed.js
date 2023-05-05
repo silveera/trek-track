@@ -1,3 +1,9 @@
+// This page handles the display of comments & replies, including user interactions such as liking & adding comments. 
+// It creates unique IDs & populates comment & reply elements with data from the server. 
+// Event listeners handle AJAX requests to update the UI & server with appropriate data based on user actions. 
+// Events include submitting comments, user profile links, liking comments & replies, replying to comments, showing or hiding replies, & showing or hiding comments.
+
+
 import {escapeHtml, textAreaEvents, timeStamper, userData} from "./util.js";
 
 let contFeed = document.querySelector(".container-feed");
@@ -654,5 +660,3 @@ if ('content' in document.createElement('template')) {
         };
     });
 }
-
-    

@@ -23,3 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     submitComment($conn, $postID, $userID, $commentContent);
 }
+
+// this page checks if req method is POST,
+// submitComment() func takes the connection, post ID, user ID, & comment content as parameters,
+// creates SQL query to insert new comment into "comments" table in db with the given post ID, user ID, & comment content,
+// prepares SQL query using mysqli_prepare(), binds parameters (post ID, user ID, and comment content) to statement,
+// using mysqli_stmt_bind_param(), executes statement with mysqli_stmt_execute(), closes statement using mysqli_stmt_close(),
+// gets post ID & comment content from $_POST superglobal array, calls submitComment() func with connection, post ID, user ID, & 
+// comment content.
