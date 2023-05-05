@@ -19,7 +19,7 @@ require_once 'php/user-info-module.php';
     <script src="scripts/social.js" type="module" ></script>
     <script src="scripts/ongoingtrips.js" type="module" ></script>
     <title>Home</title>
-</head>
+<noscript>Your browser does not support JavaScript!</noscript></head>
 
 <body>
     <div id="fb-root"></div>
@@ -40,7 +40,6 @@ require_once 'php/user-info-module.php';
                     </div>
                 </li>
                 <li><a href="home.php"><i class="fa-solid fa-house not-link"></i><p>Home</p></a></li>
-                <li><a href="contact.php"></p>Contact</p></a></li>
                 <li><a href="profile.php"><i class="fa-solid fa-user not-link"></i><p>Profile</p></a></li>
             </ul>
 
@@ -62,10 +61,10 @@ require_once 'php/user-info-module.php';
             <div class="list-collection-container" >
             <ul class="list-collection">
                 <li>
-                    <p><i class="fa-regular fa-images"></i>My Posts</p>
+                    <a class="not-link" href="profile.php#posts"><p><i class="fa-regular fa-images"></i>My Posts</p></a>
                 </li>
                 <li>
-                    <p id="collection-trips" class="icon"><i class="fa-regular fa-map"></i>My Trips</p>
+                    <a class="not-link" href="profile.php#trips"><p id="collection-trips" class="icon"><i class="fa-regular fa-map"></i>My Trips</p></a>
                 </li>
             </ul>
             </div>
@@ -79,7 +78,7 @@ require_once 'php/user-info-module.php';
                         <p class="trip-timestamp">Loading...</p>
                     </div>
                     <div>
-                        <a href="profile.php#trips" class="not-link"><i class="fa-solid fa-arrow-right-arrow-left switch-trip-button" tabindex="0"></i></a>
+                        <a href="profile.php#trips" class="not-link"><i class="fa-solid fa-arrow-right-arrow-left switch-trip-button" title="Switch Ongoing Trip" tabindex="0"></i></a>
                     </div>
                 </div>
                 <div class="ongoing-trip">
@@ -101,11 +100,12 @@ require_once 'php/user-info-module.php';
                 </div>
                 </div>
                 <div class="no-ongoing-trips">
-                    <p>You do not have any ongoing trips. Click <a href="profile.php#trips" class="not-link"><i class="fa-solid fa-arrow-right-arrow-left switch-trip-button" style="color: var(--accent-tint-1);" tabindex="0"></i></a> to pick or create one!</p>
+                    <p>You do not have any ongoing trips. Click <a href="profile.php#trips" class="not-link"><i class="fa-solid fa-arrow-right-arrow-left switch-trip-button" title="Switch Ongoing Trip" style="color: var(--accent-tint-1);" tabindex="0"></i></a> to pick or create one!</p>
                 </div>
             </div>
         </aside>
-        <div class="home feed bg-invert-neutral container-feed">
+        <div class="home feed bg-invert-neutral">
+            <div class="container-feed">
             <template id="template-comment">
                 <div class="container-comment">
                     <div class="comments-header">
@@ -120,8 +120,8 @@ require_once 'php/user-info-module.php';
                     <div class="cont-comment-content"><textarea class="comment" name="comment-content" maxlength="280" rows="1" placeholder="Enter comment" readonly></textarea></div>
                     <div class="comments-footer">
                         <p class="comment-timestamp"></p>
-                        <i class="fa-regular fa-heart comment-like-button" tabindex="0"></i><p class="comment-like-count counter"></p>
-                        <i class="fa-regular fa-comments comment-reply-button" tabindex="0"></i><p class="comment-reply-count counter"></p>
+                        <i class="fa-regular fa-heart comment-like-button" tabindex="0" title="Like"></i><p class="comment-like-count counter"></p>
+                        <i class="fa-regular fa-comments comment-reply-button" tabindex="0" title="Reply"></i><p class="comment-reply-count counter"></p>
                         <div class="non-reply-content show-replies clickable show-button"><p><span class="show-status">Show</span><span class="comment-reply-count"></span>replies</p><i class="fa-solid fa-chevron-down"></i></div>
                     </div>
                     <div class="comment-replies"></div>
@@ -140,17 +140,25 @@ require_once 'php/user-info-module.php';
                     <div class="post-image-container">
                         <img alt="Example Image" class="post-image">
                         <div class="image-footer">
-                            <i class="fa-regular fa-heart like-button" tabindex="0"></i><p class="like-count counter"></p>
-                            <i class="fa-regular fa-comment comment-button" tabindex="0"></i><p class="comment-count counter"></p><div class="show-comments clickable show-button"><p><span class="show-status">Show</span><span class="comment-count"></span>comments</p><i class="fa-solid fa-chevron-down"></i></div>
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=" class="facebook-btn not-link" target="_blank"><i class="fa-brands fa-facebook share-btn"></i></a>
-                            <a href="https://twitter.com/intent/tweet?text=https://enos.itcollege.ee/~badurm/trektrack1/TrekTrack/home.php" class="twitter-btn not-link" target="_blank"><i class="fa-brands fa-square-twitter share-btn"></i></a>
-                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://enos.itcollege.ee/~badurm/trektrack1/TrekTrack/home.php" class="linkedin-btn not-link" target="_blank"><i class="fa-brands fa-linkedin share-btn"></i></a>
+                            <i class="fa-regular fa-heart like-button" tabindex="0" title="Like"></i><p class="like-count counter"></p>
+                            <i class="fa-regular fa-comment comment-button" tabindex="0" title="Add Comment"></i><p class="comment-count counter"></p><div class="show-comments clickable show-button"><p><span class="show-status">Show</span><span class="comment-count"></span>comments</p><i class="fa-solid fa-chevron-down"></i></div>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=" class="facebook-btn not-link" target="_blank"><i class="fa-brands fa-facebook share-btn" title="Share Page on Facebook"></i></a>
+                            <a href="https://twitter.com/intent/tweet?text=https://enos.itcollege.ee/~badurm/trektrack1/TrekTrack/home.php" class="twitter-btn not-link" target="_blank"><i class="fa-brands fa-square-twitter share-btn" title="Share Page on Twitter"></i></a>
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://enos.itcollege.ee/~badurm/trektrack1/TrekTrack/home.php" class="linkedin-btn not-link" target="_blank"><i class="fa-brands fa-linkedin share-btn" title="Share Page on LinkedIn"></i></a>
                         </div>
                     </div>
                     <div class="post-comments">
                     </div>
                 </div>
             </template>
+            </div>
+            <footer class="quick-links bg-transparent">
+                <ul>
+                    <li><a href="about.php">About Us</a></li>
+                    <li><a href="contact.php">Contact</a></li>
+                    <li><a href="privacy.php">Privacy</a></li>
+                </ul>
+            </footer>
         </div>
         <aside class="home social bg-invert-neutral">
             <div class="container-friend-searchbar">
@@ -169,10 +177,10 @@ require_once 'php/user-info-module.php';
                         <a class="clickable not-link friend-username profile-link"></a>
                         <div class="container-status-buttons">
                         <p class="status-text"></p>
-                        <i class="fa-solid fa-user-plus positive button-add-friend status-none" tabindex="0"></i>
-                        <i class="fa-solid fa-user-xmark negative button-reject-friend status-received" tabindex="0"></i>
-                        <i class="fa-solid fa-user-check positive button-accept-friend status-received" tabindex="0"></i>
-                        <i class="fa-solid fa-user-minus negative button-remove-friend status-accepted" tabindex="0"></i>
+                        <i class="fa-solid fa-user-plus positive button-add-friend status-none" title="Add Friend" tabindex="0"></i>
+                        <i class="fa-solid fa-user-xmark negative button-reject-friend status-received" title="Reject Friend" tabindex="0"></i>
+                        <i class="fa-solid fa-user-check positive button-accept-friend status-received" title="Accept Friend" tabindex="0"></i>
+                        <i class="fa-solid fa-user-minus negative button-remove-friend status-accepted" title="Remove Friend" tabindex="0"></i>
                         </div>
                     </div>
                 </div>
@@ -180,10 +188,6 @@ require_once 'php/user-info-module.php';
             </div>
         </aside>
     </main>
-    <footer class="quick-links bg-transparent">
-        <p></p>
-    </footer>
-
 </body>
 
 </html>

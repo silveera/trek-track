@@ -47,7 +47,7 @@ function fetch_comments($conn, $post_id) {
   $stmt = mysqli_prepare($conn, $query);
 
   if (!$stmt) {
-      /* header("location: ../signup.php?error=stmtfailed"); */
+      
       echo "stmtfailed";
       exit();
   }
@@ -90,7 +90,7 @@ function fetch_replies($conn, $comment_id) {
   $stmt = mysqli_prepare($conn, $query);
 
   if (!$stmt) {
-      /* header("location: ../signup.php?error=stmtfailed"); */
+      
       echo "stmtfailed";
       exit();
   }
@@ -158,7 +158,7 @@ function fetch_feed_items($limit, $conn) {
     $stmt = mysqli_prepare($conn, $query);
 
     if (!$stmt) {
-        /* header("location: ../signup.php?error=stmtfailed"); */
+        
         echo "stmtfailed";
         exit();
     }
@@ -223,7 +223,7 @@ function fetch_likes($values, $conn) {
     return $likes;
 } */
 
-$feed_items = fetch_feed_items(10, $conn);
+$feed_items = fetch_feed_items(100, $conn);
 
 /* $values = likes($feed_items);
 $likes = fetch_likes($values, $conn);

@@ -18,7 +18,7 @@ if (checkLoginStatus()) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="scripts/darkmode.js" defer></script>
     <title>Login</title>
-</head>
+<noscript>Your browser does not support JavaScript!</noscript></head>
 
 <body>
     <header class="primary-gradient">

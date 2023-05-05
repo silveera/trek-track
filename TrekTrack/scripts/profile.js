@@ -91,27 +91,59 @@ buttonEditP.addEventListener("click", function () {
 if (window.location.hash === "#trips") {
   contPosts.style.display = "none";
   contTrips.style.display = "block";
+  btnTrips.closest(".container-p-content-button").parentElement.style.width = "74%";
+  btnPosts.closest(".container-p-content-button").parentElement.style.width = "24%";
 } else if (window.location.hash === "#posts") {
   contTrips.style.display = "none";
   contPosts.style.display = "block";
+
+  btnPosts.closest(".container-p-content-button").parentElement.style.width = "74%";
+  btnTrips.closest(".container-p-content-button").parentElement.style.width = "24%";
 }
 
 btnPosts.addEventListener('click', function () {
     contTrips.style.display = "none";
     contPosts.style.display = "block";
     location.hash = "#posts";
+
+    btnPosts.closest(".container-p-content-button").parentElement.style.width = "74%";
+    btnTrips.closest(".container-p-content-button").parentElement.style.width = "24%";
 });
 
 btnTrips.addEventListener('click', function () {
     contPosts.style.display = "none";
     contTrips.style.display = "block";
     location.hash = "#trips";
+
+    btnTrips.closest(".container-p-content-button").parentElement.style.width = "74%";
+    btnPosts.closest(".container-p-content-button").parentElement.style.width = "24%";
 });
 
 $(".switch-trip-button").on("click", function () {
     contPosts.style.display = "none";
     contTrips.style.display = "block";
     location.hash = "#trips";
+
+    btnTrips.closest(".container-p-content-button").parentElement.style.width = "74%";
+    btnPosts.closest(".container-p-content-button").parentElement.style.width = "24%";
+});
+
+$(".trip-switch-link").on("click", function () {
+    contPosts.style.display = "none";
+    contTrips.style.display = "block";
+    location.hash = "#trips";
+
+    btnTrips.closest(".container-p-content-button").parentElement.style.width = "74%";
+    btnPosts.closest(".container-p-content-button").parentElement.style.width = "24%";
+});
+
+$(".post-switch-link").on("click", function () {
+    contTrips.style.display = "none";
+    contPosts.style.display = "block";
+    location.hash = "#posts";
+
+    btnPosts.closest(".container-p-content-button").parentElement.style.width = "74%";
+    btnTrips.closest(".container-p-content-button").parentElement.style.width = "24%";
 });
 
 txtBio.addEventListener('input', autoResize);

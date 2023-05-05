@@ -24,7 +24,8 @@ require_once 'php/profile-checker.php';
     <script src="scripts/social.js" type="module"></script>
     <script src="scripts/tripmodal.js" type="module"></script>
     <script src="scripts/ongoingtrips.js" type="module"></script>
-</head>
+    <script src="scripts/delete-item.js" type="module"></script>
+<noscript>Your browser does not support JavaScript!</noscript></head>
 
 <body>
     <header class="primary-gradient">
@@ -45,7 +46,6 @@ require_once 'php/profile-checker.php';
                 <li><a href="home.php"><i class="fa-solid fa-house not-link"></i>
                         <p>Home</p>
                     </a></li>
-                <li><a href="contact.php"></p>Contact</p></a></li>
                 <li><a href="profile.php"><i class="fa-solid fa-user not-link"></i>
                         <p style="border-bottom:2px solid;">Profile</p>
                     </a></li>
@@ -65,43 +65,49 @@ require_once 'php/profile-checker.php';
             <div class="list-collection-container">
                 <ul class="list-collection">
                     <li>
-                        <p><i class="fa-regular fa-images"></i>My Posts</p>
+                        <a class="not-link post-switch-link" href="profile.php#posts">
+                            <p><i class="fa-regular fa-images"></i>My Posts</p>
+                        </a>
                     </li>
                     <li>
-                        <p id="collection-trips" class="icon"><i class="fa-regular fa-map"></i>My Trips</p>
+                        <a class="not-link trip-switch-link" href="profile.php#trips">
+                            <p id="collection-trips" class="icon"><i class="fa-regular fa-map"></i>My Trips</p>
+                        </a>
                     </li>
                 </ul>
             </div>
-            <div class="cont-line collection-center"><div class="line"></div></div>
+            <div class="cont-line collection-center">
+                <div class="line"></div>
+            </div>
             <div class="container-ongoing-trip current-trip">
                 <p class="text-medium-invert-neutral p-ongoing-trip">Ongoing Trip:</p>
                 <div class="trip-cont-invis" style="display: none;">
-                <div class="trip-header">
-                    <div class="trip-creator">
-                        <p class="trip-title">Loading...</p>
-                        <p class="trip-timestamp">Loading...</p>
+                    <div class="trip-header">
+                        <div class="trip-creator">
+                            <p class="trip-title">Loading...</p>
+                            <p class="trip-timestamp">Loading...</p>
+                        </div>
+                        <div>
+                            <a href="profile.php#trips" class="not-link"><i class="fa-solid fa-arrow-right-arrow-left switch-trip-button" title="Switch Ongoing Trip" tabindex="0"></i></a>
+                        </div>
                     </div>
-                    <div>
-                        <a href="profile.php#trips" class="not-link"><i class="fa-solid fa-arrow-right-arrow-left switch-trip-button" tabindex="0"></i></a>
+                    <div class="ongoing-trip">
+                        <div class="cont-icon"><i class="fa-solid fa-location-dot"></i>
+                            <p class="trip-start">Loading...</p><span>Start</span>
+                        </div>
+                        <div class="cont-line">
+                            <div class="line"></div>
+                        </div>
+                        <div class="cont-icon trip-stop"><i class="fa-solid fa-route"></i>
+                            <p class="trip-stops">Loading...</p><span>Stop</span>
+                        </div>
+                        <div class="cont-line">
+                            <div class="line"></div>
+                        </div>
+                        <div class="cont-icon"><i class="fa-solid fa-flag"></i>
+                            <p class="trip-end">Loading...</p><span>End</span>
+                        </div>
                     </div>
-                </div>
-                <div class="ongoing-trip">
-                    <div class="cont-icon"><i class="fa-solid fa-location-dot"></i>
-                        <p class="trip-start">Loading...</p><span>Start</span>
-                    </div>
-                    <div class="cont-line">
-                        <div class="line"></div>
-                    </div>
-                    <div class="cont-icon trip-stop"><i class="fa-solid fa-route"></i>
-                        <p class="trip-stops">Loading...</p><span>Stop</span>
-                    </div>
-                    <div class="cont-line">
-                        <div class="line"></div>
-                    </div>
-                    <div class="cont-icon"><i class="fa-solid fa-flag"></i>
-                        <p class="trip-end">Loading...</p><span>End</span>
-                    </div>
-                </div>
                 </div>
                 <div class="no-ongoing-trips">
                     <p>You do not have any ongoing trips. Click <a href="profile.php#trips" class="not-link"><i class="fa-solid fa-arrow-right-arrow-left switch-trip-button" tabindex="0"></i></a> to pick or create one!</p>
@@ -112,7 +118,7 @@ require_once 'php/profile-checker.php';
             <form class="container-p-header" id="form-edit-profile" method="post" enctype="multipart/form-data" action="php/edit-profile.php" <?= $client ? "" : "disabled" ?>>
                 <div id="container-p-avatar" class="container-p-avatar" style="position: relative;">
                     <label for="input-p-avatar" id="label-input-p-avatar" style="position: absolute; display: none;"><i class="fa-solid fa-camera-rotate"></i></label>
-                    <input type="file" id="input-p-avatar" style="display: none;" accept="image/jpeg, image/png" name="p-avatar">
+                    <input type="file" id="input-p-avatar" style="display: none;" accept="image/jpeg, image/png" name="p-avatar" title="Change Avatar">
                     <img id="p-avatar" src="<?= $avatarSrc ?>" class="large-avatar avatar">
                 </div>
                 <div class="container-p-bio">
@@ -122,11 +128,13 @@ require_once 'php/profile-checker.php';
                             <button type="button" id="button-p-edit" style="display: <?= $client ? "flex" : "none" ?>;">Edit Profile</button>
                             <?php if (!$client) { ?>
                                 <div class="friend-container profile-page">
-                                    <i class="fa-solid fa-user-plus positive button-add-friend status-none" tabindex="0"></i>
-                                    <i class="fa-solid fa-user-xmark negative button-reject-friend status-received" tabindex="0"></i>
-                                    <i class="fa-solid fa-user-check positive button-accept-friend status-received" tabindex="0"></i>
-                                    <i class="fa-solid fa-user-minus negative button-remove-friend status-accepted" tabindex="0"></i>
+                                    <i class="fa-solid fa-user-plus positive button-add-friend status-none" tabindex="0" title="Add Friend"></i>
+                                    <i class="fa-solid fa-user-xmark negative button-reject-friend status-received" tabindex="0" title="Reject Friend"></i>
+                                    <i class="fa-solid fa-user-check positive button-accept-friend status-received" tabindex="0" title="Accept Friend"></i>
+                                    <i class="fa-solid fa-user-minus negative button-remove-friend status-accepted" tabindex="0" title="Remove Friend"></i>
                                 </div>
+                            <?php } else { ?>
+                                <i class="fa-solid fa-trash-can button-delete delete-user" style="margin-left:auto; font-size: var(--font-size-large);" tabindex="0"></i>
                             <?php } ?>
                         </div>
                         <div class="container-p-bio-text" id="container-p-bio-text">
@@ -141,7 +149,7 @@ require_once 'php/profile-checker.php';
                         <button id="button-p-posts" class="not-button button-p-content"><?= $client ? "My" : "$userName's" ?> Posts</button>
                     </div>
                     <?php if ($client) { ?>
-                        <button id="button-p-new-post" class="button-p-new not-button button-new-post"><i class="fa-solid fa-plus"></i></button>
+                        <button id="button-p-new-post" class="button-p-new not-button button-new-post" title="Create New Post"><i class="fa-solid fa-plus"></i></button>
                         <div id="modal-new-post" class="modal">
                             <div class="post-container">
                                 <div class="modal-header">
@@ -176,7 +184,7 @@ require_once 'php/profile-checker.php';
                         <button id="button-p-trips" class="not-button button-p-content"><?= $client ? "My" : "$userName's" ?> Trips</button>
                     </div>
                     <?php if ($client) { ?>
-                        <button id="button-p-new-trip" class="button-p-new not-button"><i class="fa-solid fa-plus"></i></button>
+                        <button id="button-p-new-trip" class="button-p-new not-button" title="Create New Trip"><i class="fa-solid fa-plus"></i></button>
                     <?php } ?>
                     <div id="modal-new-trip" class="modal">
                         <div class="trip-container">
@@ -196,7 +204,7 @@ require_once 'php/profile-checker.php';
                                     <div class="container-ongoing-trip">
                                         <div class="ongoing-trip">
                                             <div class="cont-icon"><i class="fa-solid fa-location-dot"></i>
-                                                <input type="text" id="input-start" name="trip_start" placeholder="Trip Start" class="new-trip-input" maxlength="16" cols="16">
+                                                <input type="text" id="input-start" name="trip_start" placeholder="Trip Start" class="new-trip-input" maxlength="16" cols="16" require>
                                             </div>
                                             <div class="cont-line">
                                                 <div class="line"></div>
@@ -208,7 +216,7 @@ require_once 'php/profile-checker.php';
                                                 <div class="line"></div>
                                             </div>
                                             <div class="cont-icon"><i class="fa-solid fa-flag"></i>
-                                                <input type="text" id="input-destination" name="trip_end" placeholder="Destination" class="new-trip-input" maxlength="16" cols="16">
+                                                <input type="text" id="input-destination" name="trip_end" placeholder="Destination" class="new-trip-input" maxlength="16" cols="16" require>
                                             </div>
                                         </div>
                                     </div>
@@ -252,9 +260,9 @@ require_once 'php/profile-checker.php';
                                 <div class="cont-comment-content"><textarea class="comment" name="comment-content" maxlength="280" rows="1" placeholder="Enter comment" readonly></textarea></div>
                                 <div class="comments-footer">
                                     <p class="comment-timestamp"></p>
-                                    <i class="fa-regular fa-heart comment-like-button" tabindex="0"></i>
+                                    <i class="fa-regular fa-heart comment-like-button" tabindex="0" title="Like"></i>
                                     <p class="comment-like-count counter"></p>
-                                    <i class="fa-regular fa-comments comment-reply-button" tabindex="0"></i>
+                                    <i class="fa-regular fa-comments comment-reply-button" tabindex="0" title="Reply"></i>
                                     <p class="comment-reply-count counter"></p>
                                     <div class="non-reply-content show-replies clickable show-button">
                                         <p><span class="show-status">Show</span><span class="comment-reply-count"></span>replies</p><i class="fa-solid fa-chevron-down"></i>
@@ -265,12 +273,12 @@ require_once 'php/profile-checker.php';
                         </template>
                         <template id="template-post">
                             <div class="post-container">
-                                <div class="post-header">
+                                <div class="post-header" style="width: 100%;">
                                     <a class="profile-link not-link"><img alt="User Avatar" class="normal-avatar avatar post-avatar"></a>
-                                    <div class="post-user-info">
-                                        <a class="profile-link not-link">
-                                            <p class="post-username"></p>
-                                        </a>
+                                    <div class="post-user-info" style="width: 100%;">
+                                        <div style="width: 100%; display: flex; flex-direction: row"><a class="profile-link not-link">
+                                                <p class="post-username"></p>
+                                            </a><?php if ($client) { ?><i class="fa-solid fa-trash-can button-delete delete-post" style="margin-left:auto; font-size: var(--font-size-large);" tabindex="0"></i> <?php } ?></div>
                                         <p class="post-timestamp"></p>
                                         <p class="post-caption"></p>
                                     </div>
@@ -278,16 +286,16 @@ require_once 'php/profile-checker.php';
                                 <div class="post-image-container">
                                     <img alt="Example Image" class="post-image">
                                     <div class="image-footer">
-                                        <i class="fa-regular fa-heart like-button" tabindex="0"></i>
+                                        <i class="fa-regular fa-heart like-button" tabindex="0" title="Like"></i>
                                         <p class="like-count counter"></p>
-                                        <i class="fa-regular fa-comment comment-button" tabindex="0"></i>
+                                        <i class="fa-regular fa-comment comment-button" tabindex="0" title="Add Comment"></i>
                                         <p class="comment-count counter"></p>
                                         <div class="show-comments clickable show-button">
                                             <p><span class="show-status">Show</span><span class="comment-count"></span>comments</p><i class="fa-solid fa-chevron-down"></i>
                                         </div>
-                                        <a href="https://www.facebook.com/sharer/sharer.php?u=" class="facebook-btn not-link" target="_blank"><i class="fa-brands fa-facebook share-btn"></i></a>
-                                        <a href="https://twitter.com/intent/tweet?text=https://enos.itcollege.ee/~badurm/trektrack1/TrekTrack/home.php" class="twitter-btn not-link" target="_blank"><i class="fa-brands fa-square-twitter share-btn"></i></a>
-                                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://enos.itcollege.ee/~badurm/trektrack1/TrekTrack/home.php" class="linkedin-btn not-link" target="_blank"><i class="fa-brands fa-linkedin share-btn"></i></a>
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u=" class="facebook-btn not-link" target="_blank"><i class="fa-brands fa-facebook share-btn" title="Share Page on Facebook"></i></a>
+                                        <a href="https://twitter.com/intent/tweet?text=https://enos.itcollege.ee/~badurm/trektrack1/TrekTrack/home.php" class="twitter-btn not-link" target="_blank"><i class="fa-brands fa-square-twitter share-btn" title="Share Page on Twitter"></i></a>
+                                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://enos.itcollege.ee/~badurm/trektrack1/TrekTrack/home.php" class="linkedin-btn not-link" target="_blank"><i class="fa-brands fa-linkedin share-btn" title="Share Page on LinkedIn"></i></a>
                                     </div>
                                 </div>
                                 <div class="post-comments">
@@ -322,7 +330,7 @@ require_once 'php/profile-checker.php';
                                     </div>
                                     <div>
                                         <?php if ($client) { ?>
-                                        <i class="fa-solid fa-map-pin button-ongoing-trip" tabindex="0"></i><i class="fa-solid fa-trash-can button-delete" tabindex="0"></i>
+                                            <i class="fa-solid fa-map-pin button-ongoing-trip" tabindex="0" title="Set as Ongoing Trip"></i><i class="fa-solid fa-trash-can button-delete delete-trip" title="Delete Trip" tabindex="0"></i>
                                         <?php } ?>
                                     </div>
                                 </div>
@@ -348,6 +356,13 @@ require_once 'php/profile-checker.php';
                     </div>
                 </div>
             </div>
+            <footer class="quick-links bg-transparent">
+                <ul>
+                    <li><a href="about.php">About Us</a></li>
+                    <li><a href="contact.php">Contact</a></li>
+                    <li><a href="privacy.php">Privacy</a></li>
+                </ul>
+            </footer>
         </div>
         <aside class="home social bg-invert-neutral">
             <div class="container-friend-searchbar">
@@ -366,10 +381,10 @@ require_once 'php/profile-checker.php';
                             <a class="clickable not-link friend-username profile-link"></a>
                             <div class="container-status-buttons">
                                 <p class="status-text"></p>
-                                <i class="fa-solid fa-user-plus positive button-add-friend status-none" tabindex="0"></i>
-                                <i class="fa-solid fa-user-xmark negative button-reject-friend status-received" tabindex="0"></i>
-                                <i class="fa-solid fa-user-check positive button-accept-friend status-received" tabindex="0"></i>
-                                <i class="fa-solid fa-user-minus negative button-remove-friend status-accepted" tabindex="0"></i>
+                                <i class="fa-solid fa-user-plus positive button-add-friend status-none" title="Add Friend" tabindex="0"></i>
+                                <i class="fa-solid fa-user-xmark negative button-reject-friend status-received" title="Reject Friend" tabindex="0"></i>
+                                <i class="fa-solid fa-user-check positive button-accept-friend status-received" title="Accept Friend" tabindex="0"></i>
+                                <i class="fa-solid fa-user-minus negative button-remove-friend status-accepted" title="Remove Friend" tabindex="0"></i>
                             </div>
                         </div>
                     </div>

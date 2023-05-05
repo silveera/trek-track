@@ -3,24 +3,6 @@ require_once 'utilities.php';
 require_once 'user-info-module.php';
 require_once 'profile-checker.php';
 
-/* $query = "SELECT * FROM users WHERE user_name = ?;";
-
-$stmt = mysqli_prepare($conn, $query);
-
-if (!$stmt) {
-    header("location: ../signup.php?error=stmtfailed");
-    exit();
-}
-
-mysqli_stmt_bind_param($stmt, "s", $clientUserName);
-mysqli_stmt_execute($stmt);
-
-$resultData = mysqli_stmt_get_result($stmt);
-
-$userInfoArray = mysqli_fetch_assoc($resultData);
-
-mysqli_stmt_close($stmt); */
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && $client) {
 
     $userBio = $_POST["p-bio"];

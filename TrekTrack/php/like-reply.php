@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $stmt = mysqli_prepare($conn, $query);
 
         if (!$stmt) {
-            /* header("location: ../signup.php?error=stmtfailed"); */
+            
             echo "stmtfailed";
             exit();
         }
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $stmt = mysqli_prepare($conn, $query);
 
         if (!$stmt) {
-            /* header("location: ../signup.php?error=stmtfailed"); */
+            
             echo "stmtfailed";
             exit();
         }

@@ -73,7 +73,7 @@ function fetchUserInfoJSON($conn, $userid) {
     $stmt = mysqli_prepare($conn, $query);
 
     if (!$stmt) {
-        /* header("location: ../signup.php?error=stmtfailed"); */
+        
         echo "stmtfailed";
         exit();
     }
@@ -96,7 +96,7 @@ function fetchUserInfoID($conn, $userid) {
     $stmt = mysqli_prepare($conn, $query);
 
     if (!$stmt) {
-        /* header("location: ../signup.php?error=stmtfailed"); */
+        
         echo "stmtfailed";
         exit();
     }

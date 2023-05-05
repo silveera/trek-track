@@ -15,7 +15,7 @@ require_once 'php/utilities.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy</title>
-</head>
+<noscript>Your browser does not support JavaScript!</noscript></head>
 
 <body>
     <header class="primary-gradient">

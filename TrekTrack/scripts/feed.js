@@ -7,6 +7,13 @@ const tempFeed = document.getElementById("template-post");
 /* const contComment = document.querySelector(".post-comments"); */
 
 const tempComment = document.getElementById("template-comment");
+const collection = document.querySelector(".collection");
+const social = document.querySelector(".social");
+
+if (userData["user_id"] == 0) {
+    collection.remove();
+    social.remove();
+}
 
 let currentURL = new URLSearchParams(window.location.search);
 
@@ -54,6 +61,8 @@ if ('content' in document.createElement('template')) {
         postClone.querySelector(".post-avatar").src = feedItem["user_avatar_ref"];
         postClone.querySelector(".post-username").innerText = feedItem["user_name"];
 
+        postClone.querySelector(".post-container").id = "id" + feedItem["post_id"];
+        
         postClone.querySelectorAll(".profile-link").forEach(function (link) {
             if (feedItem["user_name"] == userData["user_name"]) {
                 link.href = "profile.php";
@@ -276,6 +285,11 @@ if ('content' in document.createElement('template')) {
     currentReplyID++;
 
     $(contFeed).on("click", ".like-button", function() {
+        if (userData["user_id"] == 0) {
+            alert("You must be logged in to like a post.");
+            return;
+        }
+
         let postId = $(this).attr("id").replace("likebtn", "");
         let likeCount = $("#"+postId+"likecount");
         let likeBtn = $("#"+postId+"likebtn");
@@ -312,6 +326,11 @@ if ('content' in document.createElement('template')) {
     });
 
     $(contFeed).on("click", ".comment-button", function() {
+        if (userData["user_id"] == 0) {
+            alert("You must be logged in to comment.");
+            return;
+        }
+
         if ($(".active-comment").length > 0) {
             $(".active-comment").remove();
         }
@@ -420,12 +439,12 @@ if ('content' in document.createElement('template')) {
 
     });
 
-    $(contFeed).on("click", ".post-user-image", function() {
-        let userId = $(this).attr("id").replace("user", "");
-        window.location.href = "profile.php?user_id=" + userId;
-    });
-
     $(contFeed).on("click", ".comment-like-button", function() {
+        if (userData["user_id"] == 0) {
+            alert("You must be logged in to like a comment.");
+            return;
+        }
+
         let commentId = $(this).attr("id").replace("commentlikebtn", "");
         let likeCount = $("#"+commentId+"commentlikecount");
         let likeBtn = $("#"+commentId+"commentlikebtn");
@@ -462,6 +481,11 @@ if ('content' in document.createElement('template')) {
     });
 
     $(contFeed).on("click", ".comment-reply-button", function() {
+        if (userData["user_id"] == 0) {
+            alert("You must be logged in to reply to a comment.");
+            return;
+        }
+
         if ($(".active-comment").length > 0) {
             $(".active-comment").remove();
         }
@@ -591,6 +615,7 @@ if ('content' in document.createElement('template')) {
     });
 
     $(contFeed).on("click", ".comment-like-button", function() {
+
         let replyId = $(this).attr("id").replace("replylikebtn", "");
         let likeCount = $("#"+replyId+"replylikecount");
         let likeBtn = $("#"+replyId+"replylikebtn");
