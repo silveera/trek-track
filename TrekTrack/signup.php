@@ -17,6 +17,9 @@ if (checkLoginStatus()) {
     <title>Sign Up</title>
     <script src="scripts/darkmode.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Batu Durmazel, Michelle Watford, Yuto Kobayashi">
+    <meta name="description" content="Join a passionate community of travellers who love to share our travel memories, make  exciting travel plans, and meet new people from around the globe.">
+    <meta name="keywords" content="travel, social, media, posts, friends, explore">
 
 <noscript>Your browser does not support JavaScript!</noscript></head>
 
