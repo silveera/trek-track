@@ -81,3 +81,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST["action"])) {
     setOngoing($conn, $tripID, $toggleTo);
     header('location: ../profile.php#trips');
 }
+
+// this page handles 3 aspects for trips - submitting new trip, fetching trips & ongoing trip status.

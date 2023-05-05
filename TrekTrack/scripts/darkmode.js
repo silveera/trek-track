@@ -107,3 +107,15 @@ function darkMode() {
     root.style.setProperty('--accent-color-1', '#3f51b5');
     root.style.setProperty('--accent-tint-1', '#86adff');
 }
+
+// this page deals with swithing the page between dark & light mode, 
+// getCookie() func retrieves value of cookie by name, splits document cookies &
+// iterates through to find cookie with given name, 
+// retrieves user's preferred theme from cookie & sets the theme accordingly,
+// if theme is not found in cookie, default theme is light mode,
+// adds event listener to toggle switch that calls switchTheme() func when switch is changed,
+// switchTheme() func toggles between dark & light modes based on the switch's state,
+// sets document's data-theme attribute & updates cookie with new theme,
+// calls either darkMode() or lightMode() func to apply corresponding theme,
+// lightMode() & darkMode() funcs update CSS variables with color values corresponding themes respectively,
+// these CSS variables can be used throughout the website's stylesheets to apply respective theme colours.

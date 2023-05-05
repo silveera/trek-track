@@ -1,9 +1,13 @@
+
+// The "preventEnterKey" func prevents the "Enter" key from triggering the default form submission.
 export function preventEnterKey(event) {
     if (event.key === "Enter") {
       event.preventDefault();
     }
 };
 
+// The "autoResize" func resizes a textarea element to fit its content, & the "removeWhiteSpace" func removes extra 
+// whitespace from the content of a textarea element.
 export function autoResize() {
     this.style.height = 'auto';
     if (this.scrollHeight > 0) {
@@ -15,6 +19,11 @@ export function removeWhiteSpace() {
     this.value = this.value.replace(/\s+/g, ' ').trim();
 };
 
+
+// The "textAreaEvents" func adds event listeners to a textarea element to enable auto resizing, removal of extra whitespace,
+// & prevention of "Enter" key press. The "submitForm" func collects form data & submits data using
+// AJAX to server-side script specified by the "scriptURL". The "preventReloadSubmit" func prevents form
+// reloading & submits the form using the "submitForm" func.
 export function textAreaEvents () {
     this.addEventListener('input', autoResize);
     this.addEventListener('focus', autoResize);
@@ -51,6 +60,8 @@ export function preventReloadSubmit(formID, scriptURL) {
     });
 };
 
+// The "logJSONData" func fetches user data in JSON format from a server-side script & returns the data, exports
+// variable called "userData" which stores the JSON data fetched by the "logJSONData" func.
 async function logJSONData() {
     const response = await fetch("php/user-info-json.php");
     const jsonData = await response.json();
@@ -68,10 +79,12 @@ const map = {
     "'": '&#039;'
 };
 
+// The "escapeHtml" func replaces special characters with their corresponding HTML entities.
 export function escapeHtml(text) {
     return text.replace(/[&<>"']/g, function(m) { return map[m]; });
 };
 
+//  "timeStamper" func takes date object & returns a readable string that shows how long ago the time was.
 export function timeStamper(date) {
     const timestamp = new Date(date);
 

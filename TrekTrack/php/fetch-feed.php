@@ -2,6 +2,8 @@
 require_once 'utilities.php';
 require_once 'user-info-module.php';
 
+// Function for fetching comments for given post id, joins 4 tables in db to get info,
+// returns array of comments containing user info etc.
 function fetch_comments($conn, $post_id) {
   $query = "SELECT
               u.user_name,
@@ -67,6 +69,10 @@ function fetch_comments($conn, $post_id) {
   return $comments;
 }
 
+// fucntion for fetching comment replies, joins 3 tables in db to 
+// get information about the replies & likes on said replies.
+// Returns array of replies containing user information like the user's name, avatar, 
+// reply details, likes on the replies.
 function fetch_replies($conn, $comment_id) {
   $query = "SELECT
               u.user_name,
@@ -110,7 +116,10 @@ function fetch_replies($conn, $comment_id) {
   return $replies;
 }
 
-
+// fucntion for fetching posts on the feed (homepage); joins 4 tables on the db,
+// to get information about the posts, likes on the posts, & comments on the posts.
+// For each post, funciton calls fetch_comments function & fetch_replies function.
+// Returns array of feed items.
 function fetch_feed_items($limit, $conn) {
 
     $query = "SELECT

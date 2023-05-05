@@ -92,3 +92,16 @@ if ($client && $_SERVER['REQUEST_METHOD'] == 'POST' && !(empty($_POST["new-post-
     
     header("location: ../profile.php");
 }
+
+// this page checks if user is a client, if req method is POST, if either caption or image is not empty,
+// if caption is not empty, stores it in $caption variable, otherwise sets $caption to an empty string,
+// fetches maximum post ID from "posts" table in db & increment it to obtain new post ID,
+// checks if image upload has no errors or if image size is within allowed limits (less than 1 MB),
+// defines allowed mime types for image files, i.e., JPEG and PNG, & stores them in $allowedMimeTypes array.
+// gets MIME type of uploaded image using mime_content_type() func.
+// if MIME type is within the allowed types, post upload process is ok,
+// creates path for the new image file (filesystem way),
+// move uploaded image file to right location using move_uploaded_file(),
+// prepares SQL query to insert new post with user ID, caption, & image reference into the "posts" table in db,
+// executes statement & closes it using mysqli_stmt_execute() & mysqli_stmt_close().
+

@@ -88,3 +88,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
     header("location: ../signup.php");
 }
     
+// this page checks is submit button is clicked from form,
+// sanitises user input for new account, stores sanitised input data in session vars,
+// validates input data, if there is any error messages, redirects back to the signup page
+// with "invalidsignup" error & stores the error messages/types in session variables.
+// if no errors, new acc is made then createUser() func takes the connection, username, email, & password as parameters;
+// hashes user's password using password_hash().
+// creates a statement to insert user's data into the "users" table in db,
+// binds the parameters to the statement & executes,
+// closes the statement & redirects to the login page.
+// calls createUser() func with the connection, username, email, & password.
+// if req method is not POST or the submit parameter not set, redirects back to the signup page.
