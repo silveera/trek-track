@@ -42,6 +42,9 @@ require_once 'php/user-info-module.php';
                         </label>
                     </div>
                 </li>
+                <li><a href="privacy.php">Privacy</a></li>
+                <li><a href="about.php" >About</a></li>
+                <li><a href="contact.php">Contact</a></li>
                 <li><a href="home.php"><i class="fa-solid fa-house not-link"></i><p>Home</p></a></li>
                 <li><a href="profile.php"><i class="fa-solid fa-user not-link"></i><p>Profile</p></a></li>
             </ul>

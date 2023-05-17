@@ -40,6 +40,7 @@ require_once 'php/utilities.php';
                 <li><a href="privacy.php" style="border-bottom:2px solid;">Privacy</a></li>
                 <li><a href="about.php">About</a></li>
                 <li><a href="contact.php">Contact</a></li>
+                <li><a href="profile.php"><i class="fa-solid fa-user not-link"></i><p>Profile</p></a></li>
             </ul>
         </nav>
         <div class="head account">

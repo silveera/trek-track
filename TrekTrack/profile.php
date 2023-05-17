@@ -46,6 +46,9 @@ require_once 'php/profile-checker.php';
                         </label>
                     </div>
                 </li>
+                <li><a href="privacy.php">Privacy</a></li>
+                <li><a href="about.php">About</a></li>
+                <li><a href="contact.php">Contact</a></li>
                 <li><a href="home.php"><i class="fa-solid fa-house not-link"></i>
                         <p>Home</p>
                     </a></li>
