@@ -122,3 +122,7 @@ export function autoResizeTextInput() {
     this.style.width = this.value.length + "ch";
   } 
 }
+
+if (document.getElementById("pw")) {
+  document.getElementById("showpw").addEventListener("click", showPassword);
+}

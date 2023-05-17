@@ -20,6 +20,7 @@ if (checkLoginStatus()) {
     <meta name="description" content="Join a passionate community of travellers who love to share our travel memories, make  exciting travel plans, and meet new people from around the globe.">
     <meta name="keywords" content="travel, social, media, posts, friends, explore">
     <script src="scripts/darkmode.js" defer></script>
+    <script src="scripts/util.js" type="module"></script>
     <title>Login</title>
 <noscript><p>Your browser does not support JavaScript!</p></noscript></head>
 
@@ -52,6 +53,7 @@ if (checkLoginStatus()) {
                 <input type="text" placeholder="Username" id="uid" name="uid" value="<?= checkValueAndReturn("loginusername") ?>" class="<?= checkArraySetMissing('loginerrortypes','username' ) ?>" required>
 
                 <input type="password" placeholder="Password" id="pw" name="pw" value="<?= checkValueAndReturn("loginpassword") ?>" class="<?= checkArraySetMissing('loginerrortypes','password' ) ?>" required>
+                                <button type="button" id="showpw" title="Show Password" alt="Show Password"><i class="fa-solid fa-eye"></i></button>
     
                 <button type="submit" id="submit" name="submit" class="button border-secondary text-medium-invert-neutral bg-secondary">Log in</button>
                 <p id="errormessage"> <?= checkValueAndReturn("loginerrormsg") ?>  </p>

@@ -684,4 +684,12 @@ if ('content' in document.createElement('template')) {
             commentContainer.hide();
         };
     });
+
+    $(contFeed).on('click', '.post-image', function() {
+        if ($(this).attr('id') == 'enlarged-image') {
+            $(this).attr('id', '');
+        } else {
+            $(this).attr('id', 'enlarged-image');
+        }
+    });
 }

@@ -16,10 +16,12 @@ if (checkLoginStatus()) {
     <meta charset="UTF-8">
     <title>Sign Up</title>
     <script src="scripts/darkmode.js" defer></script>
+    <script src="https://kit.fontawesome.com/66d74c224c.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Batu Durmazel, Michelle Watford, Yuto Kobayashi">
     <meta name="description" content="Join a passionate community of travellers who love to share our travel memories, make  exciting travel plans, and meet new people from around the globe.">
     <meta name="keywords" content="travel, social, media, posts, friends, explore">
+    <script src="scripts/util.js" type="module"></script>
 
 <noscript><p>Your browser does not support JavaScript!</p></noscript></head>
 
@@ -52,6 +54,7 @@ if (checkLoginStatus()) {
                 <input type="text" placeholder="Username" id="uid" name="uid" value="<?= checkValueAndReturn("signusername") ?>" class="<?= checkArraySetMissing('signerrortypes','username' ) ?>" required>
                 <input type="email" placeholder="Email" id="email" name="email" value="<?= checkValueAndReturn("signemail") ?>" class="<?= checkArraySetMissing('signerrortypes','email' ) ?>" required> <br>
                 <input type="password" placeholder="Password" id="pw" name="pw" value="<?= checkValueAndReturn("signpassword") ?>" class="<?= checkArraySetMissing('signerrortypes','password' ) ?>" required>
+                                <button type="button" id="showpw" title="Show Password" alt="Show Password"><i class="fa-solid fa-eye"></i></button>
                 <input type="password" placeholder="Repeat Password" id="pw-rpt" name="pw-rpt" class="<?= checkArraySetMissing('signerrortypes','passwordrepeat' ) ?>" required>
 
                 <button type="submit"  id="submit" name="submit" class="border-secondary text-medium-invert-neutral bg-secondary">Create Account</button>

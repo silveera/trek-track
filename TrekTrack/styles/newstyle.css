@@ -318,6 +318,18 @@ input[type="search"]::placeholder {
     font-size: var(--font-size-normal);
 }
 
+#enlarged-image {
+    max-width: 90%;
+    max-height: 90%;
+    margin: auto;
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
 input {
     color: var(--neutral-color);
 }
