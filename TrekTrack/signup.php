@@ -42,9 +42,9 @@ if (checkLoginStatus()) {
                         </label>
                     </div>
                 </li>
-                <li><a href="privacy.php">Privacy</a></li>
-                <li><a href="about.php">About</a></li>
-                <li><a href="contact.php">Contact</a></li>
+                <li><a href="privacy.php" title="Privacy"><i class="fa-solid fa-eye not-link"></i><p>Privacy</p></a></li>
+                <li><a href="about.php" title="About"><i class="fa-solid fa-circle-info not-link"></i><p>About</p></a></li>
+                <li><a href="contact.php" title="Contact"><i class="fa-solid fa-phone not-link"></i><p>Contact</p></a></li>
             </ul>
         </nav>
     </header>

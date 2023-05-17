@@ -38,9 +38,9 @@ require_once 'php/utilities.php';
                     </div>
 
                 </li>
-                <li><a href="privacy.php">Privacy</a></li>
-                <li><a href="about.php" style="border-bottom:2px solid;">About</a></li>
-                <li><a href="contact.php">Contact</a></li>
+                <li><a href="privacy.php" title="Privacy"><i class="fa-solid fa-eye not-link"></i><p>Privacy</p></a></li>
+                <li><a href="about.php" title="About" style="border-bottom: 2px solid"><i class="fa-solid fa-circle-info not-link"></i><p>About</p></a></li>
+                <li><a href="contact.php" title="Contact"><i class="fa-solid fa-phone not-link"></i><p>Contact</p></a></li>
                 <li><a href="profile.php"><i class="fa-solid fa-user not-link"></i><p>Profile</p></a></li>
             </ul>
         </nav>

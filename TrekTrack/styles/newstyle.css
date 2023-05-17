@@ -1855,7 +1855,13 @@ main input::placeholder {
         grid-template-columns: auto;
     }
 
+    .toggle-switch-label {
+        display: none;
+    }
 
+    #logo {
+        width: 8em;
+    }
 }
 
     .share-btn::before {
