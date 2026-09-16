@@ -11,27 +11,39 @@ if (checkLoginStatus()) {
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="images/Icon.svg">
     <link rel="stylesheet" href="styles/newstyle.css">
     <script src="https://kit.fontawesome.com/66d74c224c.js" crossorigin="anonymous"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Batu Durmazel, Michelle Watford, Yuto Kobayashi">
+    <meta name="description" content="Join a passionate community of travellers who love to share our travel memories, make  exciting travel plans, and meet new people from around the globe.">
+    <meta name="keywords" content="travel, social, media, posts, friends, explore">
+    <script src="scripts/darkmode.js" defer></script>
+    <script src="scripts/util.js" type="module"></script>
     <title>Login</title>
-</head>
+<noscript><p>Your browser does not support JavaScript!</p></noscript></head>
 
 <body>
     <header class="primary-gradient">
         <div class="head logo">
-            <a href="index.php" class="not-link"><img src="images/logoex.png" width="50" id="logo"
-                    alt="Trek&Track-Logo"></a>
-            <a href="index.php" class="text-thick-invert-neutral not-link logo-text">
-                <p>Trek&Track</p>
+            <a href="index.php" class="not-link" style="margin-left: 0.2em; margin-block: 0.2em;"><img src="images/Banner.svg" width="170" id="logo" alt="Trek&Track-Logo">
             </a>
         </div>
         <nav class="text-medium-invert-neutral">
             <ul class="head nav-list">
-                <li><a href="privacy.php">Privacy</a></li>
-                <li><a href="about.php">About</a></li>
-                <li><a href="contact.php">Contact</a></li>
+                <li>
+            <label class="toggle-switch-label clickable" for="toggle-switch-input">Dark Mode</label>
+                    <div class="toggle-switch">
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-switch-input">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </li>
+                <li><a href="privacy.php" title="Privacy"><i class="fa-solid fa-eye not-link"></i><p>Privacy</p></a></li>
+                <li><a href="about.php" title="About"><i class="fa-solid fa-circle-info not-link"></i><p>About</p></a></li>
+                <li><a href="contact.php" title="Contact"><i class="fa-solid fa-phone not-link"></i><p>Contact</p></a></li>
             </ul>
         </nav>
     </header>
@@ -41,16 +53,11 @@ if (checkLoginStatus()) {
                 <input type="text" placeholder="Username" id="uid" name="uid" value="<?= checkValueAndReturn("loginusername") ?>" class="<?= checkArraySetMissing('loginerrortypes','username' ) ?>" required>
 
                 <input type="password" placeholder="Password" id="pw" name="pw" value="<?= checkValueAndReturn("loginpassword") ?>" class="<?= checkArraySetMissing('loginerrortypes','password' ) ?>" required>
-    
-                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" class="tex">Forgot your password?</a>
+                                <button type="button" id="showpw" title="Show Password" alt="Show Password"><i class="fa-solid fa-eye"></i></button>
     
                 <button type="submit" id="submit" name="submit" class="button border-secondary text-medium-invert-neutral bg-secondary">Log in</button>
                 <p id="errormessage"> <?= checkValueAndReturn("loginerrormsg") ?>  </p>
 
-                <p id="or"> or </p>
-
-                <button type="submit" id="facebook" class="border-secondary text-medium-invert-neutral bg-secondary" formnovalidate>Continue with Facebook</button>
-                <button type="submit" id="google" class="border-secondary text-medium-invert-neutral bg-secondary" formnovalidate>Continue with Google</button>
                 <p id="register">Need an account?<a href="signup.php">SIGN UP</a></p>
             </form>
         </div>

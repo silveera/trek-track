@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
         $uidExists = existingUsername($conn, $username);
         global $errMsg, $errType;
 
-        $userInfo = setUserInfo($conn, $username);
+        $userInfo = fetchUserInfoNAME($conn, $username);
 
         $pwHashed = $userInfo["user_password"];
         $checkPassword = password_verify($password, $pwHashed);
@@ -72,3 +72,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
 } else {
     header("location: ../login.php");
 }
+
+// this page checks if POST is used & submit button clicked, 
+// username is sanitised, both password & username then assigned to session vars,
+// has error messsage string & error type array, 
+// checks if username & password fields are empty - changes error messages based on that;
+// loginuser func calls a helper function to check if user exists in db already,
+// if user exists then fetchUserInfoNAME func fetchers user info;
+// verifies given password w hashed password in db using password_verify func;
+// if password verification is successful, set session variables, & redirects user to the homepage.

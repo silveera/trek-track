@@ -1,7 +1,9 @@
 ## 27.03.2023
 
-+ Restyle login, signup
-+ Figure out how to implement a feed
-+ Add missing pages
-+ Add text to pages
-+ Have a plan about left side menu, implement if possible
++ Add liking to comments
++ Add replies
++ Add liking to replies
++ Make both look neater
++ Add friends
++ Add show/load more buttons
++ Add sorting

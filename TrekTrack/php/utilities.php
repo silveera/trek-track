@@ -47,7 +47,7 @@ function checkArraySetMissing($arraykey, $value)
     return "";
 }
 
-function setUserInfo($conn, $username) {
+function fetchUserInfoNAME($conn, $username) {
     $query = "SELECT * FROM users WHERE user_name = ?;";
 
     $stmt = mysqli_prepare($conn, $query);
@@ -73,7 +73,7 @@ function fetchUserInfoJSON($conn, $userid) {
     $stmt = mysqli_prepare($conn, $query);
 
     if (!$stmt) {
-        /* header("location: ../signup.php?error=stmtfailed"); */
+        
         echo "stmtfailed";
         exit();
     }
@@ -96,7 +96,7 @@ function fetchUserInfoID($conn, $userid) {
     $stmt = mysqli_prepare($conn, $query);
 
     if (!$stmt) {
-        /* header("location: ../signup.php?error=stmtfailed"); */
+        
         echo "stmtfailed";
         exit();
     }

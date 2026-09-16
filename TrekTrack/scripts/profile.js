@@ -28,19 +28,11 @@ const contPosts = document.querySelector('.container-p-posts');
 
 const contTrips = document.querySelector('.container-p-trips');
 
-/* function limitRows() {
-    // Count line breaks in the textarea
-    // If the number of line breaks is less than or equal to the maximum allowed rows, update the 'rows' attribute
-    if (parseInt(this.style.height, 10) >= 96) {
-      // If the number of line breaks exceeds the maximum allowed rows, remove the last line break
-        this.addEventListener('keydown', preventEnterKey);
-        this.style.height = "95";
+const contContent = document.querySelector('.container-p-content');
 
-        } else {
-            // If the textarea height is less than 448, remove the event listener
-            this.removeEventListener('keydown', preventEnterKey);
-          }
-    }; */
+const noPosts = document.querySelector(".container-p-no-posts");
+
+const noTrips = document.querySelector(".container-p-no-trips");
 
 fileInputAvatarP.addEventListener("change", function (event) {
     let file = event.target.files[0];
@@ -71,7 +63,7 @@ buttonEditP.addEventListener("click", function () {
         autoResize.call(txtBio);
 
         txtBio.removeAttribute("readonly");
-        txtBio.style.backgroundColor = "white";
+        txtBio.style.backgroundColor = "var(--invert-neutral-color)";
         txtBio.style.cursor = "text"
 
     } else if (buttonEditP.innerHTML == "Save Profile") {
@@ -96,14 +88,62 @@ buttonEditP.addEventListener("click", function () {
     }
 });
 
+if (window.location.hash === "#trips") {
+  contPosts.style.display = "none";
+  contTrips.style.display = "block";
+  btnTrips.closest(".container-p-content-button").parentElement.style.width = "74%";
+  btnPosts.closest(".container-p-content-button").parentElement.style.width = "24%";
+} else if (window.location.hash === "#posts") {
+  contTrips.style.display = "none";
+  contPosts.style.display = "block";
+
+  btnPosts.closest(".container-p-content-button").parentElement.style.width = "74%";
+  btnTrips.closest(".container-p-content-button").parentElement.style.width = "24%";
+}
+
 btnPosts.addEventListener('click', function () {
-    contPosts.style.display = "flex";
     contTrips.style.display = "none";
+    contPosts.style.display = "block";
+    location.hash = "#posts";
+
+    btnPosts.closest(".container-p-content-button").parentElement.style.width = "74%";
+    btnTrips.closest(".container-p-content-button").parentElement.style.width = "24%";
 });
 
 btnTrips.addEventListener('click', function () {
     contPosts.style.display = "none";
-    contTrips.style.display = "flex";
+    contTrips.style.display = "block";
+    location.hash = "#trips";
+
+    btnTrips.closest(".container-p-content-button").parentElement.style.width = "74%";
+    btnPosts.closest(".container-p-content-button").parentElement.style.width = "24%";
+});
+
+$(".switch-trip-button").on("click", function () {
+    contPosts.style.display = "none";
+    contTrips.style.display = "block";
+    location.hash = "#trips";
+
+    btnTrips.closest(".container-p-content-button").parentElement.style.width = "74%";
+    btnPosts.closest(".container-p-content-button").parentElement.style.width = "24%";
+});
+
+$(".trip-switch-link").on("click", function () {
+    contPosts.style.display = "none";
+    contTrips.style.display = "block";
+    location.hash = "#trips";
+
+    btnTrips.closest(".container-p-content-button").parentElement.style.width = "74%";
+    btnPosts.closest(".container-p-content-button").parentElement.style.width = "24%";
+});
+
+$(".post-switch-link").on("click", function () {
+    contTrips.style.display = "none";
+    contPosts.style.display = "block";
+    location.hash = "#posts";
+
+    btnPosts.closest(".container-p-content-button").parentElement.style.width = "74%";
+    btnTrips.closest(".container-p-content-button").parentElement.style.width = "24%";
 });
 
 txtBio.addEventListener('input', autoResize);

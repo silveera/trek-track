@@ -5,12 +5,14 @@ require_once 'user-info-module.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $post_id = $_POST['post_id'];
 
+// toggles a like for a post bya given user, then executes the SQL query based on 
+// if the conditions are met.
     function likePost($conn, $post_id, $userID) {
         $query = "SELECT * FROM likes WHERE post_id = ? AND user_id = ?;";
         $stmt = mysqli_prepare($conn, $query);
 
         if (!$stmt) {
-            /* header("location: ../signup.php?error=stmtfailed"); */
+            
             echo "stmtfailed";
             exit();
         }
@@ -46,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $stmt = mysqli_prepare($conn, $query);
 
         if (!$stmt) {
-            /* header("location: ../signup.php?error=stmtfailed"); */
+            
             echo "stmtfailed";
             exit();
         }
@@ -65,3 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     likePost($conn, $post_id, $userID);
 }
+
+
+// this page checks if the request method used is POST, if it is,
+// it gets the post_id from the request & calls the likePost function 
+// with the connection, post ID, & user ID parameters.
